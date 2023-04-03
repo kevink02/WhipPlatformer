@@ -70,37 +70,61 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""5672aaa7-b43e-4ba2-a64b-93e961d6af12"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""ad9461b2-5a86-4af2-95b3-cf7e3ff2fe66"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""VerticalMove"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Abilities"",
+            ""id"": ""dbb45081-e1a8-46cd-b61d-d3e8bed84cfe"",
+            ""actions"": [
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2cd126a3-d07a-491c-a3ab-668e5a78d952"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b015748-ae13-48e7-bff1-03dbd91e85e8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""da606efd-129d-4c7d-aef9-5996698d411b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""2d144206-5501-4dae-8347-6920164bf1ef"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""name"": """",
+                    ""id"": ""4a32712e-64df-4f73-8d86-09509eb3016a"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""VerticalMove"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""f4e5cd69-68ab-410a-a3ea-b46a27fc56d2"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""VerticalMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -111,6 +135,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_HorizontalMove = m_Movement.FindAction("HorizontalMove", throwIfNotFound: true);
         m_Movement_VerticalMove = m_Movement.FindAction("VerticalMove", throwIfNotFound: true);
+        // Abilities
+        m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
+        m_Abilities_Attack = m_Abilities.FindAction("Attack", throwIfNotFound: true);
+        m_Abilities_Interact = m_Abilities.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -197,9 +225,55 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // Abilities
+    private readonly InputActionMap m_Abilities;
+    private IAbilitiesActions m_AbilitiesActionsCallbackInterface;
+    private readonly InputAction m_Abilities_Attack;
+    private readonly InputAction m_Abilities_Interact;
+    public struct AbilitiesActions
+    {
+        private @PlayerControls m_Wrapper;
+        public AbilitiesActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Attack => m_Wrapper.m_Abilities_Attack;
+        public InputAction @Interact => m_Wrapper.m_Abilities_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Abilities; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AbilitiesActions set) { return set.Get(); }
+        public void SetCallbacks(IAbilitiesActions instance)
+        {
+            if (m_Wrapper.m_AbilitiesActionsCallbackInterface != null)
+            {
+                @Attack.started -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnAttack;
+                @Interact.started -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_AbilitiesActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public AbilitiesActions @Abilities => new AbilitiesActions(this);
     public interface IMovementActions
     {
         void OnHorizontalMove(InputAction.CallbackContext context);
         void OnVerticalMove(InputAction.CallbackContext context);
+    }
+    public interface IAbilitiesActions
+    {
+        void OnAttack(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
