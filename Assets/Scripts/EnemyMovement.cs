@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private float _moveSpeed;
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        Vector2 direction = Vector2.zero;
+        Debug.DrawRay(transform.position, direction, Color.white, 0.02f);
     }
 }
