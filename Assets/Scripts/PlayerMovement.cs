@@ -5,11 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] [Range(0, 1000)]
+    private float _jumpForce;
+
     private PlayerControls _playerControls;
+    private Rigidbody2D _rigidBody2D;
 
     private void Awake()
     {
         _playerControls = new PlayerControls();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
     }
     private void Start()
     {
@@ -33,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private void MoveVertically()
     {
         Debug.Log($"{name}: Jumping");
+        _rigidBody2D.AddForce(_jumpForce * Vector2.up);
     }
     private void AbilityAttack()
     {
