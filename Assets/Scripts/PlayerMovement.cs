@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerControls _playerControls = new PlayerControls();
+    private PlayerControls _playerControls;
 
     private void Awake()
     {
+        _playerControls = new PlayerControls();
     }
     private void Start()
     {
