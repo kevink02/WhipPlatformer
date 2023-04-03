@@ -5,10 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] [Range(0, 1000)]
-    private float _jumpForce;
+    [Range(0, 1000)]
     [SerializeField]
-    private float _moveForce;
+    private float _jumpForce; // default = 500
+    [Range(0.01f, 1)]
+    [SerializeField]
+    private float _moveLerpSpeed; // default = 0.2f
+    [SerializeField]
+    private float _moveForce; // default = 5
 
     private bool _isMoving;
     private PlayerControls _playerControls;
@@ -32,7 +36,9 @@ public class PlayerMovement : MonoBehaviour
         if (_isMoving)
         {
             float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
-            _rigidBody2D.AddForce(_moveForce * moveDirection * Vector2.right);
+            // Lerp speed from current speed to the target horizontal speed + current vertical speed
+            // Allows vertical speed to decrease by gravity instead of being reset
+            _rigidBody2D.velocity = Vector2.Lerp(_rigidBody2D.velocity, _rigidBody2D.velocity * Vector2.up + _moveForce * moveDirection * Vector2.right, _moveLerpSpeed);
         }
     }
     private void OnEnable()
