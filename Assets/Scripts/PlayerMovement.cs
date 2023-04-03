@@ -17,12 +17,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _moveForce; // default = 5
 
+    private bool _isGrounded;
     private bool _isMoving;
     private PlayerControls _playerControls;
     private Rigidbody2D _rigidBody2D;
 
     private void Awake()
     {
+        _isGrounded = true;
         _playerControls = new PlayerControls();
         _rigidBody2D = GetComponent<Rigidbody2D>();
     }
@@ -56,9 +58,20 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerControls.Disable();
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Platform"))
+        {
+            _isGrounded = true;
+        }
+    }
     private void MoveVertically()
     {
-        _rigidBody2D.AddForce(_jumpForce * Vector2.up);
+        if (_isGrounded)
+        {
+            _isGrounded = false;
+            _rigidBody2D.AddForce(_jumpForce * Vector2.up);
+        }
     }
     private void AbilityAttack()
     {
