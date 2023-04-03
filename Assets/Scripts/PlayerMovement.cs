@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _moveForce;
 
+    private bool _isMoving;
     private PlayerControls _playerControls;
     private Rigidbody2D _rigidBody2D;
 
@@ -20,11 +21,19 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
-        _playerControls.Movement.HorizontalMove.performed += cxt => MoveHorizontally(cxt.ReadValue<float>());
-        _playerControls.Movement.HorizontalMove.canceled += cxt => MoveHorizontally(cxt.ReadValue<float>());
+        _playerControls.Movement.HorizontalMove.started += _ => _isMoving = true;
+        _playerControls.Movement.HorizontalMove.canceled += _ => _isMoving = false;
         _playerControls.Movement.VerticalMove.performed += _ => MoveVertically();
         _playerControls.Abilities.Attack.performed += _ => AbilityAttack();
         _playerControls.Abilities.Interact.performed += _ => AbilityInteract();
+    }
+    private void FixedUpdate()
+    {
+        if (_isMoving)
+        {
+            float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
+            _rigidBody2D.AddForce(_moveForce * moveDirection * Vector2.right);
+        }
     }
     private void OnEnable()
     {
@@ -33,10 +42,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         _playerControls.Disable();
-    }
-    private void MoveHorizontally(float moveDirection)
-    {
-        _rigidBody2D.velocity = _moveForce * moveDirection * Vector2.right;
     }
     private void MoveVertically()
     {
