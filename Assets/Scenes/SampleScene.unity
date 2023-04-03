@@ -515,7 +515,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpForce: 500
-  _moveLerpSpeed: 0.2
+  _moveAccel: 0.2
+  _moveDecel: 0.1
   _moveForce: 5
 --- !u!1001 &1376598190
 PrefabInstance:

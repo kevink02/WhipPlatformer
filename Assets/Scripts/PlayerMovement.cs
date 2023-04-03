@@ -10,7 +10,10 @@ public class PlayerMovement : MonoBehaviour
     private float _jumpForce; // default = 500
     [Range(0.01f, 1)]
     [SerializeField]
-    private float _moveLerpSpeed; // default = 0.2f
+    private float _moveAccel; // default = 0.2f
+    [Range(0.01f, 1)]
+    [SerializeField]
+    private float _moveDecel; // default = 0.1f
     [SerializeField]
     private float _moveForce; // default = 5
 
@@ -33,12 +36,16 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
         if (_isMoving)
         {
-            float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
             // Lerp speed from current speed to the target horizontal speed + current vertical speed
             // Allows vertical speed to decrease by gravity instead of being reset
-            _rigidBody2D.velocity = Vector2.Lerp(_rigidBody2D.velocity, _rigidBody2D.velocity * Vector2.up + _moveForce * moveDirection * Vector2.right, _moveLerpSpeed);
+            _rigidBody2D.velocity = Vector2.Lerp(_rigidBody2D.velocity, _rigidBody2D.velocity * Vector2.up + _moveForce * moveDirection * Vector2.right, _moveAccel);
+        }
+        else
+        {
+            _rigidBody2D.velocity = Vector2.Lerp(_rigidBody2D.velocity, _rigidBody2D.velocity * Vector2.up, _moveDecel);
         }
     }
     private void OnEnable()
