@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
-        _playerControls.Movement.HorizontalMove.performed += _ => MoveHorizontally(_playerControls.Movement.HorizontalMove.ReadValue<Vector2>());
-        _playerControls.Movement.VerticalMove.performed += _ => MoveVertically(_playerControls.Movement.VerticalMove.ReadValue<Vector2>());
+        _playerControls.Movement.HorizontalMove.performed += cxt => MoveHorizontally(cxt);
+        _playerControls.Movement.VerticalMove.performed += _ => MoveVertically();
     }
     private void OnEnable()
     {
@@ -23,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerControls.Movement.Disable();
     }
-    private void MoveHorizontally(Vector2 movement)
+    private void MoveHorizontally(InputAction.CallbackContext cxt)
     {
-        Debug.Log($"{name}: Moving {movement}");
+        Debug.Log($"{name}: Moving {cxt.ReadValue<float>()}");
     }
-    private void MoveVertically(Vector2 movement)
+    private void MoveVertically()
     {
-        Debug.Log($"{name}: Moving {movement}");
+        Debug.Log($"{name}: Jumping up");
     }
 }
