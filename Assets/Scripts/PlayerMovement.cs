@@ -15,14 +15,16 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerControls.Movement.HorizontalMove.performed += cxt => MoveHorizontally(cxt);
         _playerControls.Movement.VerticalMove.performed += _ => MoveVertically();
+        _playerControls.Abilities.Attack.performed += _ => AbilityAttack();
+        _playerControls.Abilities.Interact.performed += _ => AbilityInteract();
     }
     private void OnEnable()
     {
-        _playerControls.Movement.Enable();
+        _playerControls.Enable();
     }
     private void OnDisable()
     {
-        _playerControls.Movement.Disable();
+        _playerControls.Disable();
     }
     private void MoveHorizontally(InputAction.CallbackContext cxt)
     {
@@ -30,6 +32,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MoveVertically()
     {
-        Debug.Log($"{name}: Jumping up");
+        Debug.Log($"{name}: Jumping");
+    }
+    private void AbilityAttack()
+    {
+        Debug.Log($"{name}: Attacking");
+    }
+    private void AbilityInteract()
+    {
+        Debug.Log($"{name}: Interacting");
     }
 }
