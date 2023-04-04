@@ -45,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
     }
     private void FlipMoveDirection()
     {
-        _detectVector = Vector2.Reflect(_detectVector, Vector2.down);
+        _detectVector = Vector2.Reflect(_detectVector, Vector2.right);
         _detectAngle = Game_Manager.GetAngleFromVector2(_detectVector);
         _moveDirection *= -1;
     }
