@@ -155,10 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2e6639e5aa1624cb412d9b802149a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveAccel: 0.2
+  MoveDecel: 0.1
+  JumpForce: 0
+  MoveForce: 5
   _detectAngle: 315
-  _moveAccel: 0.2
-  _moveDecel: 0.1
-  _moveForce: 5
 --- !u!50 &116048674
 Rigidbody2D:
   serializedVersion: 4
@@ -531,10 +532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6795e1973707b0742ae3dc2a41d77442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 500
-  _moveAccel: 0.2
-  _moveDecel: 0.1
-  _moveForce: 5
+  MoveAccel: 0.2
+  MoveDecel: 0.1
+  JumpForce: 500
+  MoveForce: 5
 --- !u!1001 &1376598190
 PrefabInstance:
   m_ObjectHideFlags: 0
