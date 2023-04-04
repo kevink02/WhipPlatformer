@@ -37,6 +37,12 @@ public class PlayerMovement : EntityMovement
         {
             _isGrounded = true;
         }
+        else if (collision.collider.CompareTag("Enemy"))
+        {
+            // Push the player away from the enemy
+            Debug.Log($"{name}: Enemy hit");
+            //RigidBody.velocity = (new Vector2(-2 * RigidBody.velocity.x, -0.7f * RigidBody.velocity.y));
+        }
     }
     protected override void MoveHorizontally()
     {
