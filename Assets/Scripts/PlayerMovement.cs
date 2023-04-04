@@ -23,20 +23,6 @@ public class PlayerMovement : EntityMovement
         _playerControls.Abilities.Attack.performed += _ => AbilityAttack();
         _playerControls.Abilities.Interact.performed += _ => AbilityInteract();
     }
-    private void FixedUpdate()
-    {
-        float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
-        if (_isMoving)
-        {
-            // Lerp speed from current speed to the target horizontal speed + current vertical speed
-            // Allows vertical speed to decrease by gravity instead of being reset
-            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
-        }
-        else
-        {
-            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
-        }
-    }
     private void OnEnable()
     {
         _playerControls.Enable();
@@ -50,6 +36,20 @@ public class PlayerMovement : EntityMovement
         if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject))
         {
             _isGrounded = true;
+        }
+    }
+    protected override void MoveHorizontally()
+    {
+        float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
+        if (_isMoving)
+        {
+            // Lerp speed from current speed to the target horizontal speed + current vertical speed
+            // Allows vertical speed to decrease by gravity instead of being reset
+            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
+        }
+        else
+        {
+            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
         }
     }
     private void MoveVertically()

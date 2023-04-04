@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityMovement : MonoBehaviour
+public abstract class EntityMovement : MonoBehaviour
 {
     [Range(0.01f, 1)]
     [SerializeField]
@@ -21,4 +21,9 @@ public class EntityMovement : MonoBehaviour
     {
         RigidBody = GetComponent<Rigidbody2D>();
     }
+    protected void FixedUpdate()
+    {
+        
+    }
+    protected abstract void MoveHorizontally();
 }
