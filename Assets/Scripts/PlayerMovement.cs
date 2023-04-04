@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Platform"))
+        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject))
         {
             _isGrounded = true;
         }

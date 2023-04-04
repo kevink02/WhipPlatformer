@@ -38,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
         Ray ray = new Ray(transform.position, _detectVector);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100f, Game_Manager.PlatformMask);
         // Did not detect a platform in front of it
-        if (!(hit && hit.collider.CompareTag("Platform")))
+        if (!hit || !Game_Manager.IsObjectAPlatform(hit.collider.gameObject))
         {
             FlipMoveDirection();
         }
