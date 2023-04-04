@@ -7,25 +7,66 @@ public class EnemyMovement : EntityMovement
     [Range(-360, 360f)]
     [SerializeField]
     private float _detectAngle; // default = 315
-
-    private Vector2 _detectVector; // the vector corresponding to the detect angle
+    [SerializeField]
+    private EnemyTypes _enemyMoveType;
     private Vector2 _moveDirection;
+
+    // Ground enemies
+    private Vector2 _detectVector; // the vector corresponding to the detect angle
+
+    [Range(1, 10f)]
+    [SerializeField]
+    // Air enemies
+    private float _timeUntilMoveDirFlip; // time until a flying enemy will flip its move direction
+    private float _timeSinceLastMoveDirFlip;
+
+    private enum EnemyTypes : int
+    {
+        Ground, Air
+    }
 
     private new void Awake()
     {
         base.Awake();
         _detectVector = Game_Manager.GetVector2FromAngle(_detectAngle);
         _moveDirection = Vector2.right;
+
+        switch (_enemyMoveType)
+        {
+            case EnemyTypes.Ground:
+                RigidBody.gravityScale = 1;
+                break;
+            case EnemyTypes.Air:
+                RigidBody.gravityScale = 0;
+                break;
+            default:
+                RigidBody.gravityScale = 1;
+                break;
+        }
     }
     protected override void MoveHorizontally()
     {
         // Only consider horizontal movement, since enemies (for now) do not jump
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * _moveDirection, MoveAccel);
 
-        // Did not detect a platform in front of it
-        if (CheckIfAtEndOfPlatform())
+        switch (_enemyMoveType)
         {
-            FlipMoveDirection();
+            case EnemyTypes.Ground:
+                // Did not detect a platform in front of it
+                if (CheckIfAtEndOfPlatform())
+                {
+                    FlipMoveDirection();
+                }
+                break;
+            case EnemyTypes.Air:
+                if (Time.time >= _timeSinceLastMoveDirFlip + _timeUntilMoveDirFlip)
+                {
+                    _timeSinceLastMoveDirFlip = Time.time;
+                    FlipMoveDirection();
+                }
+                break;
+            default:
+                break;
         }
     }
     protected override void MoveVertically()
