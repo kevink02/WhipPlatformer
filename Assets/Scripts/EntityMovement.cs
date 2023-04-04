@@ -23,7 +23,7 @@ public abstract class EntityMovement : MonoBehaviour
     }
     protected void FixedUpdate()
     {
-        
+        MoveHorizontally();
     }
     protected abstract void MoveHorizontally();
 }
