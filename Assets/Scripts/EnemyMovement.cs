@@ -2,33 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : EntityMovement
 {
     [Range(0, 360f)]
     [SerializeField]
     private float _detectAngle; // default = 315
-    [Range(0.01f, 1)]
-    [SerializeField]
-    private float _moveAccel; // default = 0.2f
-    [Range(0.01f, 1)]
-    [SerializeField]
-    private float _moveDecel; // default = 0.1f
-    [SerializeField]
-    private float _moveForce; // default = 5
 
-    private Rigidbody2D _rigidBody2D;
     private Vector2 _detectVector; // the vector corresponding to the detect angle
     private Vector2 _moveDirection;
 
-    private void Awake()
+    private new void Awake()
     {
-        _rigidBody2D = GetComponent<Rigidbody2D>();
+        base.Awake();
         _detectVector = Game_Manager.GetVector2FromAngle(_detectAngle);
         _moveDirection = Vector2.right;
     }
     private void FixedUpdate()
     {
-        _rigidBody2D.velocity = Vector2.Lerp(_rigidBody2D.velocity, _moveForce * _moveDirection, _moveAccel);
+        RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * _moveDirection, MoveAccel);
 
 
         Debug.DrawRay(transform.position, _detectVector, Color.white, Game_Manager.DebugRayLifeTime);
