@@ -156,7 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectAngle: 315
-  _moveSpeed: 0
+  _moveAccel: 0.2
+  _moveDecel: 0.1
+  _moveForce: 5
 --- !u!50 &116048674
 Rigidbody2D:
   serializedVersion: 4
