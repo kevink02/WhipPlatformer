@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : EntityMovement
 {
-    [Range(0, 360f)]
+    [Range(-360, 360f)]
     [SerializeField]
     private float _detectAngle; // default = 315
 
