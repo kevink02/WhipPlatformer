@@ -26,4 +26,5 @@ public abstract class EntityMovement : MonoBehaviour
         MoveHorizontally();
     }
     protected abstract void MoveHorizontally();
+    protected abstract void MoveVertically();
 }

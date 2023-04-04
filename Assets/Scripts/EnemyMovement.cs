@@ -28,6 +28,10 @@ public class EnemyMovement : EntityMovement
             FlipMoveDirection();
         }
     }
+    protected override void MoveVertically()
+    {
+        throw new System.NotImplementedException();
+    }
     private bool CheckIfAtEndOfPlatform()
     {
         Debug.DrawRay(transform.position, _detectVector, Color.white, Game_Manager.DebugRayLifeTime);

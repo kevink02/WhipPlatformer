@@ -52,7 +52,7 @@ public class PlayerMovement : EntityMovement
             RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
         }
     }
-    private void MoveVertically()
+    protected override void MoveVertically()
     {
         if (_isGrounded)
         {
