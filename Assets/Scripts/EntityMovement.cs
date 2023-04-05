@@ -32,6 +32,10 @@ public abstract class EntityMovement : MonoBehaviour
     protected void Awake()
     {
         RigidBody = GetComponent<Rigidbody2D>();
+        DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
+
+        DetectDistance = GetDetectDistance();
+        Debug.Log($"{name}: Ray distance is {DetectDistance}");
     }
     protected void FixedUpdate()
     {
@@ -47,4 +51,10 @@ public abstract class EntityMovement : MonoBehaviour
     }
     protected abstract void MoveHorizontally();
     protected abstract void MoveVertically();
+    // This is assuming the transform.position is in the center of the collider, at least in the center in terms of y-axis
+    private float GetDetectDistance()
+    {
+        float angleFrom270 = Game_Manager.GetAngleBetweenVector2s(Vector2.down, DetectVector);
+        return angleFrom270;
+    }
 }
