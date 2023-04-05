@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class EntityEffect
 {
-    public float TimeSinceEffectApply;
-    public float TimeCooldownEffect;
-    public float EffectForce;
+    public float TimeSinceEffectApply { get; private set; }
+    public float TimeCooldownEffect { get; private set; }
+    public float EffectForce { get; private set; }
     /// <summary>
     /// Checks if enough time has passed for some effect with a cooldown time
     /// </summary>
@@ -18,5 +18,9 @@ public class EntityEffect
         TimeSinceEffectApply = 0f;
         TimeCooldownEffect = timeCooldownEffect;
         EffectForce = effectForce;
+    }
+    public void SetNewTimeEffectApply()
+    {
+        TimeSinceEffectApply = Time.time;
     }
 }
