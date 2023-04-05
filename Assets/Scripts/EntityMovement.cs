@@ -36,9 +36,7 @@ public abstract class EntityMovement : MonoBehaviour
         Collider = GetComponent<BoxCollider2D>();
         RigidBody = GetComponent<Rigidbody2D>();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
-
         DetectDistance = GetDetectDistance();
-        Debug.Log($"{name}: Ray distance is {DetectDistance}");
     }
     protected void FixedUpdate()
     {
@@ -50,7 +48,7 @@ public abstract class EntityMovement : MonoBehaviour
         Debug.DrawRay(transform.position, DetectVector, Color.white, Game_Manager.DebugRayLifeTime);
         // If its raycast detects the end of its current platform, switch directions (raycast detection angle will flip to match its direction as well)
         RayCastRay = new Ray(transform.position, DetectVector);
-        RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, 100f, Game_Manager.PlatformMask);
+        RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, DetectDistance, Game_Manager.PlatformMask);
     }
     protected abstract void MoveHorizontally();
     protected abstract void MoveVertically();
