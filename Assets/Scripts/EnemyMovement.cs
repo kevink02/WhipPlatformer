@@ -16,7 +16,7 @@ public class EnemyMovement : EntityMovement
 
     private enum EnemyTypes : int
     {
-        Ground, Air
+        Ground, AirVertical, AirHorizontal
     }
 
     private new void Awake()
@@ -30,7 +30,10 @@ public class EnemyMovement : EntityMovement
             case EnemyTypes.Ground:
                 RigidBody.gravityScale = 1;
                 break;
-            case EnemyTypes.Air:
+            case EnemyTypes.AirVertical:
+                RigidBody.gravityScale = 0;
+                break;
+            case EnemyTypes.AirHorizontal:
                 RigidBody.gravityScale = 0;
                 break;
             default:
@@ -56,14 +59,21 @@ public class EnemyMovement : EntityMovement
                 // Did not detect a platform in front of it
                 if (!HasCollidedWithAPlatformAtDetectAngle())
                 {
-                    FlipMoveDirection();
+                    FlipMoveDirectionHorizontal();
                 }
                 break;
-            case EnemyTypes.Air:
+            case EnemyTypes.AirVertical:
                 if (Game_Manager.CheckIfEnoughTimeHasPassed(_timeSinceLastMoveDirFlip, _timeUntilMoveDirFlip))
                 {
                     _timeSinceLastMoveDirFlip = Time.time;
-                    FlipMoveDirection();
+                    FlipMoveDirectionVertical();
+                }
+                break;
+            case EnemyTypes.AirHorizontal:
+                if (Game_Manager.CheckIfEnoughTimeHasPassed(_timeSinceLastMoveDirFlip, _timeUntilMoveDirFlip))
+                {
+                    _timeSinceLastMoveDirFlip = Time.time;
+                    FlipMoveDirectionHorizontal();
                 }
                 break;
             default:
@@ -74,9 +84,15 @@ public class EnemyMovement : EntityMovement
     {
         throw new System.NotImplementedException();
     }
-    private void FlipMoveDirection()
+    private void FlipMoveDirectionHorizontal()
     {
         DetectVector = Vector2.Reflect(DetectVector, Vector2.right);
+        DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
+        _moveDirection *= -1;
+    }
+    private void FlipMoveDirectionVertical()
+    {
+        DetectVector = Vector2.Reflect(DetectVector, Vector2.up);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         _moveDirection *= -1;
     }
