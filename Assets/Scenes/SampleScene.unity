@@ -595,11 +595,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: DetectAngle
-      value: 315
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: _enemyMoveType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
+      propertyPath: _timeUntilMoveDirFlip
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
