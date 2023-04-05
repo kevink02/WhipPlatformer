@@ -26,10 +26,12 @@ public class PlayerMovement : EntityMovement
         base.Awake();
         _isGrounded = true;
         _playerControls = new PlayerControls();
+
+        // Verify values of the knockback force
         if (_knockBackForce.x < 1)
-            _knockBackForce.x = 1000f;
+            _knockBackForce.x = 750f;
         if (_knockBackForce.y <= 0)
-            _knockBackForce.y = 1;
+            _knockBackForce.y = 100f;
     }
     private void Start()
     {
@@ -84,25 +86,12 @@ public class PlayerMovement : EntityMovement
         {
             // Lerp speed from current speed to the target horizontal speed + current vertical speed
             // Allows vertical speed to decrease by gravity instead of being reset
-            if (_isOnKnockBack)
-            {
-                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
-            }
-            else
-            {
-                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
-            }
+            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
         }
-        else
+        // Otherwise if not moving and currently being knocked back, do not want to set velocity as knockback velocity is in effect
+        else if (!_isMoving && !_isOnKnockBack)
         {
-            if (_isOnKnockBack)
-            {
-                //RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
-            }
-            else
-            {
-                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
-            }
+            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
         }
     }
     protected override void MoveVertically()
