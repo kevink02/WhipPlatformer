@@ -40,6 +40,8 @@ public class PlayerMovement : EntityMovement
         _playerControls.Movement.VerticalMove.performed += _ => MoveVertically();
         _playerControls.Abilities.Attack.performed += _ => AbilityAttack();
         _playerControls.Abilities.Interact.performed += _ => AbilityInteract();
+        _playerControls.Camera.ZoomOut.performed += _ => CameraMovement.IsZoomedOut = true;
+        _playerControls.Camera.ZoomOut.canceled += _ => CameraMovement.IsZoomedOut = false;
     }
     private void OnEnable()
     {
