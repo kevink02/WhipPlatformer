@@ -40,7 +40,10 @@ public class EnemyMovement : EntityMovement
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        throw new System.NotImplementedException();
+        if (collision.collider.CompareTag("VoidCheck"))
+        {
+            Destroy(gameObject);
+        }
     }
     protected override void MoveHorizontally()
     {
