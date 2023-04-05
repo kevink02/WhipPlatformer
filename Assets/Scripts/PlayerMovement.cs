@@ -86,6 +86,10 @@ public class PlayerMovement : EntityMovement
             _timeOfLastJump = Time.time;
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log($"{name}: {collision.name}");
+    }
     protected override void MoveHorizontally()
     {
         float MoveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
