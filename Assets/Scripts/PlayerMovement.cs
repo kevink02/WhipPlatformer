@@ -13,6 +13,8 @@ public class PlayerMovement : EntityMovement
     private float _jumpCooldownTime; // default = 0.5f
     [SerializeField]
     private Vector2 _knockBackForce; // default = 1000f, 1f
+    [SerializeField]
+    private Vector2 _spawnPoint;
 
     private bool _isGrounded;
     private bool _isMoving;
@@ -52,7 +54,11 @@ public class PlayerMovement : EntityMovement
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Enemy") && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastKnockBack, _knockBackEffectTime))
+        if (collision.collider.CompareTag("VoidCheck"))
+        {
+            transform.position = _spawnPoint;
+        }
+        else if (collision.collider.CompareTag("Enemy") && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastKnockBack, _knockBackEffectTime))
         {
             _isOnKnockBack = true;
             _timeOfLastKnockBack = Time.time;
