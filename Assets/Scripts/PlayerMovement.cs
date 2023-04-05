@@ -57,14 +57,14 @@ public class PlayerMovement : EntityMovement
             _timeOfLastKnockBack = Time.time;
             // Push the player away from the enemy
 
-            // Reset velocity and add force away from the point of collision
-            float distanceFromEnemyX = -1 * (collision.collider.transform.position.x - transform.position.x);
-            float distanceFromEnemyY = -1 * (collision.collider.transform.position.y - transform.position.y);
-            Vector2 tempVelocity = new Vector2(distanceFromEnemyX, distanceFromEnemyY).normalized;
-            //Vector2 tempVelocity = -1 * RigidBody.velocity.normalized;
+            // Find distance from the collided collider
+            Vector2 distanceFromEnemy = collision.collider.transform.position - transform.position;
+            // Get direction away from the collided collider, then normalize it
+            distanceFromEnemy = (-1 * distanceFromEnemy).normalized;
 
+            // Reset velocity and add force away from the collider collided with
             RigidBody.velocity = Vector2.zero;
-            RigidBody.AddForce(new Vector2(_knockBackForce.x * tempVelocity.x, _knockBackForce.y * tempVelocity.y));
+            RigidBody.AddForce(new Vector2(_knockBackForce.x * distanceFromEnemy.x, _knockBackForce.y * distanceFromEnemy.y));
         }
         else if (Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastKnockBack, _knockBackEffectTime))
         {
