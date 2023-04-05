@@ -59,10 +59,10 @@ public class EnemyMovement : EntityMovement
     }
     private void SetInitialPositionToPatrolPoint()
     {
-        transform.position = _patrolPointStart.position;
-        _patrolPointTarget = _patrolPointEnd;
         if (_patrolPointStart == _patrolPointEnd)
             throw new Exception("The patrol points are the same, enemy can't move");
+        transform.position = _patrolPointStart.position;
+        _patrolPointTarget = _patrolPointEnd;
     }
     protected override void DoMovement()
     {
@@ -80,7 +80,14 @@ public class EnemyMovement : EntityMovement
             case EnemyTypes.AirVertical:
             case EnemyTypes.AirHorizontal:
                 Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
-                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, distanceToTargetTransform, MoveAccel);
+                RigidBody.velocity = MoveForce * distanceToTargetTransform;
+                if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f)
+                {
+                    if (_patrolPointTarget == _patrolPointEnd)
+                        _patrolPointTarget = _patrolPointStart;
+                    else
+                        _patrolPointTarget = _patrolPointEnd;
+                }
                 break;
             //case EnemyTypes.AirVertical:
             //    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
