@@ -53,7 +53,7 @@ public class EnemyMovement : EntityMovement
                 }
                 break;
             case EnemyTypes.Air:
-                if (Time.time >= _timeSinceLastMoveDirFlip + _timeUntilMoveDirFlip)
+                if (Game_Manager.CheckIfEnoughTimeHasPassed(_timeSinceLastMoveDirFlip, _timeUntilMoveDirFlip))
                 {
                     _timeSinceLastMoveDirFlip = Time.time;
                     FlipMoveDirection();

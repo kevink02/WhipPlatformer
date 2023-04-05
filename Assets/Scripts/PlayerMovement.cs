@@ -51,7 +51,7 @@ public class PlayerMovement : EntityMovement
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Enemy") && Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
+        if (collision.collider.CompareTag("Enemy") && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastKnockBack, _knockBackEffectTime))
         {
             _isOnKnockBack = true;
             _timeOfLastKnockBack = Time.time;
@@ -66,14 +66,14 @@ public class PlayerMovement : EntityMovement
             RigidBody.velocity = Vector2.zero;
             RigidBody.AddForce(new Vector2(_knockBackForce.x * tempVelocity.x, _knockBackForce.y * tempVelocity.y));
         }
-        else if (Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
+        else if (Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastKnockBack, _knockBackEffectTime))
         {
             _isOnKnockBack = false;
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithAPlatformAtDetectAngle() && Time.time >= _timeOfLastJump + _jumpCooldownTime)
+        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithAPlatformAtDetectAngle() && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastJump, _jumpCooldownTime))
         {
             _isGrounded = true;
             _timeOfLastJump = Time.time;
