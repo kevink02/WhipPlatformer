@@ -76,15 +76,6 @@ public class PlayerMovement : EntityMovement
             _isOnKnockBack = false;
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        return;
-        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithPlatformUnderneath() && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastJump, _jumpCooldownTime))
-        {
-            IsGrounded = true;
-            _timeOfLastJump = Time.time;
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"{name}: {collision.name}");
@@ -108,8 +99,8 @@ public class PlayerMovement : EntityMovement
     {
         if (IsGrounded && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastJump, _jumpCooldownTime))
         {
-            //IsGrounded = false;
             RigidBody.AddForce(JumpForce * Vector2.up);
+            _timeOfLastJump = Time.time;
         }
     }
     private void AbilityAttack()
