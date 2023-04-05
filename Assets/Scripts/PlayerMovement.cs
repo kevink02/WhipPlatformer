@@ -5,9 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : EntityMovement
 {
-    [SerializeField]
-    private Vector2 _spawnPoint;
-
     private bool _isMoving;
     private PlayerControls _playerControls;
 
@@ -37,7 +34,7 @@ public class PlayerMovement : EntityMovement
     {
         if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
         {
-            transform.position = _spawnPoint;
+            transform.position = Game_Manager.LevelEntrance.transform.position;
         }
         else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {

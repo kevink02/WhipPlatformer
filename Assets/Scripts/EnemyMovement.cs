@@ -16,6 +16,7 @@ public class EnemyMovement : EntityMovement
         base.Awake();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
 
+        // Set physics values based on the enemy type
         switch (_enemyMoveType)
         {
             case EnemyTypes.Ground:
@@ -53,6 +54,7 @@ public class EnemyMovement : EntityMovement
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
 
+        // Check conditions to flip move direction, based on the enemy type
         switch (_enemyMoveType)
         {
             case EnemyTypes.Ground:
