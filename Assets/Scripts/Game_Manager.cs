@@ -26,10 +26,6 @@ public class Game_Manager : MonoBehaviour
      (vector1, vector2) => Mathf.Acos(GetDotProductFromVector2s(vector1, vector2) / GetMagnitudeProductFromVector2s(vector1, vector2)) * Mathf.Rad2Deg;
     private static Func<Vector2, Vector2, float> GetDotProductFromVector2s { get; } = (vector1, vector2) => Vector2.Dot(vector1, vector2);
     private static Func<Vector2, Vector2, float> GetMagnitudeProductFromVector2s { get; } = (vector1, vector2) => vector1.magnitude * vector2.magnitude;
-    /// <summary>
-    /// Checks if enough time has passed for some effect with a cooldown time
-    /// </summary>
-    public static Func<float, float, bool> CheckIfEnoughTimeHasPassed { get; } = (timeOfLastEvent, effectCooldownTime) => Time.time >= timeOfLastEvent + effectCooldownTime;
 
     private void Awake()
     {

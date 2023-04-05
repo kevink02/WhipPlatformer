@@ -23,9 +23,14 @@ public abstract class EntityMovement : MonoBehaviour
     protected float JumpForce; // default = 500
     [SerializeField]
     protected float MoveForce; // default = 5
+    [SerializeField]
+    private float _cooldownKnockback; // default = 0.5f
 
     protected bool IsGrounded;
     protected BoxCollider2D Collider;
+    protected EntityEffect EffectKnockback;
+    protected EntityEffect EffectJump;
+    protected EntityEffect EffectMoveFlip;
     protected Ray RayCastRay;
     protected RaycastHit2D RayCastHit;
     protected Rigidbody2D RigidBody;
@@ -36,6 +41,24 @@ public abstract class EntityMovement : MonoBehaviour
     protected void Awake()
     {
         Collider = GetComponent<BoxCollider2D>();
+        EffectKnockback = new EntityEffect()
+        {
+            TimeSinceEffectApply = 0f,
+            TimeEffectCooldown = _cooldownKnockback,
+            EffectForce = 0f
+        };
+        EffectJump = new EntityEffect()
+        {
+            TimeSinceEffectApply = 0f,
+            TimeEffectCooldown = 0f,
+            EffectForce = 0f
+        };
+        EffectMoveFlip = new EntityEffect()
+        {
+            TimeSinceEffectApply = 0f,
+            TimeEffectCooldown = 0f,
+            EffectForce = 0f
+        };
         RigidBody = GetComponent<Rigidbody2D>();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
         DetectDistance = GetDetectDistance(DetectVector);

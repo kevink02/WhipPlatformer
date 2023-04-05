@@ -7,9 +7,6 @@ public class PlayerMovement : EntityMovement
 {
     [Range(0.01f, 1f)]
     [SerializeField]
-    private float _knockBackEffectTime; // default = 0.5f
-    [Range(0.01f, 1f)]
-    [SerializeField]
     private float _jumpCooldownTime; // default = 0.5f
     [SerializeField]
     private Vector2 _knockBackForce; // default = 1000f, 1f
@@ -56,7 +53,7 @@ public class PlayerMovement : EntityMovement
         {
             transform.position = _spawnPoint;
         }
-        else if (collision.collider.CompareTag("Enemy") && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastKnockBack, _knockBackEffectTime))
+        else if (collision.collider.CompareTag("Enemy") && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
             _isOnKnockBack = true;
             _timeOfLastKnockBack = Time.time;
@@ -71,7 +68,7 @@ public class PlayerMovement : EntityMovement
             RigidBody.velocity = Vector2.zero;
             RigidBody.AddForce(new Vector2(_knockBackForce.x * distanceFromEnemy.x, _knockBackForce.y * distanceFromEnemy.y));
         }
-        else if (Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastKnockBack, _knockBackEffectTime))
+        else if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
             _isOnKnockBack = false;
         }
@@ -97,7 +94,7 @@ public class PlayerMovement : EntityMovement
     }
     protected override void MoveVertically()
     {
-        if (IsGrounded && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastJump, _jumpCooldownTime))
+        if (IsGrounded && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
         {
             RigidBody.AddForce(JumpForce * Vector2.up);
             _timeOfLastJump = Time.time;
