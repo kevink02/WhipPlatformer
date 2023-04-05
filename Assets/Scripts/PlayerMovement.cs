@@ -7,14 +7,18 @@ public class PlayerMovement : EntityMovement
 {
     [Range(0.01f, 1f)]
     [SerializeField]
-    private float _knockBackEffectTime;
+    private float _knockBackEffectTime; // default = 0.5f
+    [Range(0.01f, 1f)]
     [SerializeField]
-    private Vector2 _knockBackForce; // default = ?, 1
+    private float _jumpCooldownTime; // default = 0.5f
+    [SerializeField]
+    private Vector2 _knockBackForce; // default = 1000f, 1f
 
     private bool _isGrounded;
     private bool _isMoving;
     private bool _isOnKnockBack;
     private float _timeOfLastKnockBack;
+    private float _timeOfLastJump;
     private PlayerControls _playerControls;
 
     private new void Awake()
@@ -45,11 +49,7 @@ public class PlayerMovement : EntityMovement
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithAPlatformAtDetectAngle())
-        {
-            _isGrounded = true;
-        }
-        else if (collision.collider.CompareTag("Enemy") && Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
+        if (collision.collider.CompareTag("Enemy") && Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
         {
             _isOnKnockBack = true;
             _timeOfLastKnockBack = Time.time;
@@ -59,20 +59,26 @@ public class PlayerMovement : EntityMovement
             float distanceFromEnemyX = -1 * (collision.collider.transform.position.x - transform.position.x);
             float distanceFromEnemyY = -1 * (collision.collider.transform.position.y - transform.position.y);
             Vector2 tempVelocity = new Vector2(distanceFromEnemyX, distanceFromEnemyY).normalized;
-            tempVelocity = -1 * RigidBody.velocity.normalized;
+            //Vector2 tempVelocity = -1 * RigidBody.velocity.normalized;
 
             RigidBody.velocity = Vector2.zero;
             RigidBody.AddForce(new Vector2(_knockBackForce.x * tempVelocity.x, _knockBackForce.y * tempVelocity.y));
-            print("Force added. Velocity is " + RigidBody.velocity + " ;;; " + distanceFromEnemyX + ", " + distanceFromEnemyY);
         }
         else if (Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
         {
             _isOnKnockBack = false;
         }
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithAPlatformAtDetectAngle() && Time.time >= _timeOfLastJump + _jumpCooldownTime)
+        {
+            _isGrounded = true;
+            _timeOfLastJump = Time.time;
+        }
+    }
     protected override void MoveHorizontally()
     {
-        Debug.Log($"{name}: {_isOnKnockBack}");
         float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
         if (_isMoving)
         {
