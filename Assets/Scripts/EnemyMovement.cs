@@ -8,8 +8,6 @@ public class EnemyMovement : EntityMovement
     private EnemyTypes _enemyMoveType;
     private Vector2 _moveDirection;
 
-    // Ground enemies
-
     [Range(1, 10f)]
     [SerializeField]
     // Air enemies

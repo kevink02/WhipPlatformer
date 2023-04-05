@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5494309299607642560, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
+      propertyPath: DetectAngle
+      value: 315
+      objectReference: {fileID: 0}
     - target: {fileID: 5494309299607642561, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
       propertyPath: m_Name
       value: EnemyGround
@@ -507,6 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6795e1973707b0742ae3dc2a41d77442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DetectAngle: 0
   MoveAccel: 0.2
   MoveDecel: 0.1
   JumpForce: 500
@@ -797,6 +802,10 @@ PrefabInstance:
     - target: {fileID: 9025102912534970062, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: m_Name
       value: EnemyAir
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
+      propertyPath: DetectAngle
+      value: 315
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
