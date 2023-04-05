@@ -91,11 +91,13 @@ public class EnemyMovement : EntityMovement
         DetectVector = Vector2.Reflect(DetectVector, Vector2.right);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         MoveDirection *= -1;
+        Debug.Log($"{name}: Endpoint at {transform.position}");
     }
     private void FlipMoveDirectionVertical()
     {
         DetectVector = Vector2.Reflect(DetectVector, Vector2.up);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         MoveDirection *= -1;
+        Debug.Log($"{name}: Endpoint at {transform.position}");
     }
 }
