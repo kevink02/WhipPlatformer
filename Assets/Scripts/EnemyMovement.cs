@@ -65,12 +65,14 @@ public class EnemyMovement : EntityMovement
             case EnemyTypes.AirVertical:
                 if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
                 {
+                    EffectMoveFlip.SetNewTimeEffectApply();
                     FlipMoveDirectionVertical();
                 }
                 break;
             case EnemyTypes.AirHorizontal:
                 if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
                 {
+                    EffectMoveFlip.SetNewTimeEffectApply();
                     FlipMoveDirectionHorizontal();
                 }
                 break;
