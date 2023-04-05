@@ -6,13 +6,6 @@ public class EnemyMovement : EntityMovement
 {
     [SerializeField]
     private EnemyTypes _enemyMoveType;
-
-    [Range(1, 10f)]
-    [SerializeField]
-    // Air enemies
-    private float _timeUntilMoveDirFlip; // time until a flying enemy will flip its move direction
-    private float _timeSinceLastMoveDirFlip;
-
     private enum EnemyTypes : int
     {
         Ground, AirVertical, AirHorizontal
@@ -72,14 +65,12 @@ public class EnemyMovement : EntityMovement
             case EnemyTypes.AirVertical:
                 if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
                 {
-                    _timeSinceLastMoveDirFlip = Time.time;
                     FlipMoveDirectionVertical();
                 }
                 break;
             case EnemyTypes.AirHorizontal:
                 if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
                 {
-                    _timeSinceLastMoveDirFlip = Time.time;
                     FlipMoveDirectionHorizontal();
                 }
                 break;

@@ -535,7 +535,8 @@ MonoBehaviour:
   MoveDecel: 0.1
   JumpForce: 500
   MoveForce: 5
-  _knockBackEffectTime: 0.2
+  _cooldownKnockback: 0
+  _cooldownMoveFlip: 0
   _jumpCooldownTime: 0.5
   _knockBackForce: {x: 800, y: 200}
   _spawnPoint: {x: 0, y: 0}
@@ -592,7 +593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970062, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: m_Name
-      value: EnemyAir (1)
+      value: EnemyAirVertical
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: DetectAngle
@@ -604,6 +605,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: _timeUntilMoveDirFlip
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
+      propertyPath: _cooldownMoveFlip
       value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1111,7 +1116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970062, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: m_Name
-      value: EnemyAir
+      value: EnemyAirHorizontal
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: DetectAngle
@@ -1120,6 +1125,10 @@ PrefabInstance:
     - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: _enemyMoveType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
+      propertyPath: _cooldownMoveFlip
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}

@@ -38,6 +38,8 @@ public abstract class EntityMovement : MonoBehaviour
     protected EntityEffect EffectKnockback;
     protected EntityEffect EffectJump;
     protected EntityEffect EffectMoveFlip;
+    [Range(1, 10f)]
+    [SerializeField]
     private float _cooldownMoveFlip;
 
     protected void Awake()
@@ -69,7 +71,7 @@ public abstract class EntityMovement : MonoBehaviour
     {
         EffectKnockback = new EntityEffect(_cooldownKnockback, 0f);
         EffectJump = new EntityEffect(0f, 0f);
-        EffectMoveFlip = new EntityEffect(0f, 0f);
+        EffectMoveFlip = new EntityEffect(_cooldownMoveFlip, 0f);
     }
     protected bool HasCollidedWithPlatformAtDetectAngle()
     {
