@@ -23,20 +23,23 @@ public class EnemyMovement : EntityMovement
     {
         base.Awake();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
-        _moveDirection = Vector2.right;
 
         switch (_enemyMoveType)
         {
             case EnemyTypes.Ground:
+                _moveDirection = Vector2.right;
                 RigidBody.gravityScale = 1;
                 break;
             case EnemyTypes.AirVertical:
+                _moveDirection = Vector2.up;
                 RigidBody.gravityScale = 0;
                 break;
             case EnemyTypes.AirHorizontal:
+                _moveDirection = Vector2.right;
                 RigidBody.gravityScale = 0;
                 break;
             default:
+                _moveDirection = Vector2.right;
                 RigidBody.gravityScale = 1;
                 break;
         }
