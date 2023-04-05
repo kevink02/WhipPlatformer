@@ -11,7 +11,6 @@ public class PlayerMovement : EntityMovement
     {
         base.Awake();
         _playerControls = new PlayerControls();
-        transform.position = Game_Manager.LevelEntrance.transform.position;
     }
     private void Start()
     {
@@ -34,7 +33,7 @@ public class PlayerMovement : EntityMovement
     {
         if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
         {
-            transform.position = Game_Manager.LevelEntrance.transform.position;
+            SetPositionToSpawnPoint();
         }
         else if (Game_Manager.IsObjectAnEnemy(collision.gameObject))
         {

@@ -20,6 +20,8 @@ public abstract class EntityMovement : MonoBehaviour
     protected float MoveDecel; // default = 0.1f
     [SerializeField]
     protected float MoveForce; // default = 5
+    [SerializeField]
+    protected Transform SpawnPoint;
 
     protected bool IsGrounded;
     protected BoxCollider2D Collider;
@@ -54,6 +56,7 @@ public abstract class EntityMovement : MonoBehaviour
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
         DetectDistance = GetDetectDistance(DetectVector);
 
+        SetPositionToSpawnPoint();
         // Verify values of the knockback force
         SetEntityEffectForceValues();
         SetEntityEffects();
@@ -91,6 +94,10 @@ public abstract class EntityMovement : MonoBehaviour
         EffectKnockback = new EntityEffect(_cooldownKnockback, _forceKnockback);
         EffectJump = new EntityEffect(_cooldownJump, _forceJump);
         EffectMoveFlip = new EntityEffect(_cooldownMoveFlip, _forceMoveFlip);
+    }
+    protected void SetPositionToSpawnPoint()
+    {
+        transform.position = SpawnPoint.position;
     }
     protected bool HasCollidedWithPlatformAtDetectAngle()
     {
