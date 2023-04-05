@@ -37,7 +37,7 @@ public abstract class EntityMovement : MonoBehaviour
         Collider = GetComponent<BoxCollider2D>();
         RigidBody = GetComponent<Rigidbody2D>();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
-        DetectDistance = GetDetectDistance();
+        DetectDistance = GetDetectDistance(DetectVector);
     }
     protected void FixedUpdate()
     {
@@ -54,14 +54,21 @@ public abstract class EntityMovement : MonoBehaviour
     }
     protected abstract void MoveHorizontally();
     protected abstract void MoveVertically();
-    protected bool HasCollidedWithAPlatformAtDetectAngle()
+    protected bool HasCollidedWithPlatformAtDetectAngle()
     {
         return RayCastHit && Game_Manager.IsObjectAPlatform(RayCastHit.collider.gameObject);
     }
-    // This is assuming the transform.position is in the center of the collider, at least in the center in terms of y-axis
-    private float GetDetectDistance()
+    protected bool HasCollidedWithPlatformUnderneath()
     {
-        float angleFrom270 = Game_Manager.GetAngleBetweenVector2s(Vector2.down, DetectVector);
+        Ray ray = new Ray(transform.position, Vector2.down);
+        float detectDistance = GetDetectDistance(Vector2.down);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectDistance, Game_Manager.PlatformMask);
+        return hit && Game_Manager.IsObjectAPlatform(hit.collider.gameObject);
+    }
+    // This is assuming the transform.position is in the center of the collider, at least in the center in terms of y-axis
+    private float GetDetectDistance(Vector2 detectVector)
+    {
+        float angleFrom270 = Game_Manager.GetAngleBetweenVector2s(Vector2.down, detectVector);
         if (angleFrom270 < 0)
             angleFrom270 *= -1;
         float a = Collider.size.y / 2;

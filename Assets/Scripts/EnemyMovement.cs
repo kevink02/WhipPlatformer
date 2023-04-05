@@ -64,7 +64,7 @@ public class EnemyMovement : EntityMovement
         {
             case EnemyTypes.Ground:
                 // Did not detect a platform in front of it
-                if (!HasCollidedWithAPlatformAtDetectAngle())
+                if (!HasCollidedWithPlatformAtDetectAngle())
                 {
                     FlipMoveDirectionHorizontal();
                 }

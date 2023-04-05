@@ -80,7 +80,7 @@ public class PlayerMovement : EntityMovement
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithAPlatformAtDetectAngle() && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastJump, _jumpCooldownTime))
+        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithPlatformUnderneath() && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastJump, _jumpCooldownTime))
         {
             _isGrounded = true;
             _timeOfLastJump = Time.time;
