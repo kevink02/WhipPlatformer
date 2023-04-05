@@ -46,12 +46,16 @@ public class PlayerMovement : EntityMovement
         else if (collision.collider.CompareTag("Enemy") && Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
         {
             _isOnKnockBack = true;
+            _timeOfLastKnockBack = Time.time;
             // Push the player away from the enemy
 
-            // Reset velocity and add force in the opposite direction of original velocity
-            Vector2 tempVelocity = RigidBody.velocity;
+            // Reset velocity and add force away from the point of collision
+            float distanceFromEnemyX = -1 * (collision.collider.transform.position.x - transform.position.x);
+            float distanceFromEnemyY = -1 * (collision.collider.transform.position.y - transform.position.y);
+            Vector2 tempVelocity = new Vector2(distanceFromEnemyX, distanceFromEnemyY).normalized;//RigidBody.velocity;
             RigidBody.velocity = Vector2.zero;
-            RigidBody.AddForce(new Vector2(-9.5f * tempVelocity.x, -2.5f * tempVelocity.y));
+            RigidBody.AddForce(new Vector2(500.5f * tempVelocity.x, 2.5f * tempVelocity.y));
+            print("Force added. Velocity is " + RigidBody.velocity + " ;;; " + distanceFromEnemyX + ", " + distanceFromEnemyY);
         }
         else if (Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
         {
