@@ -40,7 +40,7 @@ public class EnemyMovement : EntityMovement
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("VoidCheck"))
+        if (Game_Manager.IsObjectAnInvisiblePlatform(collision.collider.gameObject))
         {
             Destroy(gameObject);
         }
