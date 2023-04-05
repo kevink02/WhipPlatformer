@@ -70,14 +70,14 @@ public class EnemyMovement : EntityMovement
                 }
                 break;
             case EnemyTypes.AirVertical:
-                if (Game_Manager.CheckIfEnoughTimeHasPassed(_timeSinceLastMoveDirFlip, _timeUntilMoveDirFlip))
+                if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
                 {
                     _timeSinceLastMoveDirFlip = Time.time;
                     FlipMoveDirectionVertical();
                 }
                 break;
             case EnemyTypes.AirHorizontal:
-                if (Game_Manager.CheckIfEnoughTimeHasPassed(_timeSinceLastMoveDirFlip, _timeUntilMoveDirFlip))
+                if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
                 {
                     _timeSinceLastMoveDirFlip = Time.time;
                     FlipMoveDirectionHorizontal();
