@@ -57,12 +57,11 @@ public class EnemyMovement : EntityMovement
     }
     protected override void DoMovement()
     {
-        RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-
         // Check conditions to flip move direction, based on the enemy type
         switch (_enemyMoveType)
         {
             case EnemyTypes.Ground:
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
                 // Did not detect a platform in front of it
                 if (!HasCollidedWithPlatformAtDetectAngle())
                 {
@@ -70,19 +69,24 @@ public class EnemyMovement : EntityMovement
                 }
                 break;
             case EnemyTypes.AirVertical:
-                if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
-                {
-                    EffectMoveFlip.SetNewTimeEffectApply();
-                    FlipMoveDirectionVertical();
-                }
-                break;
             case EnemyTypes.AirHorizontal:
-                if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
-                {
-                    EffectMoveFlip.SetNewTimeEffectApply();
-                    FlipMoveDirectionHorizontal();
-                }
+                Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, distanceToTargetTransform, MoveAccel);
                 break;
+            //case EnemyTypes.AirVertical:
+            //    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
+            //    {
+            //        EffectMoveFlip.SetNewTimeEffectApply();
+            //        FlipMoveDirectionVertical();
+            //    }
+            //    break;
+            //case EnemyTypes.AirHorizontal:
+            //    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
+            //    {
+            //        EffectMoveFlip.SetNewTimeEffectApply();
+            //        FlipMoveDirectionHorizontal();
+            //    }
+            //    break;
             default:
                 break;
         }
@@ -92,13 +96,11 @@ public class EnemyMovement : EntityMovement
         DetectVector = Vector2.Reflect(DetectVector, Vector2.right);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         MoveDirection *= -1;
-        Debug.Log($"{name}: Endpoint at {transform.position}");
     }
     private void FlipMoveDirectionVertical()
     {
         DetectVector = Vector2.Reflect(DetectVector, Vector2.up);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         MoveDirection *= -1;
-        Debug.Log($"{name}: Endpoint at {transform.position}");
     }
 }
