@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class EnemyMovement : EntityMovement
 {
-    [Range(-360, 360f)]
-    [SerializeField]
-    private float _detectAngle; // default = 315
     [SerializeField]
     private EnemyTypes _enemyMoveType;
     private Vector2 _moveDirection;
 
     // Ground enemies
-    private Vector2 _detectVector; // the vector corresponding to the detect angle
 
     [Range(1, 10f)]
     [SerializeField]
@@ -28,7 +24,7 @@ public class EnemyMovement : EntityMovement
     private new void Awake()
     {
         base.Awake();
-        _detectVector = Game_Manager.GetVector2FromAngle(_detectAngle);
+        DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
         _moveDirection = Vector2.right;
 
         switch (_enemyMoveType)
@@ -53,7 +49,7 @@ public class EnemyMovement : EntityMovement
         {
             case EnemyTypes.Ground:
                 // Did not detect a platform in front of it
-                if (CheckIfAtEndOfPlatform())
+                if (!RayCastHit || !Game_Manager.IsObjectAPlatform(RayCastHit.collider.gameObject))
                 {
                     FlipMoveDirection();
                 }
@@ -73,18 +69,10 @@ public class EnemyMovement : EntityMovement
     {
         throw new System.NotImplementedException();
     }
-    private bool CheckIfAtEndOfPlatform()
-    {
-        Debug.DrawRay(transform.position, _detectVector, Color.white, Game_Manager.DebugRayLifeTime);
-        // If its raycast detects the end of its current platform, switch directions (raycast detection angle will flip to match its direction as well)
-        Ray ray = new Ray(transform.position, _detectVector);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100f, Game_Manager.PlatformMask);
-        return !hit || !Game_Manager.IsObjectAPlatform(hit.collider.gameObject);
-    }
     private void FlipMoveDirection()
     {
-        _detectVector = Vector2.Reflect(_detectVector, Vector2.right);
-        _detectAngle = Game_Manager.GetAngleFromVector2(_detectVector);
+        DetectVector = Vector2.Reflect(DetectVector, Vector2.right);
+        DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         _moveDirection *= -1;
     }
 }

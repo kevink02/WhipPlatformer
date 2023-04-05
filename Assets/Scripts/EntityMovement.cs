@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class EntityMovement : MonoBehaviour
 {
+    [Range(-360, 360f)]
+    [SerializeField]
+    protected float DetectAngle; // default = 315
     [Range(0.01f, 1)]
     [SerializeField]
     protected float MoveAccel; // default = 0.2f
@@ -15,7 +18,10 @@ public abstract class EntityMovement : MonoBehaviour
     protected float JumpForce; // default = 500
     [SerializeField]
     protected float MoveForce; // default = 5
+    protected Ray RayCastRay;
+    protected RaycastHit2D RayCastHit;
     protected Rigidbody2D RigidBody;
+    protected Vector2 DetectVector; // the vector corresponding to the detect angle
 
     protected void Awake()
     {
@@ -24,6 +30,14 @@ public abstract class EntityMovement : MonoBehaviour
     protected void FixedUpdate()
     {
         MoveHorizontally();
+        CastRay();
+    }
+    protected void CastRay()
+    {
+        Debug.DrawRay(transform.position, DetectVector, Color.white, Game_Manager.DebugRayLifeTime);
+        // If its raycast detects the end of its current platform, switch directions (raycast detection angle will flip to match its direction as well)
+        RayCastRay = new Ray(transform.position, DetectVector);
+        RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, 100f, Game_Manager.PlatformMask);
     }
     protected abstract void MoveHorizontally();
     protected abstract void MoveVertically();
