@@ -52,6 +52,10 @@ public abstract class EntityMovement : MonoBehaviour
     }
     protected abstract void MoveHorizontally();
     protected abstract void MoveVertically();
+    protected bool HasCollidedWithAPlatformAtDetectAngle()
+    {
+        return RayCastHit && Game_Manager.IsObjectAPlatform(RayCastHit.collider.gameObject);
+    }
     // This is assuming the transform.position is in the center of the collider, at least in the center in terms of y-axis
     private float GetDetectDistance()
     {

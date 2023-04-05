@@ -33,7 +33,7 @@ public class PlayerMovement : EntityMovement
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject))
+        if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithAPlatformAtDetectAngle())
         {
             _isGrounded = true;
         }
