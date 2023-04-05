@@ -55,14 +55,7 @@ public abstract class EntityMovement : MonoBehaviour
         DetectDistance = GetDetectDistance(DetectVector);
 
         // Verify values of the knockback force
-        if (_forceKnockback.x < 1)
-            _forceKnockback.x = 750;
-        if (_forceKnockback.y <= 0)
-            _forceKnockback.y = 100;
-        if (_forceJump.x != 0)
-            _forceJump.x = 0;
-        if (_forceJump.y <= 0)
-            _forceJump.y = 500;
+        SetEntityEffectForceValues();
         SetEntityEffects();
     }
     protected void FixedUpdate()
@@ -81,6 +74,18 @@ public abstract class EntityMovement : MonoBehaviour
     }
     protected abstract void MoveHorizontally();
     protected abstract void MoveVertically();
+    private void SetEntityEffectForceValues()
+    {
+        if (_forceKnockback.x < 1)
+            _forceKnockback.x = 750;
+        if (_forceKnockback.y <= 0)
+            _forceKnockback.y = 100;
+
+        if (_forceJump.x != 0)
+            _forceJump.x = 0;
+        if (_forceJump.y <= 0)
+            _forceJump.y = 500;
+    }
     private void SetEntityEffects()
     {
         EffectKnockback = new EntityEffect(_cooldownKnockback, _forceKnockback);
