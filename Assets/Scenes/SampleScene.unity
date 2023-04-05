@@ -517,9 +517,9 @@ MonoBehaviour:
   MoveDecel: 0.1
   JumpForce: 500
   MoveForce: 5
-  _knockBackEffectTime: 0.5
+  _knockBackEffectTime: 0.2
   _jumpCooldownTime: 0.5
-  _knockBackForce: {x: 1000, y: 1}
+  _knockBackForce: {x: 800, y: 200}
 --- !u!1001 &1376598190
 PrefabInstance:
   m_ObjectHideFlags: 0
