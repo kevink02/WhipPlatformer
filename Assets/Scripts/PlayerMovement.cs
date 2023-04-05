@@ -8,6 +8,8 @@ public class PlayerMovement : EntityMovement
     [Range(0.01f, 1f)]
     [SerializeField]
     private float _knockBackEffectTime;
+    [SerializeField]
+    private Vector2 _knockBackForce; // default = ?, 1
 
     private bool _isGrounded;
     private bool _isMoving;
@@ -20,6 +22,10 @@ public class PlayerMovement : EntityMovement
         base.Awake();
         _isGrounded = true;
         _playerControls = new PlayerControls();
+        if (_knockBackForce.x < 1)
+            _knockBackForce.x = 1000f;
+        if (_knockBackForce.y <= 0)
+            _knockBackForce.y = 1;
     }
     private void Start()
     {
@@ -52,9 +58,11 @@ public class PlayerMovement : EntityMovement
             // Reset velocity and add force away from the point of collision
             float distanceFromEnemyX = -1 * (collision.collider.transform.position.x - transform.position.x);
             float distanceFromEnemyY = -1 * (collision.collider.transform.position.y - transform.position.y);
-            Vector2 tempVelocity = new Vector2(distanceFromEnemyX, distanceFromEnemyY).normalized;//RigidBody.velocity;
+            Vector2 tempVelocity = new Vector2(distanceFromEnemyX, distanceFromEnemyY).normalized;
+            tempVelocity = -1 * RigidBody.velocity.normalized;
+
             RigidBody.velocity = Vector2.zero;
-            RigidBody.AddForce(new Vector2(500.5f * tempVelocity.x, 2.5f * tempVelocity.y));
+            RigidBody.AddForce(new Vector2(_knockBackForce.x * tempVelocity.x, _knockBackForce.y * tempVelocity.y));
             print("Force added. Velocity is " + RigidBody.velocity + " ;;; " + distanceFromEnemyX + ", " + distanceFromEnemyY);
         }
         else if (Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
