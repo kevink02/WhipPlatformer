@@ -20,8 +20,6 @@ public class EnemyMovement : EntityMovement
     private new void Awake()
     {
         base.Awake();
-        transform.position = _patrolPointStart.position;
-        _patrolPointTarget = _patrolPointEnd;
 
         // Set physics values based on the enemy type
         switch (_enemyMoveType)
@@ -36,8 +34,7 @@ public class EnemyMovement : EntityMovement
                 // Only allow changes to y position;
                 RigidBody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 RigidBody.freezeRotation = true;
-                if (_patrolPointStart == _patrolPointEnd)
-                    throw new Exception("The patrol points are the same, enemy can't move");
+                SetInitialPositionToPatrolPoint();
                 break;
             case EnemyTypes.AirHorizontal:
                 MoveDirection = Vector2.right;
@@ -45,8 +42,7 @@ public class EnemyMovement : EntityMovement
                 // Only allow changes to x position;
                 RigidBody.constraints = RigidbodyConstraints2D.FreezePositionY;
                 RigidBody.freezeRotation = true;
-                if (_patrolPointStart == _patrolPointEnd)
-                    throw new Exception("The patrol points are the same, enemy can't move");
+                SetInitialPositionToPatrolPoint();
                 break;
             default:
                 MoveDirection = Vector2.right;
@@ -60,6 +56,13 @@ public class EnemyMovement : EntityMovement
         {
             Destroy(gameObject);
         }
+    }
+    private void SetInitialPositionToPatrolPoint()
+    {
+        transform.position = _patrolPointStart.position;
+        _patrolPointTarget = _patrolPointEnd;
+        if (_patrolPointStart == _patrolPointEnd)
+            throw new Exception("The patrol points are the same, enemy can't move");
     }
     protected override void DoMovement()
     {
