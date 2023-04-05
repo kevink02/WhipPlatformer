@@ -33,10 +33,16 @@ public class EnemyMovement : EntityMovement
             case EnemyTypes.AirVertical:
                 _moveDirection = Vector2.up;
                 RigidBody.gravityScale = 0;
+                // Only allow changes to y position;
+                RigidBody.constraints = RigidbodyConstraints2D.FreezePositionX;
+                RigidBody.freezeRotation = true;
                 break;
             case EnemyTypes.AirHorizontal:
                 _moveDirection = Vector2.right;
                 RigidBody.gravityScale = 0;
+                // Only allow changes to x position;
+                RigidBody.constraints = RigidbodyConstraints2D.FreezePositionY;
+                RigidBody.freezeRotation = true;
                 break;
             default:
                 _moveDirection = Vector2.right;
