@@ -6,7 +6,12 @@ public abstract class EntityMovement : MonoBehaviour
 {
     [Range(-360, 360f)]
     [SerializeField]
+    [Tooltip("The angle to shoot the raycast")]
     protected float DetectAngle; // default = 315
+    [Range(0.01f, 100)]
+    [SerializeField]
+    [Tooltip("The distance to have the raycast ray be")]
+    protected float DetectDistance; // default = ?
     [Range(0.01f, 1)]
     [SerializeField]
     protected float MoveAccel; // default = 0.2f
@@ -21,7 +26,8 @@ public abstract class EntityMovement : MonoBehaviour
     protected Ray RayCastRay;
     protected RaycastHit2D RayCastHit;
     protected Rigidbody2D RigidBody;
-    protected Vector2 DetectVector; // the vector corresponding to the detect angle
+    [Tooltip("The vector with the same angle as the raycast angle")]
+    protected Vector2 DetectVector;
 
     protected void Awake()
     {
