@@ -10,6 +10,8 @@ public class Game_Manager : MonoBehaviour
     public static LayerMask PlatformMask;
 
     public static readonly float DebugRayLifeTime = 0.02f;
+    [Tooltip("When calculating distance of ray for raycast, use this to account for small gaps between colliders for better physics performance")]
+    public static readonly float RayCastRayOffset = 0.2f;
     /// <summary>
      /// Returns an angle in degrees
      /// </summary>

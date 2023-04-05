@@ -23,6 +23,8 @@ public abstract class EntityMovement : MonoBehaviour
     protected float JumpForce; // default = 500
     [SerializeField]
     protected float MoveForce; // default = 5
+
+    protected BoxCollider2D Collider;
     protected Ray RayCastRay;
     protected RaycastHit2D RayCastHit;
     protected Rigidbody2D RigidBody;
@@ -31,6 +33,7 @@ public abstract class EntityMovement : MonoBehaviour
 
     protected void Awake()
     {
+        Collider = GetComponent<BoxCollider2D>();
         RigidBody = GetComponent<Rigidbody2D>();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
 
@@ -55,6 +58,10 @@ public abstract class EntityMovement : MonoBehaviour
     private float GetDetectDistance()
     {
         float angleFrom270 = Game_Manager.GetAngleBetweenVector2s(Vector2.down, DetectVector);
-        return angleFrom270;
+        if (angleFrom270 < 0)
+            angleFrom270 *= -1;
+        float a = Collider.size.y / 2;
+        float h = (a + Game_Manager.RayCastRayOffset) / Mathf.Cos(angleFrom270 * Mathf.Deg2Rad);
+        return h;
     }
 }
