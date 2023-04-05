@@ -114,6 +114,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Camera",
+            "id": "a6476a69-f5f3-495d-a7b0-62123c286c57",
+            "actions": [
+                {
+                    "name": "ZoomOut",
+                    "type": "Button",
+                    "id": "7faafad0-4fce-409c-b645-73324d50f376",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cda76cdc-e4f0-4219-9897-18e3e7ffae6f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
