@@ -813,8 +813,8 @@ MonoBehaviour:
   MoveDecel: 0.1
   MoveForce: 5
   SpawnPoint: {fileID: 232036629}
-  _cooldownKnockback: 0.2
-  _forceKnockback: {x: 500, y: 250}
+  _cooldownKnockback: 0.25
+  _forceKnockback: {x: 400, y: 400}
   _cooldownJump: 0.5
   _forceJump: {x: 0, y: 500}
   _cooldownMoveFlip: 0
