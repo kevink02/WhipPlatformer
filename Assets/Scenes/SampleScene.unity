@@ -535,10 +535,10 @@ MonoBehaviour:
   MoveDecel: 0.1
   JumpForce: 500
   MoveForce: 5
-  _cooldownKnockback: 0
+  _cooldownKnockback: 0.5
+  _forceKnockback: {x: 750, y: 100}
   _cooldownMoveFlip: 0
   _jumpCooldownTime: 0.5
-  _knockBackForce: {x: 800, y: 200}
   _spawnPoint: {x: 0, y: 0}
 --- !u!1001 &1292981664
 PrefabInstance:

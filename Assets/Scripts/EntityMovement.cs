@@ -23,8 +23,6 @@ public abstract class EntityMovement : MonoBehaviour
     protected float JumpForce; // default = 500
     [SerializeField]
     protected float MoveForce; // default = 5
-    [SerializeField]
-    private float _cooldownKnockback; // default = 0.5f
 
     protected bool IsGrounded;
     protected BoxCollider2D Collider;
@@ -36,11 +34,16 @@ public abstract class EntityMovement : MonoBehaviour
     protected Vector2 MoveDirection;
 
     protected EntityEffect EffectKnockback;
+    [SerializeField]
+    private float _cooldownKnockback; // default = 0.5f
+    [SerializeField]
+    private Vector2 _forceKnockback; // default = new Vector(750f, 100f)
     protected EntityEffect EffectJump;
     protected EntityEffect EffectMoveFlip;
     [Range(1, 10f)]
     [SerializeField]
     private float _cooldownMoveFlip;
+    private readonly Vector2 _forceMoveFlip = Vector2.zero;
 
     protected void Awake()
     {
@@ -49,6 +52,11 @@ public abstract class EntityMovement : MonoBehaviour
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
         DetectDistance = GetDetectDistance(DetectVector);
 
+        // Verify values of the knockback force
+        if (_forceKnockback.x < 1)
+            _forceKnockback.x = 750f;
+        if (_forceKnockback.y <= 0)
+            _forceKnockback.y = 100f;
         SetEntityEffects();
     }
     protected void FixedUpdate()
@@ -69,9 +77,9 @@ public abstract class EntityMovement : MonoBehaviour
     protected abstract void MoveVertically();
     private void SetEntityEffects()
     {
-        EffectKnockback = new EntityEffect(_cooldownKnockback, 0f);
-        EffectJump = new EntityEffect(0f, 0f);
-        EffectMoveFlip = new EntityEffect(_cooldownMoveFlip, 0f);
+        EffectKnockback = new EntityEffect(_cooldownKnockback, _forceKnockback);
+        EffectJump = new EntityEffect(0f, Vector2.zero);
+        EffectMoveFlip = new EntityEffect(_cooldownMoveFlip, _forceMoveFlip);
     }
     protected bool HasCollidedWithPlatformAtDetectAngle()
     {

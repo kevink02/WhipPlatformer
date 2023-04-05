@@ -9,13 +9,10 @@ public class PlayerMovement : EntityMovement
     [SerializeField]
     private float _jumpCooldownTime; // default = 0.5f
     [SerializeField]
-    private Vector2 _knockBackForce; // default = 1000f, 1f
-    [SerializeField]
     private Vector2 _spawnPoint;
 
     private bool _isMoving;
     private bool _isOnKnockBack;
-    private float _timeOfLastKnockBack;
     private float _timeOfLastJump;
     private PlayerControls _playerControls;
 
@@ -23,12 +20,6 @@ public class PlayerMovement : EntityMovement
     {
         base.Awake();
         _playerControls = new PlayerControls();
-
-        // Verify values of the knockback force
-        if (_knockBackForce.x < 1)
-            _knockBackForce.x = 750f;
-        if (_knockBackForce.y <= 0)
-            _knockBackForce.y = 100f;
     }
     private void Start()
     {
@@ -55,8 +46,8 @@ public class PlayerMovement : EntityMovement
         }
         else if (collision.collider.CompareTag("Enemy") && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
+            EffectKnockback.SetNewTimeEffectApply();
             _isOnKnockBack = true;
-            _timeOfLastKnockBack = Time.time;
             // Push the player away from the enemy
 
             // Find distance from the collided collider
@@ -66,7 +57,7 @@ public class PlayerMovement : EntityMovement
 
             // Reset velocity and add force away from the collider collided with
             RigidBody.velocity = Vector2.zero;
-            RigidBody.AddForce(new Vector2(_knockBackForce.x * distanceFromEnemy.x, _knockBackForce.y * distanceFromEnemy.y));
+            RigidBody.AddForce(new Vector2(EffectKnockback.ForceEffect.x * distanceFromEnemy.x, EffectKnockback.ForceEffect.y * distanceFromEnemy.y));
         }
         else if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
