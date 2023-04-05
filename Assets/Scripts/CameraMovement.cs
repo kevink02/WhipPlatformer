@@ -25,19 +25,26 @@ public class CameraMovement : MonoBehaviour
         _camera = GetComponent<Camera>();
         _player = FindObjectOfType<PlayerMovement>();
         _positionZ = Vector3.forward * transform.position.z;
+
+        // If invalid zoom out size (zooming out would actually zoom in the camera)
+        if (_cameraSizeZoomOut < _cameraSizeZoomIn)
+        {
+            _cameraSizeZoomIn = 5f;
+            _cameraSizeZoomOut = 20f;
+        }
     }
     private void FixedUpdate()
     {
         if (_isZoomedOut)
         {
             transform.position = Vector3.zero + _positionZ;
-            _camera.orthographicSize = 20f;
+            _camera.orthographicSize = _cameraSizeZoomOut;
         }
         else
         {
             // Prevent camera's z position from changing (makes camera zoom in too close)
             transform.position = Vector3.Lerp(transform.position, _player.transform.position + _positionZ, _lerpSpeed);
-            _camera.orthographicSize = 5f;
+            _camera.orthographicSize = _cameraSizeZoomIn;
         }
     }
     public static void SwitchCameraZoom()
