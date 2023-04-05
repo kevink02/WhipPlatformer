@@ -48,7 +48,11 @@ public class PlayerMovement : EntityMovement
             _isOnKnockBack = true;
             // Push the player away from the enemy
             Debug.Log($"{name}: Enemy hit");
-            RigidBody.velocity = (new Vector2(-4.5f * RigidBody.velocity.x, -0.5f * RigidBody.velocity.y));
+
+            // Reset velocity and add force in the opposite direction of original velocity
+            Vector2 tempVelocity = RigidBody.velocity;
+            RigidBody.velocity = Vector2.zero;
+            RigidBody.AddForce(new Vector2(-4.5f * tempVelocity.x, -0.5f * tempVelocity.y));
         }
         else if (Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
         {
@@ -62,11 +66,25 @@ public class PlayerMovement : EntityMovement
         {
             // Lerp speed from current speed to the target horizontal speed + current vertical speed
             // Allows vertical speed to decrease by gravity instead of being reset
-            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
+            if (_isOnKnockBack)
+            {
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
+            }
+            else
+            {
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
+            }
         }
         else
         {
-            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
+            if (_isOnKnockBack)
+            {
+                //RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
+            }
+            else
+            {
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
+            }
         }
     }
     protected override void MoveVertically()
