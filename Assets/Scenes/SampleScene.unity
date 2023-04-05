@@ -511,7 +511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6795e1973707b0742ae3dc2a41d77442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectAngle: 0
+  DetectAngle: 270
+  DetectDistance: 0
   MoveAccel: 0.2
   MoveDecel: 0.1
   JumpForce: 500
