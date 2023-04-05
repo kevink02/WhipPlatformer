@@ -41,7 +41,7 @@ public class PlayerMovement : EntityMovement
         {
             // Push the player away from the enemy
             Debug.Log($"{name}: Enemy hit");
-            //RigidBody.velocity = (new Vector2(-2 * RigidBody.velocity.x, -0.7f * RigidBody.velocity.y));
+            RigidBody.velocity = (new Vector2(-4.5f * RigidBody.velocity.x, -0.5f * RigidBody.velocity.y));
         }
     }
     protected override void MoveHorizontally()
