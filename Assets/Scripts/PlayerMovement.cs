@@ -16,7 +16,6 @@ public class PlayerMovement : EntityMovement
     [SerializeField]
     private Vector2 _spawnPoint;
 
-    private bool _isGrounded;
     private bool _isMoving;
     private bool _isOnKnockBack;
     private float _timeOfLastKnockBack;
@@ -26,7 +25,6 @@ public class PlayerMovement : EntityMovement
     private new void Awake()
     {
         base.Awake();
-        _isGrounded = true;
         _playerControls = new PlayerControls();
 
         // Verify values of the knockback force
@@ -80,9 +78,10 @@ public class PlayerMovement : EntityMovement
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
+        return;
         if (Game_Manager.IsObjectAPlatform(collision.collider.gameObject) && HasCollidedWithPlatformUnderneath() && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastJump, _jumpCooldownTime))
         {
-            _isGrounded = true;
+            IsGrounded = true;
             _timeOfLastJump = Time.time;
         }
     }
@@ -107,9 +106,9 @@ public class PlayerMovement : EntityMovement
     }
     protected override void MoveVertically()
     {
-        if (_isGrounded)
+        if (IsGrounded && Game_Manager.CheckIfEnoughTimeHasPassed(_timeOfLastJump, _jumpCooldownTime))
         {
-            _isGrounded = false;
+            //IsGrounded = false;
             RigidBody.AddForce(JumpForce * Vector2.up);
         }
     }

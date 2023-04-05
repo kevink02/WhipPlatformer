@@ -24,6 +24,7 @@ public abstract class EntityMovement : MonoBehaviour
     [SerializeField]
     protected float MoveForce; // default = 5
 
+    protected bool IsGrounded;
     protected BoxCollider2D Collider;
     protected Ray RayCastRay;
     protected RaycastHit2D RayCastHit;
@@ -43,6 +44,7 @@ public abstract class EntityMovement : MonoBehaviour
     {
         MoveHorizontally();
         CastRay();
+        IsGrounded = HasCollidedWithPlatformUnderneath();
     }
     protected abstract void OnCollisionEnter2D(Collision2D collision);
     protected void CastRay()
