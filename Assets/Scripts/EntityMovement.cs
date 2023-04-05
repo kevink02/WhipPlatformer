@@ -43,12 +43,11 @@ public abstract class EntityMovement : MonoBehaviour
     protected void Awake()
     {
         Collider = GetComponent<BoxCollider2D>();
-        EffectKnockback = new EntityEffect(_cooldownKnockback, 0f);
-        EffectJump = new EntityEffect(0f, 0f);
-        EffectMoveFlip = new EntityEffect(0f, 0f);
         RigidBody = GetComponent<Rigidbody2D>();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
         DetectDistance = GetDetectDistance(DetectVector);
+
+        SetEntityEffects();
     }
     protected void FixedUpdate()
     {
@@ -66,6 +65,12 @@ public abstract class EntityMovement : MonoBehaviour
     }
     protected abstract void MoveHorizontally();
     protected abstract void MoveVertically();
+    private void SetEntityEffects()
+    {
+        EffectKnockback = new EntityEffect(_cooldownKnockback, 0f);
+        EffectJump = new EntityEffect(0f, 0f);
+        EffectMoveFlip = new EntityEffect(0f, 0f);
+    }
     protected bool HasCollidedWithPlatformAtDetectAngle()
     {
         return RayCastHit && Game_Manager.IsObjectAPlatform(RayCastHit.collider.gameObject);
