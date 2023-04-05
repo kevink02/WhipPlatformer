@@ -9,7 +9,6 @@ public class PlayerMovement : EntityMovement
     private Vector2 _spawnPoint;
 
     private bool _isMoving;
-    private bool _isOnKnockBack;
     private PlayerControls _playerControls;
 
     private new void Awake()
@@ -43,7 +42,6 @@ public class PlayerMovement : EntityMovement
         else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
             EffectKnockback.SetNewTimeEffectApply();
-            _isOnKnockBack = true;
             // Push the player away from the enemy
 
             // Find distance from the collided collider
@@ -55,10 +53,6 @@ public class PlayerMovement : EntityMovement
             RigidBody.velocity = Vector2.zero;
             RigidBody.AddForce(new Vector2(EffectKnockback.ForceEffect.x * distanceFromEnemy.x, EffectKnockback.ForceEffect.y * distanceFromEnemy.y));
         }
-        else if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
-        {
-            _isOnKnockBack = false;
-        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -67,14 +61,14 @@ public class PlayerMovement : EntityMovement
     protected override void MoveHorizontally()
     {
         float MoveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
-        if (_isMoving)
+        if (_isMoving && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
             // Lerp speed from current speed to the target horizontal speed + current vertical speed
             // Allows vertical speed to decrease by gravity instead of being reset
             RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * MoveDirection * Vector2.right, MoveAccel);
         }
         // Otherwise if not moving and currently being knocked back, do not want to set velocity as knockback velocity is in effect
-        else if (!_isMoving && !_isOnKnockBack)
+        else if (!_isMoving && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
             RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
         }

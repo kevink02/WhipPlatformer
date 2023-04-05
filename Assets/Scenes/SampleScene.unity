@@ -534,8 +534,8 @@ MonoBehaviour:
   MoveAccel: 0.2
   MoveDecel: 0.1
   MoveForce: 5
-  _cooldownKnockback: 0.5
-  _forceKnockback: {x: 1000, y: 200}
+  _cooldownKnockback: 0.2
+  _forceKnockback: {x: 10, y: 20}
   _cooldownJump: 0.5
   _forceJump: {x: 0, y: 500}
   _cooldownMoveFlip: 0
