@@ -43,6 +43,7 @@ public abstract class EntityMovement : MonoBehaviour
         MoveHorizontally();
         CastRay();
     }
+    protected abstract void OnCollisionEnter2D(Collision2D collision);
     protected void CastRay()
     {
         Debug.DrawRay(transform.position, DetectVector, Color.white, Game_Manager.DebugRayLifeTime);

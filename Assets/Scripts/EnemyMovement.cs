@@ -38,6 +38,10 @@ public class EnemyMovement : EntityMovement
                 break;
         }
     }
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        throw new System.NotImplementedException();
+    }
     protected override void MoveHorizontally()
     {
         // Only consider horizontal movement, since enemies (for now) do not jump

@@ -52,7 +52,7 @@ public class PlayerMovement : EntityMovement
     {
         _playerControls.Disable();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("VoidCheck"))
         {
