@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Range(0.01f, 1)]
+    [SerializeField]
+    private float _lerpSpeed;
+    private PlayerMovement _player;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        _player = FindObjectOfType<PlayerMovement>();
+    }
+    private void FixedUpdate()
+    {
+        // Prevent camera's z position from changing (makes camera zoom in too close)
+        transform.position = Vector3.Lerp(transform.position, _player.transform.position + Vector3.forward * transform.position.z, _lerpSpeed);
     }
 }
