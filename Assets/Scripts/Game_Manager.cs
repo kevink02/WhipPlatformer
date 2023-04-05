@@ -35,6 +35,10 @@ public class Game_Manager : MonoBehaviour
 
     private void Awake()
     {
+        SetStatics();
+    }
+    private void SetStatics()
+    {
         PlatformMask = _platformMask;
         LevelEntrance = _levelEntrance;
         LevelExit = _levelExit;
