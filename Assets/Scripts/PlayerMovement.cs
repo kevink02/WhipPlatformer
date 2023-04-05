@@ -5,15 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : EntityMovement
 {
-    [Range(0.01f, 1f)]
-    [SerializeField]
-    private float _jumpCooldownTime; // default = 0.5f
     [SerializeField]
     private Vector2 _spawnPoint;
 
     private bool _isMoving;
     private bool _isOnKnockBack;
-    private float _timeOfLastJump;
     private PlayerControls _playerControls;
 
     private new void Awake()
@@ -87,8 +83,8 @@ public class PlayerMovement : EntityMovement
     {
         if (IsGrounded && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
         {
-            RigidBody.AddForce(JumpForce * Vector2.up);
-            _timeOfLastJump = Time.time;
+            EffectJump.SetNewTimeEffectApply();
+            RigidBody.AddForce(EffectJump.ForceEffect);
         }
     }
     private void AbilityAttack()

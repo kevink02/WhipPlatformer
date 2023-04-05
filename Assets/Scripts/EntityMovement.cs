@@ -18,9 +18,6 @@ public abstract class EntityMovement : MonoBehaviour
     [Range(0.01f, 1)]
     [SerializeField]
     protected float MoveDecel; // default = 0.1f
-    [Range(0, 1000)]
-    [SerializeField]
-    protected float JumpForce; // default = 500
     [SerializeField]
     protected float MoveForce; // default = 5
 
@@ -39,8 +36,13 @@ public abstract class EntityMovement : MonoBehaviour
     [SerializeField]
     private Vector2 _forceKnockback; // default = new Vector(750f, 100f)
     protected EntityEffect EffectJump;
+    [Range(0.01f, 1)]
+    [SerializeField]
+    private float _cooldownJump; // default = 0.5f
+    [SerializeField]
+    private Vector2 _forceJump; // default = 500
     protected EntityEffect EffectMoveFlip;
-    [Range(1, 10f)]
+    [Range(0.01f, 10)]
     [SerializeField]
     private float _cooldownMoveFlip;
     private readonly Vector2 _forceMoveFlip = Vector2.zero;
@@ -54,9 +56,13 @@ public abstract class EntityMovement : MonoBehaviour
 
         // Verify values of the knockback force
         if (_forceKnockback.x < 1)
-            _forceKnockback.x = 750f;
+            _forceKnockback.x = 750;
         if (_forceKnockback.y <= 0)
-            _forceKnockback.y = 100f;
+            _forceKnockback.y = 100;
+        if (_forceJump.x != 0)
+            _forceJump.x = 0;
+        if (_forceJump.y <= 0)
+            _forceJump.y = 500;
         SetEntityEffects();
     }
     protected void FixedUpdate()
@@ -78,7 +84,7 @@ public abstract class EntityMovement : MonoBehaviour
     private void SetEntityEffects()
     {
         EffectKnockback = new EntityEffect(_cooldownKnockback, _forceKnockback);
-        EffectJump = new EntityEffect(0f, Vector2.zero);
+        EffectJump = new EntityEffect(_cooldownJump, _forceJump);
         EffectMoveFlip = new EntityEffect(_cooldownMoveFlip, _forceMoveFlip);
     }
     protected bool HasCollidedWithPlatformAtDetectAngle()
