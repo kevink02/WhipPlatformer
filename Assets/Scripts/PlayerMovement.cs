@@ -88,12 +88,12 @@ public class PlayerMovement : EntityMovement
     }
     protected override void MoveHorizontally()
     {
-        float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
+        float MoveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
         if (_isMoving)
         {
             // Lerp speed from current speed to the target horizontal speed + current vertical speed
             // Allows vertical speed to decrease by gravity instead of being reset
-            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
+            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * MoveDirection * Vector2.right, MoveAccel);
         }
         // Otherwise if not moving and currently being knocked back, do not want to set velocity as knockback velocity is in effect
         else if (!_isMoving && !_isOnKnockBack)

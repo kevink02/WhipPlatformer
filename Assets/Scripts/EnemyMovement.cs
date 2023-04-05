@@ -6,7 +6,6 @@ public class EnemyMovement : EntityMovement
 {
     [SerializeField]
     private EnemyTypes _enemyMoveType;
-    private Vector2 _moveDirection;
 
     [Range(1, 10f)]
     [SerializeField]
@@ -27,25 +26,25 @@ public class EnemyMovement : EntityMovement
         switch (_enemyMoveType)
         {
             case EnemyTypes.Ground:
-                _moveDirection = Vector2.right;
+                MoveDirection = Vector2.right;
                 RigidBody.gravityScale = 1;
                 break;
             case EnemyTypes.AirVertical:
-                _moveDirection = Vector2.up;
+                MoveDirection = Vector2.up;
                 RigidBody.gravityScale = 0;
                 // Only allow changes to y position;
                 RigidBody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 RigidBody.freezeRotation = true;
                 break;
             case EnemyTypes.AirHorizontal:
-                _moveDirection = Vector2.right;
+                MoveDirection = Vector2.right;
                 RigidBody.gravityScale = 0;
                 // Only allow changes to x position;
                 RigidBody.constraints = RigidbodyConstraints2D.FreezePositionY;
                 RigidBody.freezeRotation = true;
                 break;
             default:
-                _moveDirection = Vector2.right;
+                MoveDirection = Vector2.right;
                 RigidBody.gravityScale = 1;
                 break;
         }
@@ -59,8 +58,7 @@ public class EnemyMovement : EntityMovement
     }
     protected override void MoveHorizontally()
     {
-        // Only consider horizontal movement, since enemies (for now) do not jump
-        RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * _moveDirection, MoveAccel);
+        RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
 
         switch (_enemyMoveType)
         {
@@ -97,12 +95,12 @@ public class EnemyMovement : EntityMovement
     {
         DetectVector = Vector2.Reflect(DetectVector, Vector2.right);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
-        _moveDirection *= -1;
+        MoveDirection *= -1;
     }
     private void FlipMoveDirectionVertical()
     {
         DetectVector = Vector2.Reflect(DetectVector, Vector2.up);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
-        _moveDirection *= -1;
+        MoveDirection *= -1;
     }
 }

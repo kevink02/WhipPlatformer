@@ -30,6 +30,7 @@ public abstract class EntityMovement : MonoBehaviour
     protected Rigidbody2D RigidBody;
     [Tooltip("The vector with the same angle as the raycast angle")]
     protected Vector2 DetectVector;
+    protected Vector2 MoveDirection;
 
     protected void Awake()
     {
