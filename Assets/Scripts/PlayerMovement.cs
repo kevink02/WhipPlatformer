@@ -40,11 +40,11 @@ public class PlayerMovement : EntityMovement
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Game_Manager.IsObjectAnInvisiblePlatform(collision.collider.gameObject))
+        if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
         {
             transform.position = _spawnPoint;
         }
-        else if (collision.collider.CompareTag("Enemy") && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
+        else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
             EffectKnockback.SetNewTimeEffectApply();
             _isOnKnockBack = true;
