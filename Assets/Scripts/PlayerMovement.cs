@@ -16,7 +16,7 @@ public class PlayerMovement : EntityMovement
     {
         _playerControls.Movement.HorizontalMove.started += _ => _isMoving = true;
         _playerControls.Movement.HorizontalMove.canceled += _ => _isMoving = false;
-        _playerControls.Movement.VerticalMove.performed += _ => MoveVertically();
+        _playerControls.Movement.VerticalMove.performed += _ => DoJump();
         _playerControls.Abilities.Attack.performed += _ => AbilityAttack();
         _playerControls.Abilities.Interact.performed += _ => AbilityInteract();
         _playerControls.Camera.ZoomOut.performed += _ => CameraMovement.SwitchCameraZoom();
@@ -54,7 +54,7 @@ public class PlayerMovement : EntityMovement
     {
         Debug.Log($"{name}: {collision.name}");
     }
-    protected override void MoveHorizontally()
+    protected override void DoMovement()
     {
         float MoveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
         // If not currently being knocked back (do not want to set velocity while being knocked back)
@@ -72,7 +72,7 @@ public class PlayerMovement : EntityMovement
             }
         }
     }
-    protected override void MoveVertically()
+    private void DoJump()
     {
         if (IsGrounded && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
         {

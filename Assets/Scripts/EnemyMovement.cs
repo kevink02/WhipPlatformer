@@ -55,7 +55,7 @@ public class EnemyMovement : EntityMovement
             Destroy(gameObject);
         }
     }
-    protected override void MoveHorizontally()
+    protected override void DoMovement()
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
 
@@ -86,10 +86,6 @@ public class EnemyMovement : EntityMovement
             default:
                 break;
         }
-    }
-    protected override void MoveVertically()
-    {
-        throw new System.NotImplementedException();
     }
     private void FlipMoveDirectionHorizontal()
     {

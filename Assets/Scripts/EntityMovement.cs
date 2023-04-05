@@ -63,7 +63,7 @@ public abstract class EntityMovement : MonoBehaviour
     }
     protected void FixedUpdate()
     {
-        MoveHorizontally();
+        DoMovement();
         CastRay();
         IsGrounded = HasCollidedWithPlatformUnderneath();
     }
@@ -75,8 +75,7 @@ public abstract class EntityMovement : MonoBehaviour
         RayCastRay = new Ray(transform.position, DetectVector);
         RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, DetectDistance, Game_Manager.PlatformMask);
     }
-    protected abstract void MoveHorizontally();
-    protected abstract void MoveVertically();
+    protected abstract void DoMovement();
     private void SetEntityEffectForceValues()
     {
         if (_forceKnockback.x < 1)
