@@ -5,8 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : EntityMovement
 {
+    [Range(0.01f, 1f)]
+    [SerializeField]
+    private float _knockBackEffectTime;
+
     private bool _isGrounded;
     private bool _isMoving;
+    private bool _isOnKnockBack;
+    private float _timeOfLastKnockBack;
     private PlayerControls _playerControls;
 
     private new void Awake()
@@ -37,11 +43,16 @@ public class PlayerMovement : EntityMovement
         {
             _isGrounded = true;
         }
-        else if (collision.collider.CompareTag("Enemy"))
+        else if (collision.collider.CompareTag("Enemy") && Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
         {
+            _isOnKnockBack = true;
             // Push the player away from the enemy
             Debug.Log($"{name}: Enemy hit");
             RigidBody.velocity = (new Vector2(-4.5f * RigidBody.velocity.x, -0.5f * RigidBody.velocity.y));
+        }
+        else if (Time.time >= _timeOfLastKnockBack + _knockBackEffectTime)
+        {
+            _isOnKnockBack = false;
         }
     }
     protected override void MoveHorizontally()
