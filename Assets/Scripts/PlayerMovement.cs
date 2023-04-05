@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : EntityMovement
 {
@@ -12,6 +11,7 @@ public class PlayerMovement : EntityMovement
     {
         base.Awake();
         _playerControls = new PlayerControls();
+        transform.position = Game_Manager.LevelEntrance.transform.position;
     }
     private void Start()
     {
@@ -36,7 +36,7 @@ public class PlayerMovement : EntityMovement
         {
             transform.position = Game_Manager.LevelEntrance.transform.position;
         }
-        else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
+        else if (Game_Manager.IsObjectAnEnemy(collision.gameObject))
         {
             EffectKnockback.SetNewTimeEffectApply();
             // Push the player away from the enemy
@@ -58,16 +58,19 @@ public class PlayerMovement : EntityMovement
     protected override void MoveHorizontally()
     {
         float MoveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
-        if (_isMoving && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
+        // If not currently being knocked back (do not want to set velocity while being knocked back)
+        if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
-            // Lerp speed from current speed to the target horizontal speed + current vertical speed
-            // Allows vertical speed to decrease by gravity instead of being reset
-            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * MoveDirection * Vector2.right, MoveAccel);
-        }
-        // Otherwise if not moving and currently being knocked back, do not want to set velocity as knockback velocity is in effect
-        else if (!_isMoving && EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
-        {
-            RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
+            if (_isMoving)
+            {
+                // Lerp speed from current speed to the target horizontal speed + current vertical speed
+                // Allows vertical speed to decrease by gravity instead of being reset
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * MoveDirection * Vector2.right, MoveAccel);
+            }
+            else if (!_isMoving)
+            {
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
+            }
         }
     }
     protected override void MoveVertically()
