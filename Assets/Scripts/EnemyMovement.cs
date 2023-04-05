@@ -6,6 +6,11 @@ public class EnemyMovement : EntityMovement
 {
     [SerializeField]
     private EnemyTypes _enemyMoveType;
+    [SerializeField]
+    [Tooltip("For airborne enemies, a point to travel to when moving")]
+    private Transform _patrolPointStart, _patrolPointEnd;
+    private Transform _patrolPointTarget;
+
     private enum EnemyTypes : int
     {
         Ground, AirVertical, AirHorizontal
@@ -14,7 +19,7 @@ public class EnemyMovement : EntityMovement
     private new void Awake()
     {
         base.Awake();
-        DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
+        _patrolPointTarget = _patrolPointStart;
 
         // Set physics values based on the enemy type
         switch (_enemyMoveType)
