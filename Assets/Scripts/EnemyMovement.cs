@@ -62,8 +62,8 @@ public class EnemyMovement : EntityMovement
         if (_patrolPointStart)
         {
             // speed = distance / time
-            float distance = MoveForce * EffectMoveFlip.TimeCooldownEffect;
-            Debug.Log($"{name}: I am at {_patrolPointStart.transform.position} and expected distance to end point is {distance}");
+            float distance = 1.0f * MoveForce * EffectMoveFlip.TimeCooldownEffect;
+            Debug.Log($"{name}: I am at {_patrolPointStart.transform.position.x}, {_patrolPointStart.transform.position.y} and expected distance to end point is {distance}");
         }
 
         if (_patrolPointStart == _patrolPointEnd)
@@ -132,6 +132,6 @@ public class EnemyMovement : EntityMovement
         DetectVector = Vector2.Reflect(DetectVector, normal);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         MoveDirection *= -1;
-        Debug.Log($"{name}: Flipping movement, end point at {transform.position}");
+        Debug.Log($"{name}: Flipping movement, end point at {transform.position.x}, {transform.position.y}");
     }
 }
