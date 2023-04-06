@@ -59,6 +59,13 @@ public class EnemyMovement : EntityMovement
     }
     private void SetInitialPositionToPatrolPoint()
     {
+        if (_patrolPointStart)
+        {
+            // speed = distance / time
+            float distance = MoveForce * EffectMoveFlip.TimeCooldownEffect;
+            Debug.Log($"{name}: I am at {_patrolPointStart.transform.position} and expected distance to end point is {distance}");
+        }
+
         if (_patrolPointStart == _patrolPointEnd)
             throw new Exception("The patrol points are the same, enemy can't move");
         transform.position = _patrolPointStart.position;
@@ -111,14 +118,20 @@ public class EnemyMovement : EntityMovement
     }
     private void FlipMoveDirectionHorizontal()
     {
-        DetectVector = Vector2.Reflect(DetectVector, Vector2.right);
-        DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
-        MoveDirection *= -1;
+        FlipMoveDirection(Vector2.right);
     }
     private void FlipMoveDirectionVertical()
     {
-        DetectVector = Vector2.Reflect(DetectVector, Vector2.up);
+        FlipMoveDirection(Vector2.up);
+    }
+    /// <summary>
+    /// Should only be called by "FlipMoveDirection..." functions
+    /// </summary>
+    private void FlipMoveDirection(Vector2 normal)
+    {
+        DetectVector = Vector2.Reflect(DetectVector, normal);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         MoveDirection *= -1;
+        Debug.Log($"{name}: Flipping movement, end point at {transform.position}");
     }
 }
