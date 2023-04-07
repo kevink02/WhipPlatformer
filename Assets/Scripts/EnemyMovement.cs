@@ -82,34 +82,11 @@ public class EnemyMovement : EntityMovement
                 }
                 break;
             case EnemyTypes.AirVertical:
-                if (Game_Manager.ShouldAirborneEnemiesPatrol)
-                {
-                    DoPatrolPointMovement();
-                }
-                else
-                {
-                    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-                    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
-                    {
-                        EffectMoveFlip.SetNewTimeEffectApply();
-                        FlipMoveDirectionVertical();
-                    }
-                }
-                break;
             case EnemyTypes.AirHorizontal:
                 if (Game_Manager.ShouldAirborneEnemiesPatrol)
-                {
                     DoPatrolPointMovement();
-                }
                 else
-                {
-                    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-                    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
-                    {
-                        EffectMoveFlip.SetNewTimeEffectApply();
-                        FlipMoveDirectionHorizontal();
-                    }
-                }
+                    DoTimedVelocityMovement();
                 break;
             default:
                 break;
@@ -131,6 +108,18 @@ public class EnemyMovement : EntityMovement
                 _patrolPointCurrent = _patrolPointStart;
                 _patrolPointTarget = _patrolPointEnd;
             }
+        }
+    }
+    private void DoTimedVelocityMovement()
+    {
+        RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
+        if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
+        {
+            EffectMoveFlip.SetNewTimeEffectApply();
+            if (_enemyMoveType == EnemyTypes.AirHorizontal)
+                FlipMoveDirectionHorizontal();
+            else if (_enemyMoveType == EnemyTypes.AirVertical)
+                FlipMoveDirectionVertical();
         }
     }
     private void FlipMoveDirectionHorizontal()
