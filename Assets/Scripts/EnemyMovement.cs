@@ -59,12 +59,6 @@ public class EnemyMovement : EntityMovement
     }
     private void SetInitialPositionToPatrolPoint()
     {
-        if (_patrolPointStart)
-        {
-            //// speed = distance / time
-            //float distance = 1.0f * MoveForce * EffectMoveFlip.TimeCooldownEffect;
-            //Debug.Log($"{name}: I am at {_patrolPointStart.transform.position.x}, {_patrolPointStart.transform.position.y} and expected distance to end point is {distance}");
-        }
         if (!_patrolPointStart)
             throw new Exception("The start patrol point is not set");
 
@@ -88,42 +82,55 @@ public class EnemyMovement : EntityMovement
                 }
                 break;
             case EnemyTypes.AirVertical:
-            case EnemyTypes.AirHorizontal:
-                Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
-                RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
-                if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f && Vector2.Distance(transform.position, _patrolPointCurrent.position) > 0.1f)
+                if (Game_Manager.ShouldAirborneEnemiesPatrol)
                 {
-                    if (_patrolPointTarget == _patrolPointEnd)
+                    DoPatrolPointMovement();
+                }
+                else
+                {
+                    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
+                    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
                     {
-                        _patrolPointCurrent = _patrolPointEnd;
-                        _patrolPointTarget = _patrolPointStart;
-                    }
-                    else
-                    {
-                        _patrolPointCurrent = _patrolPointStart;
-                        _patrolPointTarget = _patrolPointEnd;
+                        EffectMoveFlip.SetNewTimeEffectApply();
+                        FlipMoveDirectionVertical();
                     }
                 }
-                print($"{name}: Velocity is {RigidBody.velocity}");
                 break;
-            //case EnemyTypes.AirVertical:
-            //    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-            //    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
-            //    {
-            //        EffectMoveFlip.SetNewTimeEffectApply();
-            //        FlipMoveDirectionVertical();
-            //    }
-            //    break;
-            //case EnemyTypes.AirHorizontal:
-            //    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-            //    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
-            //    {
-            //        EffectMoveFlip.SetNewTimeEffectApply();
-            //        FlipMoveDirectionHorizontal();
-            //    }
-            //    break;
+            case EnemyTypes.AirHorizontal:
+                if (Game_Manager.ShouldAirborneEnemiesPatrol)
+                {
+                    DoPatrolPointMovement();
+                }
+                else
+                {
+                    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
+                    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
+                    {
+                        EffectMoveFlip.SetNewTimeEffectApply();
+                        FlipMoveDirectionHorizontal();
+                    }
+                }
+                break;
             default:
                 break;
+        }
+    }
+    private void DoPatrolPointMovement()
+    {
+        Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
+        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
+        if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f && Vector2.Distance(transform.position, _patrolPointCurrent.position) > 0.1f)
+        {
+            if (_patrolPointTarget == _patrolPointEnd)
+            {
+                _patrolPointCurrent = _patrolPointEnd;
+                _patrolPointTarget = _patrolPointStart;
+            }
+            else
+            {
+                _patrolPointCurrent = _patrolPointStart;
+                _patrolPointTarget = _patrolPointEnd;
+            }
         }
     }
     private void FlipMoveDirectionHorizontal()
