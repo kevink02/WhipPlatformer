@@ -1368,6 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5246ebc924408e541abc7b5a47766846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldAirborneEnemiesPatrol: 1
   _platformMask:
     serializedVersion: 2
     m_Bits: 256
