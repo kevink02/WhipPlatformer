@@ -10,7 +10,7 @@ public class EnemyMovement : EntityMovement
     [SerializeField]
     [Tooltip("For airborne enemies, a point to travel to when moving")]
     private Transform _patrolPointStart, _patrolPointEnd;
-    private Transform _patrolPointTarget;
+    private Transform _patrolPointTarget, _patrolPointCurrent;
 
     private enum EnemyTypes : int
     {
@@ -61,14 +61,17 @@ public class EnemyMovement : EntityMovement
     {
         if (_patrolPointStart)
         {
-            // speed = distance / time
-            float distance = 1.0f * MoveForce * EffectMoveFlip.TimeCooldownEffect;
-            Debug.Log($"{name}: I am at {_patrolPointStart.transform.position.x}, {_patrolPointStart.transform.position.y} and expected distance to end point is {distance}");
+            //// speed = distance / time
+            //float distance = 1.0f * MoveForce * EffectMoveFlip.TimeCooldownEffect;
+            //Debug.Log($"{name}: I am at {_patrolPointStart.transform.position.x}, {_patrolPointStart.transform.position.y} and expected distance to end point is {distance}");
         }
+        if (!_patrolPointStart)
+            throw new Exception("The start patrol point is not set");
 
         if (_patrolPointStart == _patrolPointEnd)
             throw new Exception("The patrol points are the same, enemy can't move");
-        transform.position = _patrolPointStart.position;
+        _patrolPointCurrent = _patrolPointStart;
+        transform.position = _patrolPointCurrent.position;
         _patrolPointTarget = _patrolPointEnd;
     }
     protected override void DoMovement()
@@ -88,12 +91,18 @@ public class EnemyMovement : EntityMovement
             case EnemyTypes.AirHorizontal:
                 Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
                 RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
-                if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f) // add condition where distance to other patrol point > 0.1
+                if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f && Vector2.Distance(transform.position, _patrolPointCurrent.position) > 0.1f)
                 {
                     if (_patrolPointTarget == _patrolPointEnd)
+                    {
+                        _patrolPointCurrent = _patrolPointEnd;
                         _patrolPointTarget = _patrolPointStart;
+                    }
                     else
+                    {
+                        _patrolPointCurrent = _patrolPointStart;
                         _patrolPointTarget = _patrolPointEnd;
+                    }
                 }
                 break;
             //case EnemyTypes.AirVertical:
