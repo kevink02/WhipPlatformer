@@ -104,6 +104,7 @@ public class EnemyMovement : EntityMovement
                         _patrolPointTarget = _patrolPointEnd;
                     }
                 }
+                print($"{name}: Velocity is {RigidBody.velocity}");
                 break;
             //case EnemyTypes.AirVertical:
             //    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
