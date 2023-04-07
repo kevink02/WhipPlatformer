@@ -61,9 +61,9 @@ public class EnemyMovement : EntityMovement
     {
         if (!_patrolPointStart)
             throw new Exception("The start patrol point is not set");
-
         if (_patrolPointStart == _patrolPointEnd)
             throw new Exception("The patrol points are the same, enemy can't move");
+
         _patrolPointCurrent = _patrolPointStart;
         transform.position = _patrolPointCurrent.position;
         _patrolPointTarget = _patrolPointEnd;
@@ -77,9 +77,7 @@ public class EnemyMovement : EntityMovement
                 RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
                 // Did not detect a platform in front of it
                 if (!HasCollidedWithPlatformAtDetectAngle())
-                {
-                    FlipMoveDirectionHorizontal();
-                }
+                    FlipMoveDirection(Vector2.right);
                 break;
             case EnemyTypes.AirVertical:
             case EnemyTypes.AirHorizontal:
@@ -92,6 +90,9 @@ public class EnemyMovement : EntityMovement
                 break;
         }
     }
+    /// <summary>
+    /// Air enemies move via "patrol points" in the scene
+    /// </summary>
     private void DoPatrolPointMovement()
     {
         Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
@@ -110,6 +111,9 @@ public class EnemyMovement : EntityMovement
             }
         }
     }
+    /// <summary>
+    /// Air enemies move via their set move force and time until switching directions
+    /// </summary>
     private void DoTimedVelocityMovement()
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
@@ -117,22 +121,11 @@ public class EnemyMovement : EntityMovement
         {
             EffectMoveFlip.SetNewTimeEffectApply();
             if (_enemyMoveType == EnemyTypes.AirHorizontal)
-                FlipMoveDirectionHorizontal();
+                FlipMoveDirection(Vector2.right);
             else if (_enemyMoveType == EnemyTypes.AirVertical)
-                FlipMoveDirectionVertical();
+                FlipMoveDirection(Vector2.up);
         }
     }
-    private void FlipMoveDirectionHorizontal()
-    {
-        FlipMoveDirection(Vector2.right);
-    }
-    private void FlipMoveDirectionVertical()
-    {
-        FlipMoveDirection(Vector2.up);
-    }
-    /// <summary>
-    /// Should only be called by "FlipMoveDirection..." functions
-    /// </summary>
     private void FlipMoveDirection(Vector2 normal)
     {
         DetectVector = Vector2.Reflect(DetectVector, normal);
