@@ -84,34 +84,34 @@ public class EnemyMovement : EntityMovement
                     FlipMoveDirectionHorizontal();
                 }
                 break;
+            case EnemyTypes.AirVertical:
+            case EnemyTypes.AirHorizontal:
+                Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
+                RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
+                if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f) // add condition where distance to other patrol point > 0.1
+                {
+                    if (_patrolPointTarget == _patrolPointEnd)
+                        _patrolPointTarget = _patrolPointStart;
+                    else
+                        _patrolPointTarget = _patrolPointEnd;
+                }
+                break;
             //case EnemyTypes.AirVertical:
-            //case EnemyTypes.AirHorizontal:
-            //    Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
-            //    RigidBody.velocity = MoveForce * distanceToTargetTransform;
-            //    if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f)
+            //    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
+            //    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
             //    {
-            //        if (_patrolPointTarget == _patrolPointEnd)
-            //            _patrolPointTarget = _patrolPointStart;
-            //        else
-            //            _patrolPointTarget = _patrolPointEnd;
+            //        EffectMoveFlip.SetNewTimeEffectApply();
+            //        FlipMoveDirectionVertical();
             //    }
             //    break;
-            case EnemyTypes.AirVertical:
-                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-                if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
-                {
-                    EffectMoveFlip.SetNewTimeEffectApply();
-                    FlipMoveDirectionVertical();
-                }
-                break;
-            case EnemyTypes.AirHorizontal:
-                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-                if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
-                {
-                    EffectMoveFlip.SetNewTimeEffectApply();
-                    FlipMoveDirectionHorizontal();
-                }
-                break;
+            //case EnemyTypes.AirHorizontal:
+            //    RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
+            //    if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
+            //    {
+            //        EffectMoveFlip.SetNewTimeEffectApply();
+            //        FlipMoveDirectionHorizontal();
+            //    }
+            //    break;
             default:
                 break;
         }
