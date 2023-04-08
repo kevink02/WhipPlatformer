@@ -7,9 +7,15 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject _screenPause;
+    private static bool _isPaused;
     public delegate void DelegateVoid();
-    public static DelegateVoid DoPause, UndoPause;
+    private static DelegateVoid DoPause, UndoPause;
 
+    private void Awake()
+    {
+        // Should always be false
+        _isPaused = _screenPause.activeInHierarchy;
+    }
     private void OnEnable()
     {
         DoPause += ShowScreenPause;
@@ -27,11 +33,20 @@ public class PauseMenu : MonoBehaviour
     public void ShowScreenPause()
     {
         _screenPause.SetActive(true);
+        _isPaused = true;
         Time.timeScale = 0;
     }
     public void HideScreenPause()
     {
         _screenPause.SetActive(false);
+        _isPaused = false;
         Time.timeScale = 1;
+    }
+    public static void TogglePause()
+    {
+        if (!_isPaused)
+            DoPause?.Invoke();
+        else
+            UndoPause?.Invoke();
     }
 }

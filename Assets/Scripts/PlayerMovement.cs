@@ -20,7 +20,7 @@ public class PlayerMovement : EntityMovement
         _playerControls.Abilities.Attack.performed += _ => AbilityAttack();
         _playerControls.Abilities.Interact.performed += _ => AbilityInteract();
         _playerControls.UI.CameraZoom.performed += _ => CameraMovement.SwitchCameraZoom();
-        _playerControls.UI.PauseMenu.performed += _ => PauseMenu.DoPause?.Invoke();
+        _playerControls.UI.PauseMenu.performed += _ => PauseMenu.TogglePause();
     }
     private void OnEnable()
     {
