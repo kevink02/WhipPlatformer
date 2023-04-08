@@ -45,12 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI Menu
-    uniqueID: 2341638093
+  - name: Level Object
+    uniqueID: 2205263263
     locked: 0
   - name: Entity
     uniqueID: 2363454525
     locked: 0
-  - name: Level Object
-    uniqueID: 2205263263
+  - name: UI Menu
+    uniqueID: 2341638093
     locked: 0
