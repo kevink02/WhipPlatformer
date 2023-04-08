@@ -15,9 +15,11 @@ public class PauseMenu : MonoBehaviour
     public void ShowScreenPause()
     {
         _screenPause.SetActive(true);
+        Time.timeScale = 0;
     }
     public void HideScreenPause()
     {
         _screenPause.SetActive(false);
+        Time.timeScale = 1;
     }
 }
