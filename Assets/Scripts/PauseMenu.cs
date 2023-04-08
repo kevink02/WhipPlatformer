@@ -7,7 +7,19 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject _screenPause;
+    public delegate void DelegateVoid();
+    public static DelegateVoid DoPause, UndoPause;
 
+    private void OnEnable()
+    {
+        DoPause += ShowScreenPause;
+        UndoPause += HideScreenPause;
+    }
+    private void OnDisable()
+    {
+        DoPause -= ShowScreenPause;
+        UndoPause -= HideScreenPause;
+    }
     public void SwitchSceneToMain()
     {
         SceneManager.LoadScene(sceneName: "MainMenu");

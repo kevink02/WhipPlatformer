@@ -116,13 +116,21 @@
             ]
         },
         {
-            "name": "Camera",
+            "name": "UI",
             "id": "a6476a69-f5f3-495d-a7b0-62123c286c57",
             "actions": [
                 {
-                    "name": "ZoomOut",
+                    "name": "CameraZoom",
                     "type": "Button",
                     "id": "7faafad0-4fce-409c-b645-73324d50f376",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "1ba6582a-c5ed-4225-bfc4-6c90c1f7457d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -136,7 +144,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ZoomOut",
+                    "action": "CameraZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e2e8984-6d7f-4143-b067-24347c5320e0",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
