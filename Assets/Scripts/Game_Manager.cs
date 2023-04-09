@@ -34,6 +34,7 @@ public class Game_Manager : MonoBehaviour
     public static Func<GameObject, bool> IsObjectAnInvisiblePlatform { get; } = objectToCheck => IsObjectAGeneric(objectToCheck, "VoidCheck");
     public static Func<GameObject, bool> IsObjectAnEnemy { get; } = objectToCheck => IsObjectAGeneric(objectToCheck, "Enemy");
     public static Func<GameObject, bool> IsObjectAPlayer { get; } = objectToCheck => IsObjectAGeneric(objectToCheck, "Player");
+    public static Func<GameObject, bool> IsObjectALevelEnd { get; } = objectToCheck => IsObjectAGeneric(objectToCheck, "LevelEnd");
     private static Func<GameObject, string, bool> IsObjectAGeneric { get; } = (objectToCheck, tagToCheck) => objectToCheck.CompareTag(tagToCheck);
 
     private void Awake()

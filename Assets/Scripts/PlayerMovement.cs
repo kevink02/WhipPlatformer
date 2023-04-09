@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : EntityMovement
 {
     private bool _isMoving;
+    private bool _isAtExit;
     private PlayerControls _playerControls;
 
     private new void Awake()
@@ -53,7 +54,13 @@ public class PlayerMovement : EntityMovement
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"{name}: {collision.name}");
+        if (Game_Manager.IsObjectALevelEnd(collision.gameObject))
+            _isAtExit = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (Game_Manager.IsObjectALevelEnd(collision.gameObject))
+            _isAtExit = false;
     }
     protected override void DoMovement()
     {
@@ -88,5 +95,7 @@ public class PlayerMovement : EntityMovement
     private void AbilityInteract()
     {
         Debug.Log($"{name}: Interacting");
+        if (_isAtExit)
+            Debug.Log($"{name}: I won!");
     }
 }
