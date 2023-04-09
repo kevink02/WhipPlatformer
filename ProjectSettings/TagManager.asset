@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - VoidCheck
   - SpawnPoint
+  - PatrolPoint
+  - LevelEnd
   layers:
   - Default
   - TransparentFX

@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 300933809}
   m_Layer: 0
   m_Name: Level Entrance
-  m_TagString: Untagged
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2056,7 +2056,7 @@ GameObject:
   - component: {fileID: 2074504284}
   m_Layer: 0
   m_Name: Level Exit
-  m_TagString: Untagged
+  m_TagString: LevelEnd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
