@@ -76,7 +76,8 @@ public class PlayerMovement : EntityMovement
     }
     protected override void DoMovement()
     {
-        float MoveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
+        // Either -1 or 1
+        float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
         // If not currently being knocked back (do not want to set velocity while being knocked back)
         if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
@@ -84,7 +85,7 @@ public class PlayerMovement : EntityMovement
             {
                 // Lerp speed from current speed to the target horizontal speed + current vertical speed
                 // Allows vertical speed to decrease by gravity instead of being reset
-                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * MoveDirection * Vector2.right, MoveAccel);
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
             }
             else if (!_isMoving)
             {
@@ -94,10 +95,17 @@ public class PlayerMovement : EntityMovement
     }
     private void DoJump()
     {
-        if (IsGrounded && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
+        // Either -1 or 1
+        float moveDirection = _playerControls.Movement.VerticalMove.ReadValue<float>();
+
+        if (moveDirection == 1 && IsGrounded && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
         {
             EffectJump.SetNewTimeEffectApply();
             RigidBody.AddForce(EffectJump.ForceEffect);
+        }
+        else if (moveDirection == -1)
+        {
+            RigidBody.AddForce(-999 * EffectJump.ForceEffect);
         }
     }
     private void AbilityAttack()
