@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMovement : EntityMovement
 {
     private bool _isMoving;
+    private bool _isAtCheckpoint;
     private bool _isAtExit;
+    private GameObject _checkpointObject;
     private PlayerControls _playerControls;
 
     private new void Awake()
@@ -56,11 +58,21 @@ public class PlayerMovement : EntityMovement
     {
         if (Game_Manager.IsObjectALevelEnd(collision.gameObject))
             _isAtExit = true;
+        else if (Game_Manager.IsObjectALevelCheckpoint(collision.gameObject))
+        {
+            _isAtCheckpoint = true;
+            _checkpointObject = collision.gameObject;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (Game_Manager.IsObjectALevelEnd(collision.gameObject))
             _isAtExit = false;
+        else if (Game_Manager.IsObjectALevelCheckpoint(collision.gameObject))
+        {
+            _isAtCheckpoint = false;
+            _checkpointObject = null;
+        }
     }
     protected override void DoMovement()
     {
@@ -97,5 +109,10 @@ public class PlayerMovement : EntityMovement
         Debug.Log($"{name}: Interacting");
         if (_isAtExit)
             Debug.Log($"{name}: I won!");
+        else if (_isAtCheckpoint)
+        {
+            Debug.Log($"{name}: I reset my spawn point");
+            SpawnPoint = _checkpointObject.transform;
+        }
     }
 }
