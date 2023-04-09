@@ -35,11 +35,32 @@ public class PlayerMovement : EntityMovement
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        //if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
+        //{
+        //    SetPositionToSpawnPoint();
+        //}
+        //else if (Game_Manager.IsObjectAnEnemy(collision.gameObject))
+        //{
+        //    EffectKnockback.SetNewTimeEffectApply();
+        //    // Push the player away from the enemy
+
+        //    // Find distance from the collided collider
+        //    Vector2 distanceFromEnemy = collision.collider.transform.position - transform.position;
+        //    // Get direction away from the collided collider, then normalize it
+        //    distanceFromEnemy = (-1 * distanceFromEnemy).normalized;
+
+        //    // Reset velocity and add force away from the collider collided with
+        //    RigidBody.velocity = Vector2.zero;
+        //    RigidBody.AddForce(new Vector2(EffectKnockback.ForceEffect.x * distanceFromEnemy.x, EffectKnockback.ForceEffect.y * distanceFromEnemy.y));
+        //}
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
         if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
         {
             SetPositionToSpawnPoint();
         }
-        else if (Game_Manager.IsObjectAnEnemy(collision.gameObject))
+        else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
         {
             EffectKnockback.SetNewTimeEffectApply();
             // Push the player away from the enemy
@@ -76,7 +97,8 @@ public class PlayerMovement : EntityMovement
     }
     protected override void DoMovement()
     {
-        float MoveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
+        // Either -1 or 1
+        float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
         // If not currently being knocked back (do not want to set velocity while being knocked back)
         if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
@@ -84,7 +106,7 @@ public class PlayerMovement : EntityMovement
             {
                 // Lerp speed from current speed to the target horizontal speed + current vertical speed
                 // Allows vertical speed to decrease by gravity instead of being reset
-                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * MoveDirection * Vector2.right, MoveAccel);
+                RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up + MoveForce * moveDirection * Vector2.right, MoveAccel);
             }
             else if (!_isMoving)
             {
