@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: PointType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9147314283979620648, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147314283979620648, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9147314283979620649, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7
@@ -61,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 9a957682b42451e43afaa1ede92dd717, type: 3}
     - target: {fileID: 9147314283979620662, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_Name
-      value: LevelStart
+      value: LevelStart Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
