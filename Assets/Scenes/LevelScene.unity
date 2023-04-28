@@ -1374,7 +1374,7 @@ GameObject:
   - component: {fileID: 1131465718}
   - component: {fileID: 1131465717}
   - component: {fileID: 1131465716}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LevelPatrolPoints
   m_TagString: PatrolPoint
   m_Icon: {fileID: 0}
@@ -3443,7 +3443,7 @@ GameObject:
   - component: {fileID: 1905911132}
   - component: {fileID: 1905911131}
   - component: {fileID: 1905911136}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LevelCheckpoints
   m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
