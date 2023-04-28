@@ -3034,6 +3034,7 @@ GameObject:
   - component: {fileID: 1905911133}
   - component: {fileID: 1905911132}
   - component: {fileID: 1905911131}
+  - component: {fileID: 1905911136}
   m_Layer: 8
   m_Name: LevelPoints
   m_TagString: Platform
@@ -3436,6 +3437,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1905911136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905911129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527780fe3989b9f42b51cbe38adda838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2015727167
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,14 +17,8 @@ public class TilemapManager : MonoBehaviour
             for (int y = 0; y < bounds.size.y; y++)
             {
                 TileBase tile = allTiles[x + y * bounds.size.x];
-                if (tile != null)
-                {
-                    Debug.Log("x:" + x + " y:" + y + " tile:" + tile.name);
-                }
-                else
-                {
-                    //Debug.Log("x:" + x + " y:" + y + " tile: (null)");
-                }
+                if (tile)
+                    Debug.Log($"{name}: There is a tile, {tile.name}, at ({x}, {y})");
             }
         }
     }
