@@ -12,9 +12,10 @@ public class TilemapManager : MonoBehaviour
         BoundsInt bounds = tilemap.cellBounds;
         TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
 
-        for (int x = 0; x < bounds.size.x; x++)
+        // Should be reading tiles from left to right, then down to up
+        for (int y = 0; y < bounds.size.y; y++)
         {
-            for (int y = 0; y < bounds.size.y; y++)
+            for (int x = 0; x < bounds.size.x; x++)
             {
                 TileBase tile = allTiles[x + y * bounds.size.x];
                 if (tile)
