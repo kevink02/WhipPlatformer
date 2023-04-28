@@ -76,9 +76,11 @@ public abstract class EntityMovement : MonoBehaviour
     protected abstract void OnCollisionEnter2D(Collision2D collision);
     protected void CastRay()
     {
-        Debug.DrawRay(transform.position, DetectVector, Color.white, Game_Manager.DebugRayLifeTime);
+        //Debug.DrawRay(transform.position, DetectVector, Color.white, Game_Manager.DebugRayLifeTime);
+        Debug.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y) + DetectVector * 20, Color.white, Game_Manager.DebugRayLifeTime);
         // If its raycast detects the end of its current platform, switch directions (raycast detection angle will flip to match its direction as well)
-        RayCastRay = new Ray(transform.position, DetectVector);
+        // Multiply by some factor to account for colliders and sprites being larger
+        RayCastRay = new Ray(transform.position, DetectVector * 20);
         RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, DetectDistance, Game_Manager.PlatformMask);
     }
     protected abstract void DoMovement();
