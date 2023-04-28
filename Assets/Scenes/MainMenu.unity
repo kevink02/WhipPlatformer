@@ -1325,7 +1325,11 @@ PrefabInstance:
       objectReference: {fileID: 1326869951}
     - target: {fileID: 5877717861306163486, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchSceneToLevel
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877717861306163486, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5877717861638451857, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_Text
@@ -1648,5 +1652,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1326869951}
+    - target: {fileID: 5877717861306163486, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877717861306163486, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchSceneToLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
