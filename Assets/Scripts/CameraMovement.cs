@@ -37,7 +37,10 @@ public class CameraMovement : MonoBehaviour
     {
         if (_isZoomedOut)
         {
-            transform.position = Vector3.zero + _positionZ;
+            // Fix camera's position in the center of the level
+            //transform.position = Vector3.zero + _positionZ;
+            
+            transform.position = Vector3.Lerp(transform.position, _player.transform.position + _positionZ, _lerpSpeed);
             _camera.orthographicSize = _cameraSizeZoomOut;
         }
         else
