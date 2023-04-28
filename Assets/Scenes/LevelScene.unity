@@ -1304,19 +1304,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5877717861306163485, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 850
+      value: 761
       objectReference: {fileID: 0}
     - target: {fileID: 5877717861306163485, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 450
+      value: 471.9
       objectReference: {fileID: 0}
     - target: {fileID: 5877717861306163485, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 397.938
       objectReference: {fileID: 0}
     - target: {fileID: 5877717861306163485, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 136.11182
       objectReference: {fileID: 0}
     - target: {fileID: 5877717861306163485, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1353,6 +1353,14 @@ PrefabInstance:
     - target: {fileID: 5877717861306163486, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877717861306163487, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6292828006704262670, guid: 21500a06f41704a4fb5e27d5844a1b28, type: 3}
+    - target: {fileID: 5877717861306163487, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5877717861638451857, guid: 83f3ca569a3b6c54194025a3ed3d843d, type: 3}
       propertyPath: m_Text
