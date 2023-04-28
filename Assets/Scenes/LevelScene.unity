@@ -977,7 +977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lerpSpeed: 0.2
-  _cameraSizeZoomIn: 5
+  _cameraSizeZoomIn: 10
   _cameraSizeZoomOut: 20
 --- !u!20 &519420031
 Camera:
@@ -2143,7 +2143,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2165,12 +2165,12 @@ MonoBehaviour:
   DetectDistance: 0
   MoveAccel: 0.2
   MoveDecel: 0.1
-  MoveForce: 50
+  MoveForce: 40
   SpawnPoint: {fileID: 481843727}
   _cooldownKnockback: 0.25
   _forceKnockback: {x: 400, y: 400}
   _cooldownJump: 0.5
-  _forceJump: {x: 0, y: 5000}
+  _forceJump: {x: 0, y: 2000}
   _cooldownMoveFlip: 0
 --- !u!1001 &1266352161
 PrefabInstance:
