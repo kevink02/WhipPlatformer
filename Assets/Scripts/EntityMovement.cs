@@ -28,6 +28,7 @@ public abstract class EntityMovement : MonoBehaviour
     protected Ray RayCastRay;
     protected RaycastHit2D RayCastHit;
     protected Rigidbody2D RigidBody;
+    protected SpriteRenderer ComponentSprite;
     [Tooltip("The vector with the same angle as the raycast angle")]
     protected Vector2 DetectVector;
     protected Vector2 MoveDirection;
@@ -53,8 +54,12 @@ public abstract class EntityMovement : MonoBehaviour
     {
         Collider = GetComponent<BoxCollider2D>();
         RigidBody = GetComponent<Rigidbody2D>();
+        ComponentSprite = GetComponent<SpriteRenderer>();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
         DetectDistance = GetDetectDistance(DetectVector);
+
+        // Collider shouldn't be too big since it will interfere with the platforms in tilemaps
+        //Collider.size = ComponentSprite.sprite.rect.size;
 
         SetPositionToSpawnPoint();
         // Verify values of the knockback force
