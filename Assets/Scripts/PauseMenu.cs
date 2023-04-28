@@ -28,6 +28,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void SwitchSceneToMain()
     {
+        // Unpause the game, which prevents the game from appearing stuck upon returning back to the level from the main menu
+        TogglePause();
         SceneManager.LoadScene(sceneName: "MainMenu");
     }
     public void ShowScreenPause()
