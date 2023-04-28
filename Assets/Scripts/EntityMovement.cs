@@ -135,7 +135,6 @@ public abstract class EntityMovement : MonoBehaviour
             angleFrom270 *= -1;
         float a = Collider.size.y / 2;
         float h = (a + Game_Manager.RayCastRayOffset) / Mathf.Cos(angleFrom270 * Mathf.Deg2Rad);
-        // Take into account the tile size in the tilemap
-        return h * 10;
+        return h;
     }
 }
