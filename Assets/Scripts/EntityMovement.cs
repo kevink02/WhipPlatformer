@@ -80,8 +80,9 @@ public abstract class EntityMovement : MonoBehaviour
         Debug.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y) + DetectVector * 20, Color.white, Game_Manager.DebugRayLifeTime);
         // If its raycast detects the end of its current platform, switch directions (raycast detection angle will flip to match its direction as well)
         // Multiply by some factor to account for colliders and sprites being larger
-        RayCastRay = new Ray(transform.position, DetectVector * 20);
-        RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, DetectDistance, Game_Manager.PlatformMask);
+        float rayDistanceFactor = 20;
+        RayCastRay = new Ray(transform.position, DetectVector * rayDistanceFactor);
+        RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, DetectDistance * rayDistanceFactor, Game_Manager.PlatformMask);
     }
     protected abstract void DoMovement();
     private void SetEntityEffectForceValues()
