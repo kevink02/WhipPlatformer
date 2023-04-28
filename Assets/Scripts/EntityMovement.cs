@@ -107,7 +107,18 @@ public abstract class EntityMovement : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector2.down);
         float detectDistance = GetDetectDistance(Vector2.down);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectDistance, Game_Manager.PlatformMask);
-        return hit && Game_Manager.IsObjectAPlatform(hit.collider.gameObject);
+
+        float halfColliderWidth = Collider.size.x / 2;
+        // Ray starting at leftmost position of collider
+        Ray rayLeft = new Ray(transform.position + Vector3.left * halfColliderWidth, Vector2.down);
+        // Ray starting at rightmost position of collider
+        Ray rayRight = new Ray(transform.position + Vector3.right * halfColliderWidth, Vector2.down);
+        RaycastHit2D hitLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, detectDistance, Game_Manager.PlatformMask);
+        RaycastHit2D hitRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, detectDistance, Game_Manager.PlatformMask);
+
+        return (hit && Game_Manager.IsObjectAPlatform(hit.collider.gameObject)) ||
+            (hitLeft && Game_Manager.IsObjectAPlatform(hitLeft.collider.gameObject)) ||
+            (hitRight && Game_Manager.IsObjectAPlatform(hitRight.collider.gameObject));
     }
     // This is assuming the transform.position is in the center of the collider, at least in the center in terms of y-axis
     private float GetDetectDistance(Vector2 detectVector)
