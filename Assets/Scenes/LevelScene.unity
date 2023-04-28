@@ -1690,7 +1690,7 @@ MonoBehaviour:
   MoveForce: 40
   SpawnPoint: {fileID: 91818486}
   _cooldownKnockback: 0.25
-  _forceKnockback: {x: 400, y: 400}
+  _forceKnockback: {x: 2000, y: 2000}
   _cooldownJump: 0.5
   _forceJump: {x: 0, y: 2000}
   _cooldownMoveFlip: 0
