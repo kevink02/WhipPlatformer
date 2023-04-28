@@ -59,7 +59,8 @@ public abstract class EntityMovement : MonoBehaviour
         DetectDistance = GetDetectDistance(DetectVector);
 
         // Collider shouldn't be too big since it will interfere with the platforms in tilemaps
-        //Collider.size = ComponentSprite.sprite.rect.size;
+        // Divide by 100 since that is the sprite's pixels per unit value?
+        Collider.size = ComponentSprite.sprite.rect.size / 100;
 
         SetPositionToSpawnPoint();
         // Verify values of the knockback force
