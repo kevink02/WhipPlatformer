@@ -116,6 +116,7 @@ public abstract class EntityMovement : MonoBehaviour
         RaycastHit2D hitLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, detectDistance, Game_Manager.PlatformMask);
         RaycastHit2D hitRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, detectDistance, Game_Manager.PlatformMask);
 
+        // Check if some part of the player is touching the ground (leftmost side, middle, or rightmost side)
         return (hit && Game_Manager.IsObjectAPlatform(hit.collider.gameObject)) ||
             (hitLeft && Game_Manager.IsObjectAPlatform(hitLeft.collider.gameObject)) ||
             (hitRight && Game_Manager.IsObjectAPlatform(hitRight.collider.gameObject));
