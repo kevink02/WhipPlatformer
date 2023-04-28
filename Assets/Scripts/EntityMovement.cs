@@ -100,6 +100,8 @@ public abstract class EntityMovement : MonoBehaviour
     }
     protected bool HasCollidedWithPlatformAtDetectAngle()
     {
+        if (RayCastHit)
+            Debug.Log($"{name}: Collided underneath with {RayCastHit.collider.gameObject} and is a tile? {RayCastHit.collider.gameObject == Game_Manager.TilePlatform}");
         return RayCastHit && Game_Manager.IsObjectAPlatform(RayCastHit.collider.gameObject);
     }
     protected bool HasCollidedWithPlatformUnderneath()

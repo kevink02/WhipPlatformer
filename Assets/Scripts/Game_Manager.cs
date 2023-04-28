@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Game_Manager : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Game_Manager : MonoBehaviour
     [SerializeField]
     private GameObject _levelExit;
     public static GameObject LevelExit;
+    [SerializeField]
+    private Tile _tilePlatform;
+    public static Tile TilePlatform;
 
     public static readonly float DebugRayLifeTime = 0.02f;
     [Tooltip("When calculating distance of ray for raycast, use this to account for small gaps between colliders for better physics performance")]
@@ -48,5 +52,6 @@ public class Game_Manager : MonoBehaviour
         PlatformMask = _platformMask;
         LevelEntrance = _levelEntrance;
         LevelExit = _levelExit;
+        TilePlatform = _tilePlatform;
     }
 }

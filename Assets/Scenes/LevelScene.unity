@@ -2819,6 +2819,7 @@ MonoBehaviour:
     m_Bits: 256
   _levelEntrance: {fileID: 300933807}
   _levelExit: {fileID: 2074504282}
+  _tilePlatform: {fileID: 11400000, guid: ae527f191e331e64db50661d15d01ccb, type: 2}
 --- !u!4 &1847488723
 Transform:
   m_ObjectHideFlags: 0
