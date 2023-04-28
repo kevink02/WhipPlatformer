@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _screenPause;
+    private GameObject _screenPause, _buttonPause;
     private static bool _isPaused;
     public delegate void DelegateVoid();
     private static DelegateVoid DoPause, UndoPause;
 
     private void Awake()
     {
-        // Should always be false
+        // Should always be set to false initially
         _isPaused = _screenPause.activeInHierarchy;
     }
     private void OnEnable()
@@ -35,12 +35,14 @@ public class PauseMenu : MonoBehaviour
     public void ShowScreenPause()
     {
         _screenPause.SetActive(true);
+        _buttonPause.SetActive(false);
         _isPaused = true;
         Time.timeScale = 0;
     }
     public void HideScreenPause()
     {
         _screenPause.SetActive(false);
+        _buttonPause.SetActive(true);
         _isPaused = false;
         Time.timeScale = 1;
     }
