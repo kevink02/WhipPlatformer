@@ -408,6 +408,10 @@ PrefabInstance:
       propertyPath: _patrolPointEnd
       value: 
       objectReference: {fileID: 793357799}
+    - target: {fileID: 5494309299607642560, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
+      propertyPath: MoveForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5494309299607642561, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
       propertyPath: m_Name
       value: EnemyGround
@@ -1859,6 +1863,10 @@ PrefabInstance:
       propertyPath: _patrolPointEnd
       value: 
       objectReference: {fileID: 2091569907}
+    - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
+      propertyPath: MoveForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
 --- !u!1001 &1376598190
@@ -3768,5 +3776,9 @@ PrefabInstance:
       propertyPath: _patrolPointEnd
       value: 
       objectReference: {fileID: 1440324353}
+    - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
+      propertyPath: MoveForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
