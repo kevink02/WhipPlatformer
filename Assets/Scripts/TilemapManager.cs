@@ -23,7 +23,7 @@ public class TilemapManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("x:" + x + " y:" + y + " tile: (null)");
+                    //Debug.Log("x:" + x + " y:" + y + " tile: (null)");
                 }
             }
         }
