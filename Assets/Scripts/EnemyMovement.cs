@@ -53,7 +53,13 @@ public abstract class EnemyMovement : EntityMovement
         else
             DoMovementTimed();
     }
+    /// <summary>
+    /// Enemies move via "patrol points" in the scene
+    /// </summary>
     protected abstract void DoMovementPatrol();
+    /// <summary>
+    /// Enemies move via their set move force and time until switching directions
+    /// </summary>
     protected abstract void DoMovementTimed();
     protected void FlipMoveDirection(Vector2 normal)
     {

@@ -17,8 +17,14 @@ public class GroundEnemy : EnemyMovement
     protected override void DoMovementTimed()
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-        // Did not detect a platform in front of it
-        if (!HasCollidedWithPlatformAtDetectAngle())
+        if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
+        {
+            EffectMoveFlip.SetNewTimeEffectApply();
             FlipMoveDirection(Vector2.right);
+        }
+
+        // Did not detect a platform in front of it
+        //if (!HasCollidedWithPlatformAtDetectAngle())
+        //    FlipMoveDirection(Vector2.right);
     }
 }

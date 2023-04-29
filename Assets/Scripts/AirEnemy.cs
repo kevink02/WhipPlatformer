@@ -33,9 +33,6 @@ public class AirEnemy : EnemyMovement
                 break;
         }
     }
-    /// <summary>
-    /// Air enemies move via "patrol points" in the scene
-    /// </summary>
     protected override void DoMovementPatrol()
     {
         Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
@@ -54,9 +51,6 @@ public class AirEnemy : EnemyMovement
             }
         }
     }
-    /// <summary>
-    /// Air enemies move via their set move force and time until switching directions
-    /// </summary>
     protected override void DoMovementTimed()
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
