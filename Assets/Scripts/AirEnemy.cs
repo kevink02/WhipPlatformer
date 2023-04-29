@@ -40,7 +40,7 @@ public class AirEnemy : EnemyMovement
     {
         Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
         RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
-        if (Vector2.Distance(transform.position, PatrolPointTarget.position) <= 0.1f && Vector2.Distance(transform.position, PatrolPointCurrent.position) > 0.1f)
+        if (IsCloseToPatrolPointTarget())
         {
             if (PatrolPointTarget == PatrolPointEnd)
             {
@@ -68,5 +68,10 @@ public class AirEnemy : EnemyMovement
             else if (_enemyMoveDirection == EnemyMoveDirection.Vertical)
                 FlipMoveDirection(Vector2.up);
         }
+    }
+    private bool IsCloseToPatrolPointTarget()
+    {
+        return Vector2.Distance(transform.position, PatrolPointTarget.position) <= 0.1f &&
+            Vector2.Distance(transform.position, PatrolPointCurrent.position) > 0.1f;
     }
 }
