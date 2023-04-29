@@ -501,15 +501,15 @@ PrefabInstance:
     - target: {fileID: 5494309299607642560, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
       propertyPath: SpawnPoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1288213980}
     - target: {fileID: 5494309299607642560, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
       propertyPath: _patrolPointStart
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1288213980}
     - target: {fileID: 5494309299607642560, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
       propertyPath: _patrolPointEnd
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1602666340}
     - target: {fileID: 5494309299607642560, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
       propertyPath: MoveForce
       value: 10
@@ -520,7 +520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5494309299607642561, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5494309299607642564, guid: 99aa8e5d6e7bbb746b7a066c174c321e, type: 3}
       propertyPath: m_LocalPosition.x
