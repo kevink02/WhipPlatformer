@@ -1744,11 +1744,11 @@ MonoBehaviour:
   MoveAccel: 0.2
   MoveDecel: 0.1
   MoveForce: 40
-  SpawnPoint: {fileID: 168023656}
+  SpawnPoint: {fileID: 91818486}
   _cooldownKnockback: 0.25
-  _forceKnockback: {x: 2000, y: 2000}
+  _forceKnockback: {x: 2500, y: 2500}
   _cooldownJump: 0.5
-  _forceJump: {x: 0, y: 2000}
+  _forceJump: {x: 0, y: 2500}
   _cooldownMoveFlip: 0
 --- !u!1 &1270765993
 GameObject:
