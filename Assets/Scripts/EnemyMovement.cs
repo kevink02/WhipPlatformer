@@ -9,8 +9,8 @@ public abstract class EnemyMovement : EntityMovement
     protected EnemyMoveType MoveType;
     [SerializeField]
     [Tooltip("Points to travel to when moving")]
-    protected Transform _patrolPointStart, _patrolPointEnd;
-    protected Transform _patrolPointTarget, _patrolPointCurrent;
+    protected Transform PatrolPointStart, PatrolPointEnd;
+    protected Transform PatrolPointTarget, PatrolPointCurrent;
 
     protected enum EnemyMoveType : int
     {
@@ -36,14 +36,14 @@ public abstract class EnemyMovement : EntityMovement
     }
     private void SetInitialPositionToPatrolPoint()
     {
-        if (!_patrolPointStart)
+        if (!PatrolPointStart)
             throw new Exception("The start patrol point is not set");
-        if (_patrolPointStart == _patrolPointEnd)
+        if (PatrolPointStart == PatrolPointEnd)
             throw new Exception("The patrol points are the same, enemy can't move");
 
-        _patrolPointCurrent = _patrolPointStart;
-        transform.position = _patrolPointCurrent.position;
-        _patrolPointTarget = _patrolPointEnd;
+        PatrolPointCurrent = PatrolPointStart;
+        transform.position = PatrolPointCurrent.position;
+        PatrolPointTarget = PatrolPointEnd;
     }
     protected override void DoMovement()
     {

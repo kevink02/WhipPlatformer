@@ -38,19 +38,19 @@ public class AirEnemy : EnemyMovement
     /// </summary>
     protected override void DoMovementPatrol()
     {
-        Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
+        Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
         RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
-        if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f && Vector2.Distance(transform.position, _patrolPointCurrent.position) > 0.1f)
+        if (Vector2.Distance(transform.position, PatrolPointTarget.position) <= 0.1f && Vector2.Distance(transform.position, PatrolPointCurrent.position) > 0.1f)
         {
-            if (_patrolPointTarget == _patrolPointEnd)
+            if (PatrolPointTarget == PatrolPointEnd)
             {
-                _patrolPointCurrent = _patrolPointEnd;
-                _patrolPointTarget = _patrolPointStart;
+                PatrolPointCurrent = PatrolPointEnd;
+                PatrolPointTarget = PatrolPointStart;
             }
             else
             {
-                _patrolPointCurrent = _patrolPointStart;
-                _patrolPointTarget = _patrolPointEnd;
+                PatrolPointCurrent = PatrolPointStart;
+                PatrolPointTarget = PatrolPointEnd;
             }
         }
     }
