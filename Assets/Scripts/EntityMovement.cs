@@ -128,9 +128,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         RaycastHit2D hitRight = Game_Manager.GetRaycastHit(rayRight, detectDistance);
 
         // Check if some part of the player is touching the ground (leftmost side, middle, or rightmost side)
-        return (hit && Game_Manager.IsObjectAPlatform(hit.collider.gameObject)) ||
-            (hitLeft && Game_Manager.IsObjectAPlatform(hitLeft.collider.gameObject)) ||
-            (hitRight && Game_Manager.IsObjectAPlatform(hitRight.collider.gameObject));
+        return IsTouchingAPlatform(new List<RaycastHit2D>{ hit, hitLeft, hitRight });
     }
     // This is assuming the transform.position is in the center of the collider, at least in the center in terms of y-axis
     private float GetDetectDistance(Vector2 detectVector)
@@ -141,5 +139,16 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         float a = Collider.size.y / 2;
         float h = (a + Game_Manager.RayCastRayOffset) / Mathf.Cos(angleFrom270 * Mathf.Deg2Rad);
         return h;
+    }
+    private bool IsTouchingAPlatform(List<RaycastHit2D> listHits)
+    {
+        foreach (RaycastHit2D hit in listHits)
+        {
+            if (hit && Game_Manager.IsObjectAPlatform(hit.collider.gameObject))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
