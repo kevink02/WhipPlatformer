@@ -33,18 +33,31 @@ public class AirEnemy : EnemyMovement
                 break;
         }
     }
-    protected override void DoMovement()
+    /// <summary>
+    /// Air enemies move via "patrol points" in the scene
+    /// </summary>
+    protected override void DoMovementPatrol()
     {
-        // Check conditions to flip move direction, based on the enemy type
-        if (MoveType == EnemyMoveType.Patrol)
-            DoPatrolPointMovement();
-        else
-            DoTimedVelocityMovement();
+        Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
+        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
+        if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f && Vector2.Distance(transform.position, _patrolPointCurrent.position) > 0.1f)
+        {
+            if (_patrolPointTarget == _patrolPointEnd)
+            {
+                _patrolPointCurrent = _patrolPointEnd;
+                _patrolPointTarget = _patrolPointStart;
+            }
+            else
+            {
+                _patrolPointCurrent = _patrolPointStart;
+                _patrolPointTarget = _patrolPointEnd;
+            }
+        }
     }
     /// <summary>
     /// Air enemies move via their set move force and time until switching directions
     /// </summary>
-    private void DoTimedVelocityMovement()
+    protected override void DoMovementTimed()
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
         if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))

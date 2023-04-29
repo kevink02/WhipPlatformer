@@ -45,27 +45,16 @@ public abstract class EnemyMovement : EntityMovement
         transform.position = _patrolPointCurrent.position;
         _patrolPointTarget = _patrolPointEnd;
     }
-    /// <summary>
-    /// Air enemies move via "patrol points" in the scene
-    /// </summary>
-    protected void DoPatrolPointMovement()
+    protected override void DoMovement()
     {
-        Vector2 distanceToTargetTransform = _patrolPointTarget.position - transform.position;
-        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
-        if (Vector2.Distance(transform.position, _patrolPointTarget.position) <= 0.1f && Vector2.Distance(transform.position, _patrolPointCurrent.position) > 0.1f)
-        {
-            if (_patrolPointTarget == _patrolPointEnd)
-            {
-                _patrolPointCurrent = _patrolPointEnd;
-                _patrolPointTarget = _patrolPointStart;
-            }
-            else
-            {
-                _patrolPointCurrent = _patrolPointStart;
-                _patrolPointTarget = _patrolPointEnd;
-            }
-        }
+        // Check conditions to flip move direction, based on the enemy type
+        if (MoveType == EnemyMoveType.Patrol)
+            DoMovementPatrol();
+        else
+            DoMovementTimed();
     }
+    protected abstract void DoMovementPatrol();
+    protected abstract void DoMovementTimed();
     protected void FlipMoveDirection(Vector2 normal)
     {
         DetectVector = Vector2.Reflect(DetectVector, normal);
