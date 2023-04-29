@@ -7,9 +7,6 @@ using UnityEngine.Tilemaps;
 public class Game_Manager : MonoBehaviour
 {
     [SerializeField]
-    private bool _shouldAirborneEnemiesPatrol;
-    public static bool ShouldAirborneEnemiesPatrol;
-    [SerializeField]
     private LayerMask _platformMask;
     public static LayerMask PlatformMask;
     [SerializeField]
@@ -45,7 +42,6 @@ public class Game_Manager : MonoBehaviour
     }
     private void SetStatics()
     {
-        ShouldAirborneEnemiesPatrol = _shouldAirborneEnemiesPatrol;
         PlatformMask = _platformMask;
         LevelEntrance = _levelEntrance;
         LevelExit = _levelExit;
