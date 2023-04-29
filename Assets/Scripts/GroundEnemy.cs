@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundEnemy : MonoBehaviour
+public class GroundEnemy : EnemyMovement
 {
-    // Start is called before the first frame update
-    void Start()
+    private new void Awake()
     {
-        
+        base.Awake();
+        MoveDirection = Vector2.right;
+        RigidBody.gravityScale = 1;
     }
-
-    // Update is called once per frame
-    void Update()
+    protected override void DoMovement()
     {
-        
+        RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
+        // Did not detect a platform in front of it
+        if (!HasCollidedWithPlatformAtDetectAngle())
+            FlipMoveDirection(Vector2.right);
     }
 }
