@@ -116,15 +116,16 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
     {
         Ray ray = new Ray(transform.position, Vector2.down);
         float detectDistance = GetDetectDistance(Vector2.down);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectDistance, Game_Manager.PlatformMask);
+        RaycastHit2D hit = Game_Manager.GetRaycastHit(ray, detectDistance);
 
         float halfColliderWidth = Collider.size.x / 2;
         // Ray starting at leftmost position of collider
         Ray rayLeft = new Ray(transform.position + Vector3.left * halfColliderWidth, Vector2.down);
+        RaycastHit2D hitLeft = Game_Manager.GetRaycastHit(rayLeft, detectDistance);
+
         // Ray starting at rightmost position of collider
         Ray rayRight = new Ray(transform.position + Vector3.right * halfColliderWidth, Vector2.down);
-        RaycastHit2D hitLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, detectDistance, Game_Manager.PlatformMask);
-        RaycastHit2D hitRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, detectDistance, Game_Manager.PlatformMask);
+        RaycastHit2D hitRight = Game_Manager.GetRaycastHit(rayRight, detectDistance);
 
         // Check if some part of the player is touching the ground (leftmost side, middle, or rightmost side)
         return (hit && Game_Manager.IsObjectAPlatform(hit.collider.gameObject)) ||

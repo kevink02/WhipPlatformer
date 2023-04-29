@@ -22,6 +22,7 @@ public class Game_Manager : MonoBehaviour
      (vector1, vector2) => Mathf.Acos(GetDotProductFromVector2s(vector1, vector2) / GetMagnitudeProductFromVector2s(vector1, vector2)) * Mathf.Rad2Deg;
     private static Func<Vector2, Vector2, float> GetDotProductFromVector2s { get; } = (vector1, vector2) => Vector2.Dot(vector1, vector2);
     private static Func<Vector2, Vector2, float> GetMagnitudeProductFromVector2s { get; } = (vector1, vector2) => vector1.magnitude * vector2.magnitude;
+    public static Func<Ray, float, RaycastHit2D> GetRaycastHit { get; } = (ray, distance) => Physics2D.Raycast(ray.origin, ray.direction, distance, PlatformMask);
     public static Func<GameObject, bool> IsObjectAPlatform { get; } = objectToCheck => IsObjectAGeneric(objectToCheck, "Platform");
     public static Func<GameObject, bool> IsObjectAnInvisiblePlatform { get; } = objectToCheck => IsObjectAGeneric(objectToCheck, "VoidCheck");
     public static Func<GameObject, bool> IsObjectAnEnemy { get; } = objectToCheck => IsObjectAGeneric(objectToCheck, "Enemy");
