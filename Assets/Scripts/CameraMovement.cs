@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class CameraMovement : MonoBehaviour, IVerification
 {
     [Range(0.01f, 1)]
     [SerializeField]
     private float _lerpSpeed; // default = 0.2f
-    [Range(1, 50f)]
+    [Range(10, 75f)]
     [SerializeField]
-    private float _cameraSizeZoomIn; // default = 5f
-    [Range(1, 50f)]
+    private float _cameraSizeZoomIn; // default = 25f
+    [Range(10, 75f)]
     [SerializeField]
-    private float _cameraSizeZoomOut; // default = 20f
+    private float _cameraSizeZoomOut; // default = 50f
     private Camera _camera;
     private PlayerMovement _player;
     [Tooltip("Holds a constant reference to the camera's z position")]
@@ -26,28 +26,34 @@ public class CameraMovement : MonoBehaviour
         _player = FindObjectOfType<PlayerMovement>();
         _positionZ = Vector3.forward * transform.position.z;
 
-        // If invalid zoom out size (zooming out would actually zoom in the camera)
-        if (_cameraSizeZoomOut < _cameraSizeZoomIn)
-        {
-            _cameraSizeZoomIn = 5f;
-            _cameraSizeZoomOut = 20f;
-        }
+        VerifyVariables();
     }
     private void FixedUpdate()
     {
-        if (_isZoomedOut)
+        // Prevent camera's z position from changing (makes camera zoom in too close)
+        transform.position = Vector3.Lerp(transform.position, _player.transform.position + _positionZ, _lerpSpeed);
+        _camera.orthographicSize = (_isZoomedOut) ? _cameraSizeZoomOut : _cameraSizeZoomIn;
+
+        //if (_isZoomedOut)
+        //{
+        //    // Fix camera's position in the center of the level
+        //    transform.position = Vector3.zero + _positionZ;
+        //    _camera.orthographicSize = _cameraSizeZoomOut;
+        //}
+        //else
+        //{
+        //    // Prevent camera's z position from changing (makes camera zoom in too close)
+        //    transform.position = Vector3.Lerp(transform.position, _player.transform.position + _positionZ, _lerpSpeed);
+        //    _camera.orthographicSize = _cameraSizeZoomIn;
+        //}
+    }
+    public void VerifyVariables()
+    {
+        // If invalid zoom out size (zooming out would actually zoom in the camera)
+        if (_cameraSizeZoomOut < _cameraSizeZoomIn)
         {
-            // Fix camera's position in the center of the level
-            //transform.position = Vector3.zero + _positionZ;
-            
-            transform.position = Vector3.Lerp(transform.position, _player.transform.position + _positionZ, _lerpSpeed);
-            _camera.orthographicSize = _cameraSizeZoomOut;
-        }
-        else
-        {
-            // Prevent camera's z position from changing (makes camera zoom in too close)
-            transform.position = Vector3.Lerp(transform.position, _player.transform.position + _positionZ, _lerpSpeed);
-            _camera.orthographicSize = _cameraSizeZoomIn;
+            _cameraSizeZoomIn = 25f;
+            _cameraSizeZoomOut = 50f;
         }
     }
     public static void SwitchCameraZoom()

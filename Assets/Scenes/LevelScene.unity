@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lerpSpeed: 0.2
-  _cameraSizeZoomIn: 15
+  _cameraSizeZoomIn: 25
   _cameraSizeZoomOut: 50
 --- !u!20 &519420031
 Camera:
