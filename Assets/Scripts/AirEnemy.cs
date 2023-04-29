@@ -36,18 +36,10 @@ public class AirEnemy : EnemyMovement
     protected override void DoMovement()
     {
         // Check conditions to flip move direction, based on the enemy type
-        switch (_enemyMoveDirection)
-        {
-            case EnemyMoveDirection.Vertical:
-            case EnemyMoveDirection.Horizontal:
-                if (Game_Manager.ShouldAirborneEnemiesPatrol)
-                    DoPatrolPointMovement();
-                else
-                    DoTimedVelocityMovement();
-                break;
-            default:
-                break;
-        }
+        if (Game_Manager.ShouldAirborneEnemiesPatrol)
+            DoPatrolPointMovement();
+        else
+            DoTimedVelocityMovement();
     }
     /// <summary>
     /// Air enemies move via their set move force and time until switching directions

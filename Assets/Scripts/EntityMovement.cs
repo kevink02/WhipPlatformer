@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EntityMovement : MonoBehaviour
+public abstract class EntityMovement : MonoBehaviour, IVerification
 {
     [Range(-360, 360f)]
     [SerializeField]
@@ -63,8 +63,7 @@ public abstract class EntityMovement : MonoBehaviour
         Collider.size = ComponentSprite.sprite.rect.size / 100;
 
         SetPositionToSpawnPoint();
-        // Verify values of the knockback force
-        SetEntityEffectForceValues();
+        VerifyVariables();
         SetEntityEffects();
     }
     protected void FixedUpdate()
@@ -74,6 +73,19 @@ public abstract class EntityMovement : MonoBehaviour
         IsGrounded = HasCollidedWithPlatformUnderneath();
     }
     protected abstract void OnCollisionEnter2D(Collision2D collision);
+    public void VerifyVariables()
+    {
+        // Effects' values
+        if (_forceKnockback.x < 1)
+            _forceKnockback.x = 750;
+        if (_forceKnockback.y <= 0)
+            _forceKnockback.y = 100;
+
+        if (_forceJump.x != 0)
+            _forceJump.x = 0;
+        if (_forceJump.y <= 0)
+            _forceJump.y = 500;
+    }
     protected void CastRay()
     {
         //Debug.DrawRay(transform.position, DetectVector, Color.white, Game_Manager.DebugRayLifeTime);
@@ -86,18 +98,6 @@ public abstract class EntityMovement : MonoBehaviour
         RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, DetectDistance * rayDistanceFactor, Game_Manager.PlatformMask);
     }
     protected abstract void DoMovement();
-    private void SetEntityEffectForceValues()
-    {
-        if (_forceKnockback.x < 1)
-            _forceKnockback.x = 750;
-        if (_forceKnockback.y <= 0)
-            _forceKnockback.y = 100;
-
-        if (_forceJump.x != 0)
-            _forceJump.x = 0;
-        if (_forceJump.y <= 0)
-            _forceJump.y = 500;
-    }
     private void SetEntityEffects()
     {
         EffectKnockback = new EntityEffect(_cooldownKnockback, _forceKnockback);
