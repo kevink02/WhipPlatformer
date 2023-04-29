@@ -61,6 +61,11 @@ public abstract class EnemyMovement : EntityMovement
     /// Enemies move via their set move force and time until switching directions
     /// </summary>
     protected abstract void DoMovementTimed();
+    protected bool IsCloseToPatrolPointTarget()
+    {
+        return Vector2.Distance(transform.position, PatrolPointTarget.position) <= 0.1f &&
+            Vector2.Distance(transform.position, PatrolPointCurrent.position) > 0.1f;
+    }
     protected void FlipMoveDirection(Vector2 normal)
     {
         DetectVector = Vector2.Reflect(DetectVector, normal);

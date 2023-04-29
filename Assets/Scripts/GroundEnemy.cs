@@ -12,7 +12,21 @@ public class GroundEnemy : EnemyMovement
     }
     protected override void DoMovementPatrol()
     {
-        throw new System.NotImplementedException();
+        Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
+        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
+        if (IsCloseToPatrolPointTarget())
+        {
+            if (PatrolPointTarget == PatrolPointEnd)
+            {
+                PatrolPointCurrent = PatrolPointEnd;
+                PatrolPointTarget = PatrolPointStart;
+            }
+            else
+            {
+                PatrolPointCurrent = PatrolPointStart;
+                PatrolPointTarget = PatrolPointEnd;
+            }
+        }
     }
     protected override void DoMovementTimed()
     {

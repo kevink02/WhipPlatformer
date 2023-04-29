@@ -63,9 +63,4 @@ public class AirEnemy : EnemyMovement
                 FlipMoveDirection(Vector2.up);
         }
     }
-    private bool IsCloseToPatrolPointTarget()
-    {
-        return Vector2.Distance(transform.position, PatrolPointTarget.position) <= 0.1f &&
-            Vector2.Distance(transform.position, PatrolPointCurrent.position) > 0.1f;
-    }
 }
