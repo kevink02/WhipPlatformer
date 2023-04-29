@@ -1243,7 +1243,7 @@ MonoBehaviour:
   _forceKnockback: {x: 0, y: 0}
   _cooldownJump: 0
   _forceJump: {x: 0, y: 0}
-  _cooldownMoveFlip: 0
+  _cooldownMoveFlip: 3
   MoveType: 0
   PatrolPointStart: {fileID: 0}
   PatrolPointEnd: {fileID: 0}
@@ -3673,8 +3673,6 @@ MonoBehaviour:
   _platformMask:
     serializedVersion: 2
     m_Bits: 256
-  _levelEntrance: {fileID: 0}
-  _levelExit: {fileID: 0}
 --- !u!4 &1847488723
 Transform:
   m_ObjectHideFlags: 0
