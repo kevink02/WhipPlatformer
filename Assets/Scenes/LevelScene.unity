@@ -315,8 +315,9 @@ MonoBehaviour:
   _cooldownJump: 0
   _forceJump: {x: 0, y: 0}
   _cooldownMoveFlip: 0
-  _patrolPointStart: {fileID: 0}
-  _patrolPointEnd: {fileID: 0}
+  MoveType: 0
+  PatrolPointStart: {fileID: 0}
+  PatrolPointEnd: {fileID: 0}
   _enemyMoveDirection: 0
 --- !u!1 &100702736
 GameObject:
@@ -1232,19 +1233,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ae3500ca4fd6d4496015d57388e3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectAngle: 0
+  DetectAngle: 315
   DetectDistance: 0
-  MoveAccel: 0
-  MoveDecel: 0
-  MoveForce: 0
-  SpawnPoint: {fileID: 0}
+  MoveAccel: 0.2
+  MoveDecel: 0.1
+  MoveForce: 10
+  SpawnPoint: {fileID: 1288213980}
   _cooldownKnockback: 0
   _forceKnockback: {x: 0, y: 0}
   _cooldownJump: 0
   _forceJump: {x: 0, y: 0}
   _cooldownMoveFlip: 0
-  _patrolPointStart: {fileID: 0}
-  _patrolPointEnd: {fileID: 0}
+  MoveType: 0
+  PatrolPointStart: {fileID: 0}
+  PatrolPointEnd: {fileID: 0}
 --- !u!1 &804280089
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,8 +3637,9 @@ MonoBehaviour:
   _cooldownJump: 0
   _forceJump: {x: 0, y: 0}
   _cooldownMoveFlip: 0
-  _patrolPointStart: {fileID: 0}
-  _patrolPointEnd: {fileID: 0}
+  MoveType: 0
+  PatrolPointStart: {fileID: 0}
+  PatrolPointEnd: {fileID: 0}
   _enemyMoveDirection: 0
 --- !u!1 &1847488721
 GameObject:
@@ -3667,7 +3670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5246ebc924408e541abc7b5a47766846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldAirborneEnemiesPatrol: 1
   _platformMask:
     serializedVersion: 2
     m_Bits: 256
