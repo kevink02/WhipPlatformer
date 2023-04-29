@@ -16,6 +16,10 @@ public class EnemyMovement : EntityMovement
     {
         Ground, AirVertical, AirHorizontal
     }
+    private enum EnemyMoveTypes : int
+    {
+        Timed, Patrol
+    }
 
     private new void Awake()
     {
