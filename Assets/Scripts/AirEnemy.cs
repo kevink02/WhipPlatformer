@@ -23,7 +23,6 @@ public class AirEnemy : EnemyMovement
                 // Only allow changes to y position;
                 RigidBody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 RigidBody.freezeRotation = true;
-                SetInitialPositionToPatrolPoint();
                 break;
             case EnemyMoveDirection.Horizontal:
                 MoveDirection = Vector2.right;
@@ -31,7 +30,6 @@ public class AirEnemy : EnemyMovement
                 // Only allow changes to x position;
                 RigidBody.constraints = RigidbodyConstraints2D.FreezePositionY;
                 RigidBody.freezeRotation = true;
-                SetInitialPositionToPatrolPoint();
                 break;
         }
     }

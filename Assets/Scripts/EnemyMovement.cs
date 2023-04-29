@@ -6,18 +6,26 @@ using UnityEngine;
 public abstract class EnemyMovement : EntityMovement
 {
     [SerializeField]
-    [Tooltip("For airborne enemies, a point to travel to when moving")]
-    private Transform _patrolPointStart, _patrolPointEnd;
-    private Transform _patrolPointTarget, _patrolPointCurrent;
+    protected EnemyMoveType MoveType;
+    [SerializeField]
+    [Tooltip("Points to travel to when moving")]
+    protected Transform _patrolPointStart, _patrolPointEnd;
+    protected Transform _patrolPointTarget, _patrolPointCurrent;
 
-    private enum EnemyMoveTypes : int
+    protected enum EnemyMoveType : int
     {
         Timed, Patrol
     }
 
     private new void Awake()
     {
+        // Spawn point is set in base class here
         base.Awake();
+        // Reset it if needed to its start patrol point
+        if (MoveType == EnemyMoveType.Patrol)
+        {
+            SetInitialPositionToPatrolPoint();
+        }
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
@@ -26,7 +34,7 @@ public abstract class EnemyMovement : EntityMovement
             Destroy(gameObject);
         }
     }
-    protected void SetInitialPositionToPatrolPoint()
+    private void SetInitialPositionToPatrolPoint()
     {
         if (!_patrolPointStart)
             throw new Exception("The start patrol point is not set");
