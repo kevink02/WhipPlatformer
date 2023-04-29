@@ -27,7 +27,7 @@ public abstract class EnemyMovement : EntityMovement
             SetInitialPositionToPatrolPoint();
         }
     }
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
         {

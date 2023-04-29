@@ -72,7 +72,6 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         CastRay();
         IsGrounded = HasCollidedWithPlatformUnderneath();
     }
-    protected abstract void OnCollisionEnter2D(Collision2D collision);
     public void VerifyVariables()
     {
         // Effects' values

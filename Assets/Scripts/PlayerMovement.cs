@@ -33,27 +33,6 @@ public class PlayerMovement : EntityMovement
     {
         _playerControls.Disable();
     }
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
-        //{
-        //    SetPositionToSpawnPoint();
-        //}
-        //else if (Game_Manager.IsObjectAnEnemy(collision.gameObject))
-        //{
-        //    EffectKnockback.SetNewTimeEffectApply();
-        //    // Push the player away from the enemy
-
-        //    // Find distance from the collided collider
-        //    Vector2 distanceFromEnemy = collision.collider.transform.position - transform.position;
-        //    // Get direction away from the collided collider, then normalize it
-        //    distanceFromEnemy = (-1 * distanceFromEnemy).normalized;
-
-        //    // Reset velocity and add force away from the collider collided with
-        //    RigidBody.velocity = Vector2.zero;
-        //    RigidBody.AddForce(new Vector2(EffectKnockback.ForceEffect.x * distanceFromEnemy.x, EffectKnockback.ForceEffect.y * distanceFromEnemy.y));
-        //}
-    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))

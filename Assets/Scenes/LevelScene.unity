@@ -1244,9 +1244,9 @@ MonoBehaviour:
   _cooldownJump: 0
   _forceJump: {x: 0, y: 0}
   _cooldownMoveFlip: 3
-  MoveType: 0
-  PatrolPointStart: {fileID: 0}
-  PatrolPointEnd: {fileID: 0}
+  MoveType: 1
+  PatrolPointStart: {fileID: 1288213980}
+  PatrolPointEnd: {fileID: 1602666340}
 --- !u!1 &804280089
 GameObject:
   m_ObjectHideFlags: 0
