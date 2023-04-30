@@ -9,8 +9,8 @@ public abstract class EnemyMovement : EntityMovement, IVerification
     protected EnemyMoveType MoveType;
     [SerializeField]
     [Tooltip("Points to travel to when moving")]
-    protected Transform PatrolPointStart, PatrolPointEnd;
-    protected Transform PatrolPointTarget, PatrolPointCurrent;
+    protected Transform PatrolPointEnd;
+    protected Transform PatrolPointStart, PatrolPointTarget, PatrolPointCurrent;
 
     protected enum EnemyMoveType : int
     {
