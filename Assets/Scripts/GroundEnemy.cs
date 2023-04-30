@@ -16,10 +16,11 @@ public class GroundEnemy : EnemyMovement
         {
             VerifyVariables();
         }
-        Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
-        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
+        //float distanceToTargetTransform = Mathf.Abs(PatrolPointTarget.position.x - transform.position.x);
+        RigidBody.velocity = MoveForce * Vector2.right;
         if (IsCloseToPatrolPointTarget())
         {
+            MoveDirection *= -1;
             if (PatrolPointTarget == PatrolPointEnd)
             {
                 PatrolPointCurrent = PatrolPointEnd;
@@ -47,7 +48,7 @@ public class GroundEnemy : EnemyMovement
     }
     protected override bool IsCloseToPatrolPointTarget()
     {
-        return Mathf.Abs(transform.position.x - PatrolPointTarget.position.x) <= 1.0f &&
-            Mathf.Abs(transform.position.x - PatrolPointCurrent.position.x) > 1.0f;
+        return Mathf.Abs(transform.position.x - PatrolPointTarget.position.x) <= 0.5f &&
+            Mathf.Abs(transform.position.x - PatrolPointCurrent.position.x) > 0.5f;
     }
 }
