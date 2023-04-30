@@ -72,4 +72,11 @@ public class AirEnemy : EnemyMovement
         return Vector2.Distance(transform.position, PatrolPointTarget.position) <= 0.1f &&
             Vector2.Distance(transform.position, PatrolPointCurrent.position) > 0.1f;
     }
+    protected override void FlipMoveDirectionOnCollision()
+    {
+        if (_enemyMoveDirection == EnemyMoveDirection.Horizontal)
+            FlipMoveDirection(Vector2.right);
+        else if (_enemyMoveDirection == EnemyMoveDirection.Vertical)
+            FlipMoveDirection(Vector2.up);
+    }
 }

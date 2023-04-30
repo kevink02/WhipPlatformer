@@ -51,4 +51,8 @@ public class GroundEnemy : EnemyMovement
         return Mathf.Abs(transform.position.x - PatrolPointTarget.position.x) <= 0.5f &&
             Mathf.Abs(transform.position.x - PatrolPointCurrent.position.x) > 0.5f;
     }
+    protected override void FlipMoveDirectionOnCollision()
+    {
+        FlipMoveDirection(Vector2.right);
+    }
 }

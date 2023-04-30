@@ -31,7 +31,13 @@ public abstract class EnemyMovement : EntityMovement, IVerification
     }
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
+        // Switch move direction upon player collision in case the enemy would pin the player to a wall
+        if (Game_Manager.IsObjectAPlayer(collision.gameObject))
+        {
+            // Check conditions to flip move direction, based on the enemy type
+            FlipMoveDirectionOnCollision();
+        }
+        else if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
         {
             Destroy(gameObject);
         }
@@ -74,4 +80,5 @@ public abstract class EnemyMovement : EntityMovement, IVerification
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         MoveDirection *= -1;
     }
+    protected abstract void FlipMoveDirectionOnCollision();
 }
