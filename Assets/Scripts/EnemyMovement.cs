@@ -36,7 +36,7 @@ public abstract class EnemyMovement : EntityMovement, IVerification
             Destroy(gameObject);
         }
     }
-    public void VerifyVariables()
+    public new void VerifyVariables()
     {
         if (!PatrolPointStart)
             throw new Exception("The start patrol point is not set");
@@ -65,7 +65,7 @@ public abstract class EnemyMovement : EntityMovement, IVerification
     {
         if (!PatrolPointTarget)
         {
-
+            VerifyVariables();
         }
         Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
         RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
