@@ -38,11 +38,12 @@ public abstract class EnemyMovement : EntityMovement, IVerification
     }
     public new void VerifyVariables()
     {
-        if (!PatrolPointStart)
-            throw new Exception("The start patrol point is not set");
-        if (PatrolPointStart == PatrolPointEnd)
-            throw new Exception("The patrol points are the same, enemy can't move");
+        if (!SpawnPoint)
+            throw new Exception("The spawn point is not set");
+        if (!PatrolPointEnd)
+            throw new Exception("The end patrol point is not set");
 
+        PatrolPointStart = SpawnPoint;
         PatrolPointCurrent = PatrolPointStart;
         PatrolPointTarget = PatrolPointEnd;
     }
