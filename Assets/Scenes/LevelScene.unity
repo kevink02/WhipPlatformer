@@ -1097,7 +1097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7701873007548981871, guid: fc2750dea53305043a8c1136be77548d, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7701873007548981871, guid: fc2750dea53305043a8c1136be77548d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1295,7 +1295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7701873007548981871, guid: fc2750dea53305043a8c1136be77548d, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7701873007548981871, guid: fc2750dea53305043a8c1136be77548d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4016,21 +4016,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5edd47e6f63da498e3f48769aafd47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectAngle: 0
+  DetectAngle: 315
   DetectDistance: 0
-  MoveAccel: 0
-  MoveDecel: 0
-  MoveForce: 0
-  SpawnPoint: {fileID: 0}
+  MoveAccel: 0.2
+  MoveDecel: 0.1
+  MoveForce: 10
+  SpawnPoint: {fileID: 554959374}
   _cooldownKnockback: 0
   _forceKnockback: {x: 0, y: 0}
   _cooldownJump: 0
   _forceJump: {x: 0, y: 0}
-  _cooldownMoveFlip: 0
-  MoveType: 0
-  PatrolPointStart: {fileID: 0}
-  PatrolPointEnd: {fileID: 0}
-  _enemyMoveDirection: 0
+  _cooldownMoveFlip: 3
+  MoveType: 1
+  PatrolPointStart: {fileID: 554959374}
+  PatrolPointEnd: {fileID: 767496097}
+  _enemyMoveDirection: 1
 --- !u!1 &1847488721
 GameObject:
   m_ObjectHideFlags: 0
@@ -4198,9 +4198,9 @@ Transform:
   - {fileID: 259039507}
   - {fileID: 1292234301}
   - {fileID: 1601897566}
-  - {fileID: 767496097}
-  - {fileID: 554959374}
   - {fileID: 751991774}
+  - {fileID: 554959374}
+  - {fileID: 767496097}
   m_Father: {fileID: 352289258}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4881,7 +4881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970062, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
       propertyPath: DetectAngle
@@ -4911,5 +4911,6 @@ PrefabInstance:
       propertyPath: MoveForce
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9025102912534970063, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 91e2454b33d230e459970f77d6ebb159, type: 3}
