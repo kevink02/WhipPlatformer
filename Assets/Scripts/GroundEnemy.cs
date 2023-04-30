@@ -17,7 +17,7 @@ public class GroundEnemy : EnemyMovement
             VerifyVariables();
         }
         //float distanceToTargetTransform = Mathf.Abs(PatrolPointTarget.position.x - transform.position.x);
-        RigidBody.velocity = MoveForce * Vector2.right;
+        RigidBody.velocity = MoveForce * MoveDirection;
         if (IsCloseToPatrolPointTarget())
         {
             MoveDirection *= -1;
