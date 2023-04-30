@@ -10,6 +10,28 @@ public class GroundEnemy : EnemyMovement
         MoveDirection = Vector2.right;
         RigidBody.gravityScale = 1;
     }
+    protected override void DoMovementPatrol()
+    {
+        if (!PatrolPointTarget)
+        {
+            VerifyVariables();
+        }
+        Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
+        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
+        if (IsCloseToPatrolPointTarget())
+        {
+            if (PatrolPointTarget == PatrolPointEnd)
+            {
+                PatrolPointCurrent = PatrolPointEnd;
+                PatrolPointTarget = PatrolPointStart;
+            }
+            else
+            {
+                PatrolPointCurrent = PatrolPointStart;
+                PatrolPointTarget = PatrolPointEnd;
+            }
+        }
+    }
     protected override void DoMovementTimed()
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
@@ -22,5 +44,10 @@ public class GroundEnemy : EnemyMovement
         // Did not detect a platform in front of it
         //if (!HasCollidedWithPlatformAtDetectAngle())
         //    FlipMoveDirection(Vector2.right);
+    }
+    protected override bool IsCloseToPatrolPointTarget()
+    {
+        return Mathf.Abs(transform.position.x - PatrolPointTarget.position.x) <= 1.0f &&
+            Mathf.Abs(transform.position.x - PatrolPointCurrent.position.x) > 1.0f;
     }
 }

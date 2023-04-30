@@ -61,37 +61,12 @@ public abstract class EnemyMovement : EntityMovement, IVerification
     /// <summary>
     /// Enemies move via "patrol points" in the scene
     /// </summary>
-    protected void DoMovementPatrol()
-    {
-        if (!PatrolPointTarget)
-        {
-            VerifyVariables();
-        }
-        Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
-        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
-        if (IsCloseToPatrolPointTarget())
-        {
-            if (PatrolPointTarget == PatrolPointEnd)
-            {
-                PatrolPointCurrent = PatrolPointEnd;
-                PatrolPointTarget = PatrolPointStart;
-            }
-            else
-            {
-                PatrolPointCurrent = PatrolPointStart;
-                PatrolPointTarget = PatrolPointEnd;
-            }
-        }
-    }
+    protected abstract void DoMovementPatrol();
     /// <summary>
     /// Enemies move via their set move force and time until switching directions
     /// </summary>
     protected abstract void DoMovementTimed();
-    protected bool IsCloseToPatrolPointTarget()
-    {
-        return Vector2.Distance(transform.position, PatrolPointTarget.position) <= 0.1f &&
-            Vector2.Distance(transform.position, PatrolPointCurrent.position) > 0.1f;
-    }
+    protected abstract bool IsCloseToPatrolPointTarget();
     protected void FlipMoveDirection(Vector2 normal)
     {
         DetectVector = Vector2.Reflect(DetectVector, normal);
