@@ -10,24 +10,6 @@ public class GroundEnemy : EnemyMovement
         MoveDirection = Vector2.right;
         RigidBody.gravityScale = 1;
     }
-    protected override void DoMovementPatrol()
-    {
-        Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
-        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
-        if (IsCloseToPatrolPointTarget())
-        {
-            if (PatrolPointTarget == PatrolPointEnd)
-            {
-                PatrolPointCurrent = PatrolPointEnd;
-                PatrolPointTarget = PatrolPointStart;
-            }
-            else
-            {
-                PatrolPointCurrent = PatrolPointStart;
-                PatrolPointTarget = PatrolPointEnd;
-            }
-        }
-    }
     protected override void DoMovementTimed()
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);

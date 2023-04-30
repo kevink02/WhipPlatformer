@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyMovement : EntityMovement
+public abstract class EnemyMovement : EntityMovement, IVerification
 {
     [SerializeField]
     protected EnemyMoveType MoveType;
@@ -21,6 +21,8 @@ public abstract class EnemyMovement : EntityMovement
     {
         // Spawn point is set in base class here
         base.Awake();
+        VerifyVariables();
+
         // Reset it if needed to its start patrol point
         if (MoveType == EnemyMoveType.Patrol)
         {
@@ -34,7 +36,7 @@ public abstract class EnemyMovement : EntityMovement
             Destroy(gameObject);
         }
     }
-    private void SetInitialPositionToPatrolPoint()
+    public void VerifyVariables()
     {
         if (!PatrolPointStart)
             throw new Exception("The start patrol point is not set");
@@ -42,8 +44,11 @@ public abstract class EnemyMovement : EntityMovement
             throw new Exception("The patrol points are the same, enemy can't move");
 
         PatrolPointCurrent = PatrolPointStart;
-        transform.position = PatrolPointCurrent.position;
         PatrolPointTarget = PatrolPointEnd;
+    }
+    private void SetInitialPositionToPatrolPoint()
+    {
+        transform.position = PatrolPointCurrent.position;
     }
     protected override void DoMovement()
     {
@@ -56,7 +61,28 @@ public abstract class EnemyMovement : EntityMovement
     /// <summary>
     /// Enemies move via "patrol points" in the scene
     /// </summary>
-    protected abstract void DoMovementPatrol();
+    protected void DoMovementPatrol()
+    {
+        if (!PatrolPointTarget)
+        {
+
+        }
+        Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
+        RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
+        if (IsCloseToPatrolPointTarget())
+        {
+            if (PatrolPointTarget == PatrolPointEnd)
+            {
+                PatrolPointCurrent = PatrolPointEnd;
+                PatrolPointTarget = PatrolPointStart;
+            }
+            else
+            {
+                PatrolPointCurrent = PatrolPointStart;
+                PatrolPointTarget = PatrolPointEnd;
+            }
+        }
+    }
     /// <summary>
     /// Enemies move via their set move force and time until switching directions
     /// </summary>
