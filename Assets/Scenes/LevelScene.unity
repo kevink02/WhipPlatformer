@@ -2013,7 +2013,7 @@ MonoBehaviour:
   SpawnPoint: {fileID: 558289176}
   _cooldownKnockback: 0.2
   _forceKnockback: {x: 7500, y: 1500}
-  _cooldownJump: 0.5
+  _cooldownJump: 0.1
   _forceJump: {x: 0, y: 3000}
   _cooldownMoveFlip: 0
 --- !u!1 &1270765993
