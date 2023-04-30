@@ -46,6 +46,8 @@ public class PlayerMovement : EntityMovement
 
             // Find distance from the collided collider
             Vector2 distanceFromEnemy = collision.collider.transform.position - transform.position;
+            // Only account for the horizontal portion of knockback
+            distanceFromEnemy = new Vector2(Mathf.Sign(distanceFromEnemy.x), 0);
             // Get direction away from the collided collider, then normalize it
             distanceFromEnemy = (-1 * distanceFromEnemy).normalized;
 
