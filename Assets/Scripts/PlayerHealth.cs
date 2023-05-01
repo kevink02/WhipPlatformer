@@ -6,8 +6,9 @@ public class PlayerHealth : EntityHealth
 {
     private PlayerMovement _playerMovement;
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
         _playerMovement = GetComponent<PlayerMovement>();
     }
     public override void TakeDamage()

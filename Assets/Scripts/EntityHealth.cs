@@ -11,7 +11,7 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     protected SpriteRenderer ComponentSprite;
     protected Text HealthText;
 
-    private void Awake()
+    protected void Awake()
     {
         ComponentSprite = GetComponent<SpriteRenderer>();
 
