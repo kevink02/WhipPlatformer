@@ -95,27 +95,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attack5_0
-      rect:
-        serializedVersion: 2
-        x: 1341
-        y: 1424
-        width: 5
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14873828e05b2bed0800000000000000
-      internalID: -2399656577511229375
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: attack5_1
       rect:
         serializedVersion: 2
@@ -124,7 +103,7 @@ TextureImporter:
         width: 1161
         height: 1252
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
