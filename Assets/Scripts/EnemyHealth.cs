@@ -6,6 +6,6 @@ public class EnemyHealth : EntityHealth
 {
     public override void TakeDamage()
     {
-        throw new System.NotImplementedException();
+        Health--;
     }
 }
