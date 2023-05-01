@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Game_Manager.IsObjectAnEnemy(collision.gameObject))
         {
-            Debug.Log($"{name}: Collided with {collision.name}");
+            //Debug.Log($"{name}: Collided with {collision.name}");
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage();
         }
     }
