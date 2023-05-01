@@ -58,16 +58,13 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
         DetectDistance = GetDetectDistance(DetectVector);
 
-        // Collider shouldn't be too big since it will interfere with the platforms in tilemaps
-        // Divide by 100 since that is the sprite's pixels per unit value?
-        Collider.size = ComponentSprite.sprite.rect.size / 100;
-
         SetPositionToSpawnPoint();
         VerifyVariables();
         SetEntityEffects();
     }
     protected void FixedUpdate()
     {
+        UpdateColliderSize();
         DoMovement();
         CastRay();
         IsGrounded = HasCollidedWithPlatformUnderneath();
@@ -95,6 +92,12 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         float rayDistanceFactor = 20;
         RayCastRay = new Ray(transform.position, DetectVector * rayDistanceFactor);
         RayCastHit = Physics2D.Raycast(RayCastRay.origin, RayCastRay.direction, DetectDistance * rayDistanceFactor, Game_Manager.PlatformMask);
+    }
+    private void UpdateColliderSize()
+    {
+        // Collider shouldn't be too big since it will interfere with the platforms in tilemaps
+        // Divide by 100 since that is the sprite's pixels per unit value?
+        Collider.size = ComponentSprite.sprite.rect.size / 100;
     }
     protected abstract void DoMovement();
     private void SetEntityEffects()
