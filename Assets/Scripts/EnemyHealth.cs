@@ -9,8 +9,10 @@ public class EnemyHealth : EntityHealth
         Health--;
         if (Health <= 0)
             Destroy(gameObject);
+        else
+            ShowEnemyHealthText();
     }
-    public void ShowEnemyHealthText()
+    private void ShowEnemyHealthText()
     {
         Game_Manager.EnemyHealthText.enabled = true;
         Game_Manager.EnemyHealthText.transform.position = transform.position + 2 * Vector3.up;
