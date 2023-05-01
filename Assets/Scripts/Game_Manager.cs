@@ -16,9 +16,6 @@ public class Game_Manager : MonoBehaviour
     [SerializeField]
     private LayerMask _platformMask;
     public static LayerMask PlatformMask;
-    [SerializeField]
-    private Text _enemyHealthText;
-    public static Text EnemyHealthText;
 
     public static readonly float DebugRayLifeTime = 0.02f;
     [Tooltip("When calculating distance of ray for raycast, use this to account for small gaps between colliders for better physics performance")]
@@ -48,7 +45,6 @@ public class Game_Manager : MonoBehaviour
     private void SetStatics()
     {
         PlatformMask = _platformMask;
-        EnemyHealthText = _enemyHealthText;
         PrefabEntityHealthText = _prefabEntityHealthText;
         CanvasWorld = _canvasWorld;
     }
