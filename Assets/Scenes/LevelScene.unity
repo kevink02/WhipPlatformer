@@ -2078,6 +2078,7 @@ MonoBehaviour:
   _cooldownJump: 0.1
   _forceJump: {x: 0, y: 3000}
   _cooldownMoveFlip: 0
+  _animationAttack: {fileID: 7400000, guid: af3d7e88cd63e6141bc98ef220d86e46, type: 2}
 --- !u!95 &1235000915
 Animator:
   serializedVersion: 3

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : EntityMovement
 {
+    [SerializeField]
+    private AnimationClip _animationAttack;
     private bool _isMoving;
     private bool _isAtCheckpoint;
     private bool _isAtExit;
@@ -109,6 +111,12 @@ public class PlayerMovement : EntityMovement
         Debug.Log($"{name}: Attacking");
         // Play the attack animation only once after triggering an attack
         ComponentAnimator.SetBool("IsAttacking", true);
+        StartCoroutine(EndAnimationAttack());
+    }
+    private IEnumerator EndAnimationAttack()
+    {
+        // This value should be at most the length of the attack animation - some value, to prevent a 2nd loop of the animation
+        yield return new WaitForSeconds(_animationAttack.averageDuration - 0.25f);
         ComponentAnimator.SetBool("IsAttacking", false);
     }
     private void AbilityInteract()
