@@ -120,8 +120,8 @@ public class PlayerMovement : EntityMovement
     }
     private IEnumerator EndAnimationAttack()
     {
-        // This value should be at most the length of the attack animation
-        yield return new WaitForSeconds(_animationAttack.averageDuration / 1.11f);
+        // This value should be at most the length of the attack animation in seconds (not the length of the clip because it is NOT accurate)
+        yield return new WaitForSeconds(1f);// _animationAttack.averageDuration);
         ComponentAnimator.SetBool("IsAttacking", false);
     }
     private void AbilityInteract()
