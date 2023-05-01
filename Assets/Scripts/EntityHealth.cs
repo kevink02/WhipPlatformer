@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class EntityHealth : MonoBehaviour, IVerification
 {
@@ -8,12 +9,21 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     protected int MaxHealth;
     protected int Health;
     protected SpriteRenderer ComponentSprite;
+    protected Text HealthText;
 
     private void Awake()
     {
         ComponentSprite = GetComponent<SpriteRenderer>();
 
         VerifyVariables();
+    }
+    protected void FixedUpdate()
+    {
+        if (!HealthText)
+            return;
+
+        HealthText.text = $"{Health}/{MaxHealth}";
+        HealthText.transform.position = transform.position + 2 * Vector3.up;
     }
     public void VerifyVariables()
     {
