@@ -111,21 +111,16 @@ public class PlayerMovement : EntityMovement
     private void AbilityAttack()
     {
         Debug.Log($"{name}: Attacking");
-        _animationObj.gameObject.SetActive(true);
-        ComponentSprite.enabled = false;
-        _animationObj.AbilityAttack();
-        StartCoroutine(EndAnimationAttack());
-        return;
-
-
-
         // Prevent animation glitches by spamming attack triggers
-        if (ComponentAnimator.GetBool("IsAttacking"))
+        // If the attack animation (on its animation (child) object) is playing, skip rest of function
+        if (!ComponentSprite.enabled)
         {
             return;
         }
-        // Play the attack animation only once after triggering an attack
-        ComponentAnimator.SetBool("IsAttacking", true);
+
+        _animationObj.gameObject.SetActive(true);
+        ComponentSprite.enabled = false;
+        _animationObj.AbilityAttack();
         StartCoroutine(EndAnimationAttack());
     }
     private IEnumerator EndAnimationAttack()
