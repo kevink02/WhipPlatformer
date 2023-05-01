@@ -926,7 +926,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462332278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9e14b0d9d20b255479641f42ae74cc3c, type: 2}
   m_CullingMode: 0
@@ -985,7 +985,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &510962961 stripped
@@ -2195,6 +2195,7 @@ MonoBehaviour:
   _forceJump: {x: 0, y: 3000}
   _cooldownMoveFlip: 0
   _animationAttack: {fileID: 7400000, guid: af3d7e88cd63e6141bc98ef220d86e46, type: 2}
+  _animationObj: {fileID: 462332280}
 --- !u!95 &1235000915
 Animator:
   serializedVersion: 3
