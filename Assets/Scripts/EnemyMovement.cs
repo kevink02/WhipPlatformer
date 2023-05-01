@@ -78,6 +78,12 @@ public abstract class EnemyMovement : EntityMovement, IVerification
             ComponentSprite.flipX = false;
         }
     }
+    protected override void UpdateColliderSize()
+    {
+        // Collider shouldn't be too big since it will interfere with the platforms in tilemaps
+        // Divide by 100 since that is the sprite's pixels per unit value?
+        Collider.size = ComponentSprite.sprite.rect.size / 100;
+    }
     /// <summary>
     /// Enemies move via "patrol points" in the scene
     /// </summary>
