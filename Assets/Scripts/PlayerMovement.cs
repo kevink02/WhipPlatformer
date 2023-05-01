@@ -109,6 +109,11 @@ public class PlayerMovement : EntityMovement
     private void AbilityAttack()
     {
         Debug.Log($"{name}: Attacking");
+        // Prevent animation glitches by spamming attack triggers
+        if (ComponentAnimator.GetBool("IsAttacking"))
+        {
+            return;
+        }
         // Play the attack animation only once after triggering an attack
         ComponentAnimator.SetBool("IsAttacking", true);
         StartCoroutine(EndAnimationAttack());
