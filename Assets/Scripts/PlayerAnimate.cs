@@ -13,6 +13,11 @@ public class PlayerAnimate : MonoBehaviour
     public void AbilityAttack()
     {
         Debug.Log($"{name}: Attacking");
+        _animator.enabled = true;
+        StartCoroutine(EndAnimationAttack());
+        return;
+
+
         // Prevent animation glitches by spamming attack triggers
         if (_animator.GetBool("IsAttacking"))
         {
@@ -24,8 +29,12 @@ public class PlayerAnimate : MonoBehaviour
     }
     private IEnumerator EndAnimationAttack()
     {
-        // This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)
         yield return new WaitForSeconds(0.67f);
-        _animator.SetBool("IsAttacking", false);
+        _animator.enabled = false;
+        gameObject.SetActive(false);
+
+        //// This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)
+        //yield return new WaitForSeconds(0.67f);
+        //_animator.SetBool("IsAttacking", false);
     }
 }

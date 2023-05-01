@@ -10,6 +10,8 @@ public class PlayerMovement : EntityMovement
     private bool _isAtCheckpoint;
     private bool _isAtExit;
     private GameObject _checkpointObject;
+    [SerializeField]
+    private PlayerAnimate _animationObj;
     private PlayerControls _playerControls;
 
     private new void Awake()
@@ -109,6 +111,14 @@ public class PlayerMovement : EntityMovement
     private void AbilityAttack()
     {
         Debug.Log($"{name}: Attacking");
+        _animationObj.gameObject.SetActive(true);
+        ComponentSprite.enabled = false;
+        _animationObj.AbilityAttack();
+        StartCoroutine(EndAnimationAttack());
+        return;
+
+
+
         // Prevent animation glitches by spamming attack triggers
         if (ComponentAnimator.GetBool("IsAttacking"))
         {
@@ -120,9 +130,12 @@ public class PlayerMovement : EntityMovement
     }
     private IEnumerator EndAnimationAttack()
     {
-        // This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)
         yield return new WaitForSeconds(0.67f);
-        ComponentAnimator.SetBool("IsAttacking", false);
+        ComponentSprite.enabled = true;
+
+        //// This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)
+        //yield return new WaitForSeconds(0.67f);
+        //ComponentAnimator.SetBool("IsAttacking", false);
     }
     private void AbilityInteract()
     {
