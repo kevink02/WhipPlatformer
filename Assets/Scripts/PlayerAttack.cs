@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [Tooltip("This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)")]
     public const float AnimationAttackDuration = 0.67f;
+    public const float AttackColliderDuration = 0.4f;
     private Animator _animator;
     private Collider2D _collider;
     public SpriteRenderer ComponentSprite;
@@ -29,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         _collider.enabled = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(AttackColliderDuration);
         _collider.enabled = false;
     }
     private IEnumerator EndAnimationAttack()
