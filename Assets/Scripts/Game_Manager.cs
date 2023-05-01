@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Game_Manager : MonoBehaviour
 {
+    private static Game_Manager _gameManager;
+
     [SerializeField]
     private Text _prefabEntityHealthText;
     public static Text PrefabEntityHealthText;
@@ -47,5 +49,21 @@ public class Game_Manager : MonoBehaviour
         PlatformMask = _platformMask;
         PrefabEntityHealthText = _prefabEntityHealthText;
         CanvasWorld = _canvasWorld;
+    }
+    private Game_Manager()
+    {
+
+    }
+    public static Game_Manager GetSingleton()
+    {
+        if (!_gameManager)
+        {
+            if (FindObjectsOfType<Game_Manager>().Length != 1)
+            {
+                throw new Exception("Either no GameManager or more than one GameManager object exists in the scene");
+            }
+            _gameManager = FindObjectOfType<Game_Manager>();
+        }
+        return _gameManager;
     }
 }
