@@ -93,7 +93,7 @@ public class PlayerMovement : EntityMovement
             {
                 RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
             }
-            ComponentAnimator.SetBool("IsWalking", _isMoving);
+            ComponentAnimator.SetBool("IsWalking", _isMoving && IsGrounded);
         }
     }
     private void DoJump()
