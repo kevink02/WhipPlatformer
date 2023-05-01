@@ -41,6 +41,8 @@ public class AirEnemy : EnemyMovement
         }
         Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
         RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
+        // Set move direction to the matching direction which it is moving in
+        MoveDirection = (RigidBody.velocity.x < 0) ? Vector2.left : Vector2.right;
         if (IsCloseToPatrolPointTarget())
         {
             SwapPatrolPointTarget();
