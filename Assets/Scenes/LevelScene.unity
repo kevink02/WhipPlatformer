@@ -883,7 +883,6 @@ GameObject:
   m_Component:
   - component: {fileID: 462332279}
   - component: {fileID: 462332282}
-  - component: {fileID: 462332280}
   - component: {fileID: 462332281}
   - component: {fileID: 462332283}
   - component: {fileID: 462332284}
@@ -908,18 +907,6 @@ Transform:
   m_Father: {fileID: 1235000912}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &462332280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462332278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de30a93e08c59804898c81f9992286bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &462332281
 Animator:
   serializedVersion: 3
@@ -2224,7 +2211,6 @@ MonoBehaviour:
   _forceJump: {x: 0, y: 3000}
   _cooldownMoveFlip: 0
   _animationAttack: {fileID: 7400000, guid: af3d7e88cd63e6141bc98ef220d86e46, type: 2}
-  _animationObj: {fileID: 462332280}
 --- !u!95 &1235000915
 Animator:
   serializedVersion: 3

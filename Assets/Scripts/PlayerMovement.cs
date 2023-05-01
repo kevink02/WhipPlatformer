@@ -10,13 +10,13 @@ public class PlayerMovement : EntityMovement
     private bool _isAtCheckpoint;
     private bool _isAtExit;
     private GameObject _checkpointObject;
-    [SerializeField]
-    private PlayerAnimate _animationObj;
+    private PlayerAttack _playerAttack;
     private PlayerControls _playerControls;
 
     private new void Awake()
     {
         base.Awake();
+        _playerAttack = GetComponentInChildren<PlayerAttack>();
         _playerControls = new PlayerControls();
     }
     private void Start()
@@ -118,14 +118,14 @@ public class PlayerMovement : EntityMovement
             return;
         }
 
-        _animationObj.gameObject.SetActive(true);
+        _playerAttack.gameObject.SetActive(true);
         ComponentSprite.enabled = false;
-        _animationObj.AbilityAttack();
+        _playerAttack.AbilityAttack();
         StartCoroutine(EndAnimationAttack());
     }
     private IEnumerator EndAnimationAttack()
     {
-        yield return new WaitForSeconds(PlayerAnimate.AnimationAttackDuration);
+        yield return new WaitForSeconds(PlayerAttack.AnimationAttackDuration);
         ComponentSprite.enabled = true;
     }
     private void AbilityInteract()
