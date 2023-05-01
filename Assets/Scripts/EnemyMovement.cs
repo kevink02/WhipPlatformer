@@ -59,11 +59,24 @@ public abstract class EnemyMovement : EntityMovement, IVerification
     }
     protected override void DoMovement()
     {
+        UpdateSpriteDirection(MoveDirection.x);
+
         // Check conditions to flip move direction, based on the enemy type
         if (MoveType == EnemyMoveType.Patrol)
             DoMovementPatrol();
         else
             DoMovementTimed();
+    }
+    protected override void UpdateSpriteDirection(float moveDirection)
+    {
+        if (moveDirection == 1)
+        {
+            ComponentSprite.flipX = false;
+        }
+        else if (moveDirection == -1)
+        {
+            ComponentSprite.flipX = true;
+        }
     }
     /// <summary>
     /// Enemies move via "patrol points" in the scene

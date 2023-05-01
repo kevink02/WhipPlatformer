@@ -84,22 +84,7 @@ public class PlayerMovement : EntityMovement
     {
         // Either -1 or 1
         float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
-
-        // Change scale instead of flipping sprites so that player's child object for attack animation can update position if player turns
-        if (moveDirection == 1)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-
-            //ComponentSprite.flipX = false;
-            //_playerAttack.ComponentSprite.flipX = false;
-        }
-        else if (moveDirection == -1)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-
-            //ComponentSprite.flipX = true;
-            //_playerAttack.ComponentSprite.flipX = true;
-        }
+        UpdateSpriteDirection(moveDirection);
 
         // If not currently being knocked back (do not want to set velocity while being knocked back)
         if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
@@ -115,6 +100,24 @@ public class PlayerMovement : EntityMovement
                 RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
             }
             ComponentAnimator.SetBool("IsWalking", _isMoving && IsGrounded);
+        }
+    }
+    protected override void UpdateSpriteDirection(float moveDirection)
+    {
+        // Change scale instead of flipping sprites so that player's child object for attack animation can update position if player turns
+        if (moveDirection == 1)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+
+            //ComponentSprite.flipX = false;
+            //_playerAttack.ComponentSprite.flipX = false;
+        }
+        else if (moveDirection == -1)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+
+            //ComponentSprite.flipX = true;
+            //_playerAttack.ComponentSprite.flipX = true;
         }
     }
     private void DoJump()

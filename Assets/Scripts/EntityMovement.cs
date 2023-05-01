@@ -102,6 +102,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         Collider.size = ComponentSprite.sprite.rect.size / 100;
     }
     protected abstract void DoMovement();
+    protected abstract void UpdateSpriteDirection(float moveDirection);
     private void SetEntityEffects()
     {
         EffectKnockback = new EntityEffect(_cooldownKnockback, _forceKnockback);
