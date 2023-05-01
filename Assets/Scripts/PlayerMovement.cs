@@ -85,15 +85,20 @@ public class PlayerMovement : EntityMovement
         // Either -1 or 1
         float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
 
+        // Change scale instead of flipping sprites so that player's child object for attack animation can update position if player turns
         if (moveDirection == 1)
         {
-            ComponentSprite.flipX = false;
-            _playerAttack.ComponentSprite.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
+
+            //ComponentSprite.flipX = false;
+            //_playerAttack.ComponentSprite.flipX = false;
         }
         else if (moveDirection == -1)
         {
-            ComponentSprite.flipX = true;
-            _playerAttack.ComponentSprite.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
+
+            //ComponentSprite.flipX = true;
+            //_playerAttack.ComponentSprite.flipX = true;
         }
 
         // If not currently being knocked back (do not want to set velocity while being knocked back)
