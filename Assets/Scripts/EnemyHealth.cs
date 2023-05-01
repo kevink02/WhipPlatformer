@@ -7,5 +7,7 @@ public class EnemyHealth : EntityHealth
     public override void TakeDamage()
     {
         Health--;
+        if (Health <= 0)
+            Destroy(gameObject);
     }
 }
