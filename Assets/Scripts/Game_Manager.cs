@@ -62,10 +62,10 @@ public class Game_Manager : MonoBehaviour
         }
         return _gameManager;
     }
-    public Text CreateAndGetHealthText(EntityHealth entity)
+    public Text CreateAndGetHealthText()
     {
         GameObject healthText = Instantiate(_prefabEntityHealthText.gameObject);
-        healthText.transform.parent = entity.transform;
+        healthText.transform.parent = _canvasWorld.transform;
         return healthText.GetComponent<Text>();
     }
 }

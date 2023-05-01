@@ -33,7 +33,7 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
 
         if (!HealthText)
         {
-            HealthText = Game_Manager.GetSingleton().CreateAndGetHealthText(this);
+            HealthText = Game_Manager.GetSingleton().CreateAndGetHealthText();
         }
     }
     public abstract void TakeDamage();
