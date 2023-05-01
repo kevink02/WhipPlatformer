@@ -27,6 +27,7 @@ public class CameraMovement : MonoBehaviour, IVerification
         _positionZ = Vector3.forward * transform.position.z;
 
         VerifyVariables();
+        transform.position = _player.transform.position + _positionZ;
     }
     private void FixedUpdate()
     {
