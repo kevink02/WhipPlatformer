@@ -130,7 +130,6 @@ public class PlayerMovement : EntityMovement
     }
     private void AbilityAttack()
     {
-        Debug.Log($"{name}: Attacking");
         // Prevent animation glitches by spamming attack triggers
         // If the attack animation (on its animation (child) object) is playing, skip rest of function
         if (!ComponentSprite.enabled)

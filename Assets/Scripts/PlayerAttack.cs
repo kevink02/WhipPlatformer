@@ -40,6 +40,9 @@ public class PlayerAttack : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"{name}: Collided with {collision.name}");
+        if (Game_Manager.IsObjectAnEnemy(collision.gameObject))
+        {
+            Debug.Log($"{name}: Collided with {collision.name}");
+        }
     }
 }
