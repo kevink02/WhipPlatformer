@@ -107,7 +107,9 @@ public class PlayerMovement : EntityMovement
     private void AbilityAttack()
     {
         Debug.Log($"{name}: Attacking");
+        // Play the attack animation only once after triggering an attack
         ComponentAnimator.SetBool("IsAttacking", true);
+        ComponentAnimator.SetBool("IsAttacking", false);
     }
     private void AbilityInteract()
     {
