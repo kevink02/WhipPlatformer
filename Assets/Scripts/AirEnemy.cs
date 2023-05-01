@@ -59,7 +59,7 @@ public class AirEnemy : EnemyMovement
     protected override void DoMovementTimed()
     {
         RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, MoveForce * MoveDirection, MoveAccel);
-        if (EntityEffect.HasEnoughTimeHasPassed(EffectMoveFlip))
+        if (EntityEffect.HasEnoughTimePassed(EffectMoveFlip))
         {
             EffectMoveFlip.SetNewTimeEffectApply();
             if (_enemyMoveDirection == EnemyMoveDirection.Horizontal)

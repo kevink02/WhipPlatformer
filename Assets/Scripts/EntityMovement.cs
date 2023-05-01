@@ -108,6 +108,9 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
     public void SetPositionToSpawnPoint()
     {
         transform.position = SpawnPoint.position;
+        // Set new time of knockback effect being applied (to prevent knockback effect from occurring when player respawns)
+        EffectKnockback.SetNewTimeEffectApply();
+        //RigidBody.velocity = Vector2.zero;
     }
     protected bool HasCollidedWithPlatformAtDetectAngle()
     {

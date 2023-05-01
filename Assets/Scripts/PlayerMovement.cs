@@ -45,7 +45,7 @@ public class PlayerMovement : EntityMovement
         {
             SetPositionToSpawnPoint();
         }
-        else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
+        else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimePassed(EffectJump))
         {
             _playerHealth.TakeDamage();
 
@@ -93,7 +93,7 @@ public class PlayerMovement : EntityMovement
         UpdateSpriteDirection(moveDirection);
 
         // If not currently being knocked back (do not want to set velocity while being knocked back)
-        if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
+        if (EntityEffect.HasEnoughTimePassed(EffectKnockback))
         {
             if (_isMoving)
             {
@@ -138,7 +138,7 @@ public class PlayerMovement : EntityMovement
         if (PauseMenu.IsPaused())
             return;
 
-        if (IsGrounded && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
+        if (IsGrounded && EntityEffect.HasEnoughTimePassed(EffectJump))
         {
             EffectJump.SetNewTimeEffectApply();
             RigidBody.AddForce(EffectJump.ForceEffect);

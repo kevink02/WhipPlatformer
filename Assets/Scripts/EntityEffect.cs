@@ -11,7 +11,7 @@ public class EntityEffect
     /// <summary>
     /// Checks if enough time has passed for some effect with a cooldown time
     /// </summary>
-    public static Func<EntityEffect, bool> HasEnoughTimeHasPassed { get; } = entityEffect => Time.time >= entityEffect.TimeSinceEffectApply + entityEffect.TimeCooldownEffect;
+    public static Func<EntityEffect, bool> HasEnoughTimePassed { get; } = entityEffect => Time.time >= entityEffect.TimeSinceEffectApply + entityEffect.TimeCooldownEffect;
 
     public EntityEffect(float timeCooldownEffect, Vector2 effectForce)
     {
