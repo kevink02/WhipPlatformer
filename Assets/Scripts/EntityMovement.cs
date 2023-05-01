@@ -60,9 +60,9 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
         DetectDistance = GetDetectDistance(DetectVector);
 
-        SetPositionToSpawnPoint();
         VerifyVariables();
         SetEntityEffects();
+        SetPositionToSpawnPoint();
     }
     protected void FixedUpdate()
     {
@@ -110,7 +110,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         transform.position = SpawnPoint.position;
         // Set new time of knockback effect being applied (to prevent knockback effect from occurring when player respawns)
         EffectKnockback.SetNewTimeEffectApply();
-        //RigidBody.velocity = Vector2.zero;
+        RigidBody.velocity = Vector2.zero;
     }
     protected bool HasCollidedWithPlatformAtDetectAngle()
     {
