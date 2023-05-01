@@ -16,7 +16,7 @@ public class EnemyHealth : EntityHealth
     {
         Game_Manager.EnemyHealthText.enabled = true;
         Game_Manager.EnemyHealthText.transform.position = transform.position + 2 * Vector3.up;
-        Game_Manager.EnemyHealthText.text = $"{Health}/{3}";
+        Game_Manager.EnemyHealthText.text = $"{Health}/{MaxHealth}";
         StartCoroutine(HideEnemyHealthText());
     }
     private IEnumerator HideEnemyHealthText()

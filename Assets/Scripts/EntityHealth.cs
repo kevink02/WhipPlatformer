@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class EntityHealth : MonoBehaviour, IVerification
 {
     [SerializeField]
+    protected int MaxHealth;
     protected int Health;
 
     private void Awake()
@@ -13,10 +14,11 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     }
     public void VerifyVariables()
     {
-        if (Health <= 0)
+        if (MaxHealth <= 0)
         {
-            Health = 3;
+            MaxHealth = 3;
         }
+        Health = MaxHealth;
     }
     public abstract void TakeDamage();
 }
