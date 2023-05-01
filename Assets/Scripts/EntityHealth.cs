@@ -33,7 +33,9 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
 
         if (!HealthText)
         {
-
+            GameObject healthText = Instantiate(Game_Manager.PrefabEntityHealthText.gameObject);
+            HealthText = healthText.GetComponent<Text>();
+            HealthText.transform.parent = transform;
         }
     }
     public abstract void TakeDamage();
