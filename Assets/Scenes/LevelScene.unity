@@ -1957,9 +1957,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 3.3209007, y: 2.6699998, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 18.32497, y: 12.26}
+    oldSize: {x: 33.32904, y: 22.67}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2078,9 +2078,6 @@ MonoBehaviour:
   _cooldownJump: 0.1
   _forceJump: {x: 0, y: 3000}
   _cooldownMoveFlip: 0
-  _animationIdle: {fileID: 7400000, guid: 6bace8240e4575a48865f74dc6c1a6bc, type: 2}
-  _animationWalk: {fileID: 7400000, guid: 1f0666b46743ddd449a4605a6e9ae5ab, type: 2}
-  _animationAttack: {fileID: 0}
 --- !u!95 &1235000915
 Animator:
   serializedVersion: 3

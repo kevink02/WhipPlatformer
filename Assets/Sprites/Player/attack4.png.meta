@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: -2560589130730276045
     second: attack4_0
+  - first:
+      213: -385257328166926171
+    second: attack4_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -95,19 +98,19 @@ TextureImporter:
       name: attack4_0
       rect:
         serializedVersion: 2
-        x: 1498
-        y: 592
-        width: 1798
-        height: 1179
+        x: 0
+        y: 0
+        width: 3332
+        height: 2267
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 332, y: 267, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33b781f80c5f67cd0800000000000000
-      internalID: -2560589130730276045
+      spriteID: 5a88e7f408a47aaf0800000000000000
+      internalID: -385257328166926171
       vertices: []
       indices: 
       edges: []
