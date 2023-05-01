@@ -130,12 +130,8 @@ public class PlayerMovement : EntityMovement
     }
     private IEnumerator EndAnimationAttack()
     {
-        yield return new WaitForSeconds(0.67f);
+        yield return new WaitForSeconds(PlayerAnimate.AnimationAttackDuration);
         ComponentSprite.enabled = true;
-
-        //// This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)
-        //yield return new WaitForSeconds(0.67f);
-        //ComponentAnimator.SetBool("IsAttacking", false);
     }
     private void AbilityInteract()
     {

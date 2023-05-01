@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAnimate : MonoBehaviour
 {
+    [Tooltip("This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)")]
+    public const float AnimationAttackDuration = 0.67f;
     private Animator _animator;
 
     private void Awake()
@@ -12,29 +14,13 @@ public class PlayerAnimate : MonoBehaviour
     }
     public void AbilityAttack()
     {
-        Debug.Log($"{name}: Attacking");
         _animator.enabled = true;
-        StartCoroutine(EndAnimationAttack());
-        return;
-
-
-        // Prevent animation glitches by spamming attack triggers
-        if (_animator.GetBool("IsAttacking"))
-        {
-            return;
-        }
-        // Play the attack animation only once after triggering an attack
-        _animator.SetBool("IsAttacking", true);
         StartCoroutine(EndAnimationAttack());
     }
     private IEnumerator EndAnimationAttack()
     {
-        yield return new WaitForSeconds(0.67f);
+        yield return new WaitForSeconds(AnimationAttackDuration);
         _animator.enabled = false;
         gameObject.SetActive(false);
-
-        //// This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)
-        //yield return new WaitForSeconds(0.67f);
-        //_animator.SetBool("IsAttacking", false);
     }
 }
