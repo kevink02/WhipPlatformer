@@ -20,9 +20,6 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     }
     protected void FixedUpdate()
     {
-        if (!HealthText)
-            return;
-
         HealthText.text = $"{Health}/{MaxHealth}";
         HealthText.transform.position = transform.position + 5 * Vector3.up;
     }
@@ -33,6 +30,11 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
             MaxHealth = 3;
         }
         Health = MaxHealth;
+
+        if (!HealthText)
+        {
+
+        }
     }
     public abstract void TakeDamage();
     // "Animation" of enemy taking damage

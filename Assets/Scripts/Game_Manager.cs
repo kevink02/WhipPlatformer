@@ -8,6 +8,12 @@ using UnityEngine.UI;
 public class Game_Manager : MonoBehaviour
 {
     [SerializeField]
+    private Text _prefabEntityHealthText;
+    public static Text PrefabEntityHealthText;
+    [SerializeField]
+    private Canvas _canvasWorld;
+    public static Canvas CanvasWorld;
+    [SerializeField]
     private LayerMask _platformMask;
     public static LayerMask PlatformMask;
     [SerializeField]
@@ -43,5 +49,7 @@ public class Game_Manager : MonoBehaviour
     {
         PlatformMask = _platformMask;
         EnemyHealthText = _enemyHealthText;
+        PrefabEntityHealthText = _prefabEntityHealthText;
+        CanvasWorld = _canvasWorld;
     }
 }
