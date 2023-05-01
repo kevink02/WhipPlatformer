@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : EntityMovement
 {
-    [SerializeField]
-    private AnimationClip _animationIdle, _animationWalk, _animationAttack;
     private bool _isMoving;
     private bool _isAtCheckpoint;
     private bool _isAtExit;
@@ -96,6 +94,10 @@ public class PlayerMovement : EntityMovement
                 RigidBody.velocity = Vector2.Lerp(RigidBody.velocity, RigidBody.velocity * Vector2.up, MoveDecel);
             }
             ComponentAnimator.SetBool("IsWalking", _isMoving);
+            if (_isMoving)
+            {
+                ComponentAnimator.Play("PlayerWalk");
+            }
         }
     }
     private void DoJump()
