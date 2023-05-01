@@ -1385,7 +1385,7 @@ GameObject:
   - component: {fileID: 642058238}
   - component: {fileID: 642058237}
   m_Layer: 5
-  m_Name: HealthUpdate
+  m_Name: HealthUpdateText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1417,7 +1417,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642058235}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -4273,6 +4273,7 @@ MonoBehaviour:
   _platformMask:
     serializedVersion: 2
     m_Bits: 256
+  _enemyHealthText: {fileID: 642058237}
 --- !u!4 &1847488723
 Transform:
   m_ObjectHideFlags: 0

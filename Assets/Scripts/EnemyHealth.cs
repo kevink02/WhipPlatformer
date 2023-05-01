@@ -10,4 +10,16 @@ public class EnemyHealth : EntityHealth
         if (Health <= 0)
             Destroy(gameObject);
     }
+    public void ShowEnemyHealthText()
+    {
+        Game_Manager.EnemyHealthText.enabled = true;
+        Game_Manager.EnemyHealthText.transform.position = transform.position + 2 * Vector3.up;
+        Game_Manager.EnemyHealthText.text = $"{Health}/{3}";
+        StartCoroutine(HideEnemyHealthText());
+    }
+    private IEnumerator HideEnemyHealthText()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Game_Manager.EnemyHealthText.enabled = false;
+    }
 }
