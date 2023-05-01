@@ -79,6 +79,17 @@ public abstract class EnemyMovement : EntityMovement, IVerification
         DetectVector = Vector2.Reflect(DetectVector, normal);
         DetectAngle = Game_Manager.GetAngleFromVector2(DetectVector);
         MoveDirection *= -1;
+
+        if (PatrolPointTarget == PatrolPointEnd)
+        {
+            PatrolPointCurrent = PatrolPointEnd;
+            PatrolPointTarget = PatrolPointStart;
+        }
+        else
+        {
+            PatrolPointCurrent = PatrolPointStart;
+            PatrolPointTarget = PatrolPointEnd;
+        }
     }
     protected abstract void FlipMoveDirectionOnCollision();
 }
