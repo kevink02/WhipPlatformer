@@ -4316,6 +4316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5246ebc924408e541abc7b5a47766846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prefabEntityHealthText: {fileID: 6914256082868955230, guid: 22215c27866850a408e8d1297180fbbc, type: 3}
+  _canvasWorld: {fileID: 2015727170}
   _platformMask:
     serializedVersion: 2
     m_Bits: 256
