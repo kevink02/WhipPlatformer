@@ -10,11 +10,9 @@ public class Game_Manager : MonoBehaviour
     private static Game_Manager _gameManager;
 
     [SerializeField]
-    private Text _prefabEntityHealthText;
-    public static Text PrefabEntityHealthText;
-    [SerializeField]
     private Canvas _canvasWorld;
-    public static Canvas CanvasWorld;
+    [SerializeField]
+    private Text _prefabEntityHealthText;
     [SerializeField]
     private LayerMask _platformMask;
     public static LayerMask PlatformMask;
@@ -47,8 +45,6 @@ public class Game_Manager : MonoBehaviour
     private void SetStatics()
     {
         PlatformMask = _platformMask;
-        PrefabEntityHealthText = _prefabEntityHealthText;
-        CanvasWorld = _canvasWorld;
     }
     private Game_Manager()
     {
@@ -65,5 +61,11 @@ public class Game_Manager : MonoBehaviour
             _gameManager = FindObjectOfType<Game_Manager>();
         }
         return _gameManager;
+    }
+    public Text CreateAndGetHealthText(EntityHealth entity)
+    {
+        GameObject healthText = Instantiate(_prefabEntityHealthText.gameObject);
+        healthText.transform.parent = entity.transform;
+        return healthText.GetComponent<Text>();
     }
 }
