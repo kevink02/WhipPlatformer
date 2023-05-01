@@ -53,4 +53,8 @@ public class PauseMenu : MonoBehaviour
         else
             UndoPause?.Invoke();
     }
+    public static bool IsPaused()
+    {
+        return _isPaused;
+    }
 }

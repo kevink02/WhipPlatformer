@@ -34,19 +34,6 @@ public class CameraMovement : MonoBehaviour, IVerification
         // Prevent camera's z position from changing (makes camera zoom in too close)
         transform.position = Vector3.Lerp(transform.position, _player.transform.position + _positionZ, _lerpSpeed);
         _camera.orthographicSize = (_isZoomedOut) ? _cameraSizeZoomOut : _cameraSizeZoomIn;
-
-        //if (_isZoomedOut)
-        //{
-        //    // Fix camera's position in the center of the level
-        //    transform.position = Vector3.zero + _positionZ;
-        //    _camera.orthographicSize = _cameraSizeZoomOut;
-        //}
-        //else
-        //{
-        //    // Prevent camera's z position from changing (makes camera zoom in too close)
-        //    transform.position = Vector3.Lerp(transform.position, _player.transform.position + _positionZ, _lerpSpeed);
-        //    _camera.orthographicSize = _cameraSizeZoomIn;
-        //}
     }
     public void VerifyVariables()
     {
@@ -59,6 +46,9 @@ public class CameraMovement : MonoBehaviour, IVerification
     }
     public static void SwitchCameraZoom()
     {
+        if (PauseMenu.IsPaused())
+            return;
+
         _isZoomedOut = !_isZoomedOut;
     }
 }

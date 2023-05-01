@@ -85,6 +85,9 @@ public class PlayerMovement : EntityMovement
     }
     protected override void DoMovement()
     {
+        if (PauseMenu.IsPaused())
+            return;
+
         // Either -1 or 1
         float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
         UpdateSpriteDirection(moveDirection);
@@ -125,6 +128,9 @@ public class PlayerMovement : EntityMovement
     }
     private void DoJump()
     {
+        if (PauseMenu.IsPaused())
+            return;
+
         if (IsGrounded && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
         {
             EffectJump.SetNewTimeEffectApply();
@@ -133,6 +139,9 @@ public class PlayerMovement : EntityMovement
     }
     private void AbilityAttack()
     {
+        if (PauseMenu.IsPaused())
+            return;
+
         // Prevent animation glitches by spamming attack triggers
         // If the attack animation (on its animation (child) object) is playing, skip rest of function
         if (!ComponentSprite.enabled)
@@ -154,6 +163,9 @@ public class PlayerMovement : EntityMovement
     }
     private void AbilityInteract()
     {
+        if (PauseMenu.IsPaused())
+            return;
+
         Debug.Log($"{name}: Interacting");
         if (_isAtExit)
             Debug.Log($"{name}: I won!");
