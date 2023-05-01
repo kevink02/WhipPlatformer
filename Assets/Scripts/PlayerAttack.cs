@@ -8,11 +8,14 @@ public class PlayerAttack : MonoBehaviour
     public const float AnimationAttackDuration = 0.67f;
     private Animator _animator;
     private Collider2D _collider;
+    public SpriteRenderer ComponentSprite;
+
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
+        ComponentSprite = GetComponent<SpriteRenderer>();
     }
     public void AbilityAttack()
     {

@@ -84,6 +84,18 @@ public class PlayerMovement : EntityMovement
     {
         // Either -1 or 1
         float moveDirection = _playerControls.Movement.HorizontalMove.ReadValue<float>();
+
+        if (moveDirection == 1)
+        {
+            ComponentSprite.flipX = false;
+            _playerAttack.ComponentSprite.flipX = false;
+        }
+        else
+        {
+            ComponentSprite.flipX = true;
+            _playerAttack.ComponentSprite.flipX = true;
+        }
+
         // If not currently being knocked back (do not want to set velocity while being knocked back)
         if (EntityEffect.HasEnoughTimeHasPassed(EffectKnockback))
         {
