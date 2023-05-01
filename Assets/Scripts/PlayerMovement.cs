@@ -107,6 +107,7 @@ public class PlayerMovement : EntityMovement
     private void AbilityAttack()
     {
         Debug.Log($"{name}: Attacking");
+        ComponentAnimator.SetBool("IsAttacking", true);
     }
     private void AbilityInteract()
     {
