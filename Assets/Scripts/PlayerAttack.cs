@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [Tooltip("This value should equal the speed of the attack animation in the animator window (not the length of the clip because it is NOT accurate)")]
-    public const float AnimationAttackDuration = 0.67f;
-    public const float AttackColliderDuration = 0.4f;
+    public const float AnimationAttackDuration = 0.45f;
+    public const float AttackColliderDuration = 0.2f;
     private Animator _animator;
     private Collider2D _collider;
     public SpriteRenderer ComponentSprite;
@@ -28,7 +28,8 @@ public class PlayerAttack : MonoBehaviour
     // Currently, only have the collider enabled when the whip is out in front of the player
     private IEnumerator EnableWhipCollider()
     {
-        yield return new WaitForSeconds(0.2f);
+        // Wait until first frame of whip being in front of player
+        yield return new WaitForSeconds(0.15f);
         _collider.enabled = true;
         yield return new WaitForSeconds(AttackColliderDuration);
         _collider.enabled = false;
