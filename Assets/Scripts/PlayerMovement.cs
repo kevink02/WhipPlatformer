@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : EntityMovement
 {
+    [SerializeField]
+    private AnimationClip _animationIdle, _animationWalk, _animationAttack;
     private bool _isMoving;
     private bool _isAtCheckpoint;
     private bool _isAtExit;
