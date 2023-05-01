@@ -90,7 +90,7 @@ public class PlayerMovement : EntityMovement
             ComponentSprite.flipX = false;
             _playerAttack.ComponentSprite.flipX = false;
         }
-        else
+        else if (moveDirection == -1)
         {
             ComponentSprite.flipX = true;
             _playerAttack.ComponentSprite.flipX = true;
