@@ -119,6 +119,7 @@ public class PlayerMovement : EntityMovement
         }
 
         _playerAttack.gameObject.SetActive(true);
+        ComponentAnimator.enabled = false;
         ComponentSprite.enabled = false;
         _playerAttack.AbilityAttack();
         StartCoroutine(EndAnimationAttack());
@@ -126,6 +127,7 @@ public class PlayerMovement : EntityMovement
     private IEnumerator EndAnimationAttack()
     {
         yield return new WaitForSeconds(PlayerAttack.AnimationAttackDuration);
+        ComponentAnimator.enabled = true;
         ComponentSprite.enabled = true;
     }
     private void AbilityInteract()
