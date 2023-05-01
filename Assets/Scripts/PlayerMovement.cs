@@ -131,7 +131,7 @@ public class PlayerMovement : EntityMovement
         // Collider shouldn't be too big since it will interfere with the platforms in tilemaps
         // Divide by 100 since that is the sprite's pixels per unit value?
         // Divide more from x since it seems collider for player is too big (prevents them from falling down holes if walking continuously)
-        Collider.size = new Vector2(ComponentSprite.sprite.rect.size.x / 200, ComponentSprite.sprite.rect.size.y / 100);
+        Collider.size = new Vector2(ComponentSprite.sprite.rect.size.x / 135, ComponentSprite.sprite.rect.size.y / 100);
     }
     private void DoJump()
     {
