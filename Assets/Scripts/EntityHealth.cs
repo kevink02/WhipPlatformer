@@ -18,5 +18,5 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
             Health = 3;
         }
     }
-    protected abstract void TakeDamage();
+    public abstract void TakeDamage();
 }
