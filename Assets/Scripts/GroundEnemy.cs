@@ -21,16 +21,7 @@ public class GroundEnemy : EnemyMovement
         if (IsCloseToPatrolPointTarget())
         {
             MoveDirection *= -1;
-            if (PatrolPointTarget == PatrolPointEnd)
-            {
-                PatrolPointCurrent = PatrolPointEnd;
-                PatrolPointTarget = PatrolPointStart;
-            }
-            else
-            {
-                PatrolPointCurrent = PatrolPointStart;
-                PatrolPointTarget = PatrolPointEnd;
-            }
+            SwapPatrolPointTarget();
         }
     }
     protected override void DoMovementTimed()

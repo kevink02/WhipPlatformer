@@ -43,16 +43,7 @@ public class AirEnemy : EnemyMovement
         RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
         if (IsCloseToPatrolPointTarget())
         {
-            if (PatrolPointTarget == PatrolPointEnd)
-            {
-                PatrolPointCurrent = PatrolPointEnd;
-                PatrolPointTarget = PatrolPointStart;
-            }
-            else
-            {
-                PatrolPointCurrent = PatrolPointStart;
-                PatrolPointTarget = PatrolPointEnd;
-            }
+            SwapPatrolPointTarget();
         }
     }
     protected override void DoMovementTimed()
