@@ -37,7 +37,7 @@ public class PlayerMovement : EntityMovement
     {
         _playerControls.Disable();
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (Game_Manager.IsObjectAnInvisiblePlatform(collision.gameObject))
         {

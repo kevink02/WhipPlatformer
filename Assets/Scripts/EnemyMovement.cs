@@ -29,7 +29,7 @@ public abstract class EnemyMovement : EntityMovement, IVerification
             SetInitialPositionToPatrolPoint();
         }
     }
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         // Switch move direction upon player collision in case the enemy would pin the player to a wall
         if (Game_Manager.IsObjectAPlayer(collision.gameObject))
