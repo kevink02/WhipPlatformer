@@ -42,7 +42,15 @@ public class AirEnemy : EnemyMovement
         Vector2 distanceToTargetTransform = PatrolPointTarget.position - transform.position;
         RigidBody.velocity = MoveForce * distanceToTargetTransform.normalized;
         // Set move direction to the matching direction which it is moving in
-        MoveDirection = (RigidBody.velocity.x < 0) ? Vector2.left : Vector2.right;
+        if (_enemyMoveDirection == EnemyMoveDirection.Horizontal)
+        {
+            MoveDirection = (RigidBody.velocity.x < 0) ? Vector2.left : Vector2.right;
+        }
+        else
+        {
+            // Face the direction which the player is coming from
+            MoveDirection = Vector2.left;
+        }
         if (IsCloseToPatrolPointTarget())
         {
             SwapPatrolPointTarget();
