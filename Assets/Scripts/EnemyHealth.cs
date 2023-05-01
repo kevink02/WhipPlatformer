@@ -15,6 +15,7 @@ public class EnemyHealth : EntityHealth
             return;
         }
         _timeSinceLastHit = Time.time;
+        StartCoroutine(PlayDamageAnimation());
         Health--;
         if (Health <= 0)
             Destroy(gameObject);

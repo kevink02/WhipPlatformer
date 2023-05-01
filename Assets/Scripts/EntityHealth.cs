@@ -25,11 +25,7 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     }
     public abstract void TakeDamage();
     // "Animation" of enemy taking damage
-    protected void DisplayVisualDamage()
-    {
-        StartCoroutine(PlayDamageAnimation());
-    }
-    private IEnumerator PlayDamageAnimation()
+    protected IEnumerator PlayDamageAnimation()
     {
         float time = PlayerAttack.AttackColliderDuration / 5;
         for (int i = 0; i < 3; i++)
