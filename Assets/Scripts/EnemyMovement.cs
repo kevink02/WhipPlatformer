@@ -71,11 +71,11 @@ public abstract class EnemyMovement : EntityMovement, IVerification
     {
         if (moveDirection == 1)
         {
-            ComponentSprite.flipX = false;
+            ComponentSprite.flipX = true;
         }
         else if (moveDirection == -1)
         {
-            ComponentSprite.flipX = true;
+            ComponentSprite.flipX = false;
         }
     }
     /// <summary>
