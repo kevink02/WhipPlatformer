@@ -26,7 +26,8 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         _collider.enabled = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
+        _collider.enabled = false;
     }
     private IEnumerator EndAnimationAttack()
     {
