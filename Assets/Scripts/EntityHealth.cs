@@ -9,7 +9,6 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     protected int MaxHealth;
     protected int Health;
     protected SpriteRenderer ComponentSprite;
-    [SerializeField]
     protected Text HealthText;
 
     private void Awake()

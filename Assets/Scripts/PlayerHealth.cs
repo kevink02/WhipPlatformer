@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerHealth : EntityHealth
 {
+    private PlayerMovement _playerMovement;
+
+    private void Awake()
+    {
+        _playerMovement = GetComponent<PlayerMovement>();
+    }
     public override void TakeDamage()
     {
         // No need to have variable stored to handle invincibility frames
@@ -13,8 +19,8 @@ public class PlayerHealth : EntityHealth
         if (Health <= 0)
         {
             Debug.Log($"{name}: I is dead");
-            //Destroy(HealthText.gameObject);
-            //Destroy(gameObject);
+            _playerMovement.SetPositionToSpawnPoint();
+            Health = MaxHealth;
         }
     }
 }

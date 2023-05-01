@@ -110,7 +110,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
         EffectJump = new EntityEffect(_cooldownJump, _forceJump);
         EffectMoveFlip = new EntityEffect(_cooldownMoveFlip, _forceMoveFlip);
     }
-    protected void SetPositionToSpawnPoint()
+    public void SetPositionToSpawnPoint()
     {
         transform.position = SpawnPoint.position;
     }
