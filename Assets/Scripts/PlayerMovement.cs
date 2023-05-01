@@ -12,12 +12,14 @@ public class PlayerMovement : EntityMovement
     private GameObject _checkpointObject;
     private PlayerAttack _playerAttack;
     private PlayerControls _playerControls;
+    private PlayerHealth _playerHealth;
 
     private new void Awake()
     {
         base.Awake();
         _playerAttack = GetComponentInChildren<PlayerAttack>();
         _playerControls = new PlayerControls();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
     private void Start()
     {
@@ -45,9 +47,10 @@ public class PlayerMovement : EntityMovement
         }
         else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimeHasPassed(EffectJump))
         {
+            _playerHealth.TakeDamage();
+
             EffectKnockback.SetNewTimeEffectApply();
             // Push the player away from the enemy
-
             // Find distance from the collided collider
             Vector2 distanceFromEnemy = collision.collider.transform.position - transform.position;
             // Only account for the horizontal portion of knockback
