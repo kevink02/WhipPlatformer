@@ -23,6 +23,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
     [SerializeField]
     protected Transform SpawnPoint;
 
+    protected Animator ComponentAnimator;
     protected bool IsGrounded;
     protected BoxCollider2D Collider;
     protected Ray RayCastRay;
@@ -52,6 +53,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
 
     protected void Awake()
     {
+        ComponentAnimator = GetComponent<Animator>();
         Collider = GetComponent<BoxCollider2D>();
         RigidBody = GetComponent<Rigidbody2D>();
         ComponentSprite = GetComponent<SpriteRenderer>();
