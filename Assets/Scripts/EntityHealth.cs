@@ -9,6 +9,7 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     protected int MaxHealth;
     protected int Health;
     protected SpriteRenderer ComponentSprite;
+    [SerializeField]
     protected Text HealthText;
 
     private void Awake()
@@ -23,7 +24,7 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
             return;
 
         HealthText.text = $"{Health}/{MaxHealth}";
-        HealthText.transform.position = transform.position + 2 * Vector3.up;
+        HealthText.transform.position = transform.position + 5 * Vector3.up;
     }
     public void VerifyVariables()
     {

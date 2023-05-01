@@ -18,7 +18,10 @@ public class EnemyHealth : EntityHealth
         StartCoroutine(PlayDamageAnimation());
         Health--;
         if (Health <= 0)
+        {
+            Destroy(HealthText.gameObject);
             Destroy(gameObject);
+        }
         else
             ShowEnemyHealthText();
     }
