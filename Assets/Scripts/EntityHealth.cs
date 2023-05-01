@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public abstract class EntityHealth : MonoBehaviour, IVerification
 {
-    [SerializeField]
-    protected int MaxHealth;
-    protected int Health;
+    public int MaxHealth { get; private set; }
+    [HideInInspector]
+    public int Health { get; protected set; }
     protected SpriteRenderer ComponentSprite;
     protected Text HealthText;
 

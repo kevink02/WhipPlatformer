@@ -49,6 +49,14 @@ public class PlayerMovement : EntityMovement
         {
             _playerHealth.TakeDamage();
 
+            // Health gets reset when calling TakeDamage function, so check if current Health = MaxHealth, not = 0
+            if (_playerHealth.Health == _playerHealth.MaxHealth)
+            {
+                // Prevent knockback effect from occurring when player respawns
+                RigidBody.velocity = Vector2.zero;
+                return;
+            }
+
             EffectKnockback.SetNewTimeEffectApply();
             // Push the player away from the enemy
             // Find distance from the collided collider
