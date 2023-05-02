@@ -184,7 +184,10 @@ public class PlayerMovement : EntityMovement
             return;
 
         if (_isAtExit)
+        {
+            ComponentAnimator.SetBool("HasGameEnded", true);
             Game_Manager.GetSingleton().WinGame(this);
+        }
         else if (_isAtCheckpoint)
         {
             Game_Manager.GetSingleton().SetLevelProgressText("Checkpoint set!", transform.position);

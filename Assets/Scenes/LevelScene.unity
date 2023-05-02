@@ -9002,7 +9002,7 @@ MonoBehaviour:
   MoveAccel: 0.2
   MoveDecel: 0.1
   MoveForce: 40
-  SpawnPoint: {fileID: 0}
+  SpawnPoint: {fileID: 1450041168}
   _cooldownKnockback: 0.15
   _forceKnockback: {x: 5500, y: 0}
   _cooldownJump: 0.1
