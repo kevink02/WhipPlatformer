@@ -12,14 +12,12 @@ public class PlayerMovement : EntityMovement
     private GameObject _checkpointObject;
     private PlayerAttack _playerAttack;
     private PlayerControls _playerControls;
-    private PlayerHealth _playerHealth;
 
     private new void Awake()
     {
         base.Awake();
         _playerAttack = GetComponentInChildren<PlayerAttack>();
         _playerControls = new PlayerControls();
-        _playerHealth = GetComponent<PlayerHealth>();
     }
     private void Start()
     {
@@ -49,10 +47,10 @@ public class PlayerMovement : EntityMovement
         }
         else if (Game_Manager.IsObjectAnEnemy(collision.gameObject) && EntityEffect.HasEnoughTimePassed(EffectJump))
         {
-            _playerHealth.TakeDamage();
+            ComponentHealth.TakeDamage();
 
             // Health gets reset when calling TakeDamage function, so check if current Health = MaxHealth, not = 0
-            if (_playerHealth.Health == _playerHealth.MaxHealth)
+            if (ComponentHealth.Health == ComponentHealth.MaxHealth)
             {
                 // Prevent knockback effect from occurring when player respawns
                 RigidBody.velocity = Vector2.zero;
