@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public abstract class EntityHealth : MonoBehaviour, IVerification
 {
+    protected EntityMovement ComponentMovement;
     public int MaxHealth;
     [HideInInspector]
     public int Health;
@@ -13,6 +14,7 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
 
     protected void Awake()
     {
+        ComponentMovement = GetComponent<EntityMovement>();
         ComponentSprite = GetComponent<SpriteRenderer>();
 
         VerifyVariables();

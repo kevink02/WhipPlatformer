@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class PlayerHealth : EntityHealth
 {
-    private PlayerMovement _playerMovement;
-
-    private new void Awake()
-    {
-        base.Awake();
-        _playerMovement = GetComponent<PlayerMovement>();
-    }
     public override void TakeDamage()
     {
         // No need to have variable stored to handle invincibility frames
@@ -27,7 +20,7 @@ public class PlayerHealth : EntityHealth
     }
     public override void OnDeath()
     {
-        _playerMovement.SetPositionToSpawnPoint();
+        ComponentMovement.SetPositionToSpawnPoint();
         Health = MaxHealth;
     }
 }
