@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     private GameObject _screenPause, _buttonPause;
     private static bool _isPaused;
     public delegate void DelegateVoid();
+    public static DelegateVoid DisablePause;
     private static DelegateVoid DoPause, UndoPause;
 
     private void Awake()
@@ -20,11 +21,13 @@ public class PauseMenu : MonoBehaviour
     {
         DoPause += ShowScreenPause;
         UndoPause += HideScreenPause;
+        DisablePause += DisablePausing;
     }
     private void OnDisable()
     {
         DoPause -= ShowScreenPause;
         UndoPause -= HideScreenPause;
+        DisablePause -= DisablePausing;
     }
     public void SwitchSceneToMain()
     {
@@ -56,5 +59,9 @@ public class PauseMenu : MonoBehaviour
     public static bool IsPaused()
     {
         return _isPaused;
+    }
+    public void DisablePausing()
+    {
+        _buttonPause.gameObject.SetActive(false);
     }
 }

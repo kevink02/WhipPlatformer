@@ -84,6 +84,7 @@ public class Game_Manager : MonoBehaviour
         else
         {
             GameEnd?.Invoke();
+            PauseMenu.DisablePause?.Invoke();
             SetLevelProgressText("You win!\n:)", player.transform.position);
             StartCoroutine(SwitchScene());
         }
