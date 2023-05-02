@@ -79,8 +79,15 @@ public class Game_Manager : MonoBehaviour
     }
     public void SetLevelProgressText(String message, Vector2 position)
     {
+        _levelProgressText.gameObject.SetActive(true);
         _levelProgressText.text = message;
         _levelProgressText.transform.position = position + 17.5f * Vector2.up;
+        StartCoroutine(HideLevelProgress());
+    }
+    private IEnumerator HideLevelProgress()
+    {
+        yield return new WaitForSeconds(3.5f);
+        _levelProgressText.gameObject.SetActive(false);
     }
     private IEnumerator SwitchScene()
     {
