@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour
 {
@@ -74,10 +75,16 @@ public class Game_Manager : MonoBehaviour
     {
         _levelProgressText.gameObject.SetActive(true);
         SetLevelProgressText("You win!\n:)", player.transform.position);
+        StartCoroutine(SwitchScene());
     }
     public void SetLevelProgressText(String message, Vector2 position)
     {
         _levelProgressText.text = message;
         _levelProgressText.transform.position = position + 17.5f * Vector2.up;
+    }
+    private IEnumerator SwitchScene()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("MainMenu");
     }
 }
