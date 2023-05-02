@@ -105,4 +105,20 @@ public class Game_Manager : MonoBehaviour
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("MainMenu");
     }
+    public void AutoWinGame()
+    {
+        Debug.Log($"{name}: Initiated cheating");
+        EnemyHealth[] enemies = FindObjectsOfType<EnemyHealth>();
+        foreach (EnemyHealth e in enemies)
+        {
+            if (!e)
+                continue;
+            for (int i = 0; i < e.MaxHealth; i++)
+            {
+                e.TakeDamage();
+            }
+        }
+        PlayerMovement player = FindObjectOfType<PlayerMovement>();
+        player.transform.position = new Vector2(532.5f, -72.5f);
+    }
 }
