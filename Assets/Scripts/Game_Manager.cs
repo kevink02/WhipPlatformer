@@ -78,6 +78,6 @@ public class Game_Manager : MonoBehaviour
     public void SetLevelProgressText(String message, Vector2 position)
     {
         _levelProgressText.text = message;
-        _levelProgressText.transform.position = position + 7 * transform.localScale.y * Vector2.up;
+        _levelProgressText.transform.position = position + 15 * Vector2.up;
     }
 }
