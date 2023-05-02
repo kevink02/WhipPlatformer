@@ -19,8 +19,12 @@ public class EnemyHealth : EntityHealth
         Health--;
         if (Health <= 0)
         {
-            Destroy(HealthText.gameObject);
-            Destroy(gameObject);
+            OnDeath();
         }
+    }
+    public override void OnDeath()
+    {
+        Destroy(HealthText.gameObject);
+        Destroy(gameObject);
     }
 }

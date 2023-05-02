@@ -37,6 +37,7 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
         }
     }
     public abstract void TakeDamage();
+    public abstract void OnDeath();
     // "Animation" of enemy taking damage
     protected IEnumerator PlayDamageAnimation()
     {

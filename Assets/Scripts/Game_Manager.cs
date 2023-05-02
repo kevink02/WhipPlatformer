@@ -111,10 +111,7 @@ public class Game_Manager : MonoBehaviour
         EnemyHealth[] enemies = FindObjectsOfType<EnemyHealth>();
         foreach (EnemyHealth e in enemies)
         {
-            for (int i = 0; i < e.Health; i++)
-            {
-                e.TakeDamage();
-            }
+            e.OnDeath();
         }
         PlayerMovement player = FindObjectOfType<PlayerMovement>();
         player.transform.position = new Vector2(520f, -3f);

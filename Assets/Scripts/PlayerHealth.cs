@@ -18,12 +18,16 @@ public class PlayerHealth : EntityHealth
         Health--;
         if (Health <= 0)
         {
-            _playerMovement.SetPositionToSpawnPoint();
-            Health = MaxHealth;
+            OnDeath();
         }
         else
         {
             StartCoroutine(PlayDamageAnimation());
         }
+    }
+    public override void OnDeath()
+    {
+        _playerMovement.SetPositionToSpawnPoint();
+        Health = MaxHealth;
     }
 }
