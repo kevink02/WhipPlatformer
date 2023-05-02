@@ -32,7 +32,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9147314283979620648, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3.32
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 9147314283979620648, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
@@ -93,7 +93,7 @@ PrefabInstance:
     - target: {fileID: 9147314283979620651, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3038483e535f9bf439bf70ca7ab826e2, type: 3}
+      objectReference: {fileID: 21300000, guid: ec46a3bd9d67ae245b501062f107653c, type: 3}
     - target: {fileID: 9147314283979620662, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_Name
       value: LevelEnd Variant
