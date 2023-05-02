@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 public class Game_Manager : MonoBehaviour
 {
     private static Game_Manager _gameManager;
+    public delegate void DelVoid();
+    public static DelVoid GameEnd;
 
     [SerializeField]
     private Canvas _canvasWorld;
@@ -81,6 +83,7 @@ public class Game_Manager : MonoBehaviour
         }
         else
         {
+            GameEnd?.Invoke();
             SetLevelProgressText("You win!\n:)", player.transform.position);
             StartCoroutine(SwitchScene());
         }

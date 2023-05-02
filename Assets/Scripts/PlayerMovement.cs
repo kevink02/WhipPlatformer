@@ -34,10 +34,12 @@ public class PlayerMovement : EntityMovement
     private void OnEnable()
     {
         _playerControls.Enable();
+        Game_Manager.GameEnd += _playerControls.Disable;
     }
     private void OnDisable()
     {
         _playerControls.Disable();
+        Game_Manager.GameEnd -= _playerControls.Disable;
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
