@@ -70,8 +70,14 @@ public class Game_Manager : MonoBehaviour
         healthText.transform.parent = _canvasWorld.transform;
         return healthText.GetComponent<Text>();
     }
-    public void WinGame()
+    public void WinGame(PlayerMovement player)
     {
         _levelProgressText.gameObject.SetActive(true);
+        SetLevelProgressText("You win!\n:)", player.transform.position);
+    }
+    public void SetLevelProgressText(String message, Vector2 position)
+    {
+        _levelProgressText.text = message;
+        _levelProgressText.transform.position = position + 7 * transform.localScale.y * Vector2.up;
     }
 }

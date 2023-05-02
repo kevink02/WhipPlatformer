@@ -13766,7 +13766,7 @@ GameObject:
   - component: {fileID: 1911307174}
   - component: {fileID: 1911307173}
   m_Layer: 5
-  m_Name: WinText
+  m_Name: LevelProgressText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
