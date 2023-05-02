@@ -633,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: MaxHealth
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
@@ -891,6 +891,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 1224967801}
+    - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MaxHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (4)
@@ -1830,6 +1834,10 @@ PrefabInstance:
     - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: HealthText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MaxHealth
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
@@ -7120,7 +7128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: MaxHealth
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
@@ -7662,6 +7670,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MaxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
       value: 
@@ -7814,6 +7826,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 1272529137}
+    - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MaxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (6)
@@ -8003,6 +8019,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 1784712699}
+    - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MaxHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (3)
@@ -8147,6 +8167,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 1311520443}
+    - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MaxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (7)
@@ -8307,6 +8331,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 1686929875}
+    - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MaxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (2)
@@ -8439,6 +8467,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 831896230}
+    - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MaxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant
@@ -9529,7 +9561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: MaxHealth
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
@@ -9604,6 +9636,10 @@ PrefabInstance:
     - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: HealthText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MaxHealth
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
@@ -9903,7 +9939,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7701873007548981871, guid: fc2750dea53305043a8c1136be77548d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -262.5
+      value: -247.5
       objectReference: {fileID: 0}
     - target: {fileID: 7701873007548981871, guid: fc2750dea53305043a8c1136be77548d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12768,6 +12804,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MaxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
       value: 
@@ -13357,6 +13397,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MaxHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
       value: 
@@ -13453,7 +13497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: MaxHealth
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
@@ -13803,6 +13847,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 1540410303}
+    - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MaxHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (5)
@@ -13868,6 +13916,10 @@ PrefabInstance:
     - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: HealthText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MaxHealth
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
@@ -13953,7 +14005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: MaxHealth
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
@@ -14261,6 +14313,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 609256269}
+    - target: {fileID: 3739530893939168456, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MaxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (1)
@@ -14358,6 +14414,10 @@ PrefabInstance:
     - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: HealthText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MaxHealth
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
