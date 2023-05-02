@@ -87,5 +87,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelPatrol Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 9147314283979620662, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
+      propertyPath: m_TagString
+      value: PatrolPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
