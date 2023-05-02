@@ -182,14 +182,10 @@ public class PlayerMovement : EntityMovement
             return;
 
         if (_isAtExit)
-            WinGame();
+            Game_Manager.GetSingleton().WinGame();
         else if (_isAtCheckpoint)
         {
             SpawnPoint = _checkpointObject.transform;
         }
-    }
-    private void WinGame()
-    {
-
     }
 }
