@@ -82,7 +82,11 @@ PrefabInstance:
     - target: {fileID: 9147314283979620651, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ddf649ebd4ebf9e4390ee9367bef6f97, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147314283979620651, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9147314283979620662, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_Name
       value: LevelPatrol Variant
