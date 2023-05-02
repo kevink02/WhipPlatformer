@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class EnemyMovement : EntityMovement, IVerification
 {
-    protected const float PatrolPointDistance = 0.5f;
+    protected const float PatrolPointDistance = 1.5f;
     [SerializeField]
     protected EnemyMoveType MoveType;
     [SerializeField]
