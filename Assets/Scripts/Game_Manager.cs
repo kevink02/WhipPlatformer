@@ -73,9 +73,17 @@ public class Game_Manager : MonoBehaviour
     }
     public void WinGame(PlayerMovement player)
     {
-        _levelProgressText.gameObject.SetActive(true);
-        SetLevelProgressText("You win!\n:)", player.transform.position);
-        StartCoroutine(SwitchScene());
+        // If there is at least 1 enemy alive, do not end the game
+        int count = FindObjectsOfType<EnemyMovement>().Length;
+        if (count > 0)
+        {
+            SetLevelProgressText($"You cannot win yet!\nThere are still {count} enemies alive.", player.transform.position);
+        }
+        else
+        {
+            SetLevelProgressText("You win!\n:)", player.transform.position);
+            StartCoroutine(SwitchScene());
+        }
     }
     public void SetLevelProgressText(String message, Vector2 position)
     {
