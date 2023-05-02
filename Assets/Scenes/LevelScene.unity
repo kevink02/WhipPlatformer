@@ -3334,6 +3334,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4217262569711209358, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MaxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: SpawnPoint
       value: 
@@ -3342,6 +3346,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 1880194741}
+    - target: {fileID: 5330976083974970488, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: MoveForce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7078154473629410625, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -470.3
@@ -3385,6 +3393,14 @@ PrefabInstance:
     - target: {fileID: 7078154473629410625, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078154473629410625, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078154473629410625, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7078154473629410628, guid: bac02c8af9ae8f147bfcb569aa361dec, type: 3}
       propertyPath: m_Name
@@ -4013,6 +4029,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f185125b5b3c9f45a7f4227b417258e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 0
+  Health: 0
 --- !u!1001 &1245396500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4626,6 +4644,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 1864460473}
+    - target: {fileID: 1266956039, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MoveForce
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (11)
@@ -6970,14 +6992,6 @@ CompositeCollider2D:
         Y: -550000000
       - X: 550000000
         Y: -550000000
-    - - X: 500000000
-        Y: -550000000
-      - X: 450000000
-        Y: -550000000
-      - X: 450000000
-        Y: -600000000
-      - X: 500000000
-        Y: -600000000
     - - X: -4150000128
         Y: -550000000
       - X: -4200000000
@@ -6985,6 +6999,14 @@ CompositeCollider2D:
       - X: -4200000000
         Y: -600000000
       - X: -4150000128
+        Y: -600000000
+    - - X: 500000000
+        Y: -550000000
+      - X: 450000000
+        Y: -550000000
+      - X: 450000000
+        Y: -600000000
+      - X: 500000000
         Y: -600000000
     - - X: 0
         Y: -600000000
@@ -7018,14 +7040,6 @@ CompositeCollider2D:
         Y: -650000000
       - X: 3300000000
         Y: -650000000
-    - - X: -600000000
-        Y: -650000000
-      - X: -650000000
-        Y: -650000000
-      - X: -650000000
-        Y: -700000000
-      - X: -600000000
-        Y: -700000000
     - - X: -4800000000
         Y: -650000000
       - X: -4849999872
@@ -7033,6 +7047,14 @@ CompositeCollider2D:
       - X: -4849999872
         Y: -700000000
       - X: -4800000000
+        Y: -700000000
+    - - X: -600000000
+        Y: -650000000
+      - X: -650000000
+        Y: -650000000
+      - X: -650000000
+        Y: -700000000
+      - X: -600000000
         Y: -700000000
     - - X: -650000000
         Y: -700000000
@@ -7066,46 +7088,6 @@ CompositeCollider2D:
         Y: -800000000
       - X: -4899999744
         Y: -800000000
-    - - X: 2550000128
-        Y: -800000000
-      - X: 2500000100
-        Y: -800000000
-      - X: 2500000100
-        Y: -800000041
-      - X: 2500000041
-        Y: -800000100
-      - X: 2449999831
-        Y: -800000100
-      - X: 2449999772
-        Y: -800000041
-      - X: 2449999772
-        Y: -800000000
-      - X: 2350000228
-        Y: -800000000
-      - X: 2350000228
-        Y: -800000041
-      - X: 2350000169
-        Y: -800000100
-      - X: 2299999959
-        Y: -800000100
-      - X: 2299999900
-        Y: -800000041
-      - X: 2299999900
-        Y: -800000000
-      - X: 2249999872
-        Y: -800000000
-      - X: 2249999872
-        Y: -850000000
-      - X: 2550000128
-        Y: -850000000
-    - - X: 4800000000
-        Y: -800000000
-      - X: 4499999744
-        Y: -800000000
-      - X: 4499999744
-        Y: -850000000
-      - X: 4800000000
-        Y: -850000000
     - - X: 4200000000
         Y: -800000000
       - X: 3900000000
@@ -7130,29 +7112,13 @@ CompositeCollider2D:
         Y: -850000000
       - X: 3000000000
         Y: -850000000
-    - - X: -1950000000
+    - - X: 2550000128
         Y: -800000000
-      - X: -2249999872
+      - X: 2249999872
         Y: -800000000
-      - X: -2249999872
+      - X: 2249999872
         Y: -850000000
-      - X: -1950000000
-        Y: -850000000
-    - - X: -4950000128
-        Y: -800000000
-      - X: -5400000000
-        Y: -800000000
-      - X: -5400000000
-        Y: -850000000
-      - X: -4950000128
-        Y: -850000000
-    - - X: 5400000000
-        Y: -800000000
-      - X: 5100000256
-        Y: -800000000
-      - X: 5100000256
-        Y: -850000000
-      - X: 5400000000
+      - X: 2550000128
         Y: -850000000
     - - X: -750000000
         Y: -800000000
@@ -7169,6 +7135,38 @@ CompositeCollider2D:
       - X: -1800000000
         Y: -850000000
       - X: -1500000000
+        Y: -850000000
+    - - X: -1950000000
+        Y: -800000000
+      - X: -2249999872
+        Y: -800000000
+      - X: -2249999872
+        Y: -850000000
+      - X: -1950000000
+        Y: -850000000
+    - - X: -4950000128
+        Y: -800000000
+      - X: -5400000000
+        Y: -800000000
+      - X: -5400000000
+        Y: -850000000
+      - X: -4950000128
+        Y: -850000000
+    - - X: 4800000000
+        Y: -800000000
+      - X: 4499999744
+        Y: -800000000
+      - X: 4499999744
+        Y: -850000000
+      - X: 4800000000
+        Y: -850000000
+    - - X: 5400000000
+        Y: -800000000
+      - X: 5100000256
+        Y: -800000000
+      - X: 5100000256
+        Y: -850000000
+      - X: 5400000000
         Y: -850000000
   m_CompositePaths:
     m_Paths:
@@ -8308,6 +8306,10 @@ PrefabInstance:
       propertyPath: PatrolPointEnd
       value: 
       objectReference: {fileID: 620843217}
+    - target: {fileID: 1266956039, guid: 0d8b72200216e8045933f71717deb380, type: 3}
+      propertyPath: MoveForce
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7735325450815289858, guid: 0d8b72200216e8045933f71717deb380, type: 3}
       propertyPath: m_Name
       value: EnemyAir Variant (10)

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public abstract class EntityHealth : MonoBehaviour, IVerification
 {
-    public int MaxHealth { get; private set; }
+    public int MaxHealth;
     [HideInInspector]
-    public int Health { get; protected set; }
+    public int Health;
     protected SpriteRenderer ComponentSprite;
     protected Text HealthText;
 
