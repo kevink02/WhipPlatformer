@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 9147314283979620651, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9a957682b42451e43afaa1ede92dd717, type: 3}
+      objectReference: {fileID: -6562522853353605481, guid: 214160d4cb2f08e4288a4eaab372ebff, type: 3}
     - target: {fileID: 9147314283979620662, guid: 3e74d902a3ba47f42a1ce6a65295a117, type: 3}
       propertyPath: m_Name
       value: LevelStart Variant
