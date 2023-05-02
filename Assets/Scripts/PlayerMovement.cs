@@ -181,13 +181,15 @@ public class PlayerMovement : EntityMovement
         if (PauseMenu.IsPaused())
             return;
 
-        Debug.Log($"{name}: Interacting");
         if (_isAtExit)
-            Debug.Log($"{name}: I won!");
+            WinGame();
         else if (_isAtCheckpoint)
         {
-            Debug.Log($"{name}: I reset my spawn point");
             SpawnPoint = _checkpointObject.transform;
         }
+    }
+    private void WinGame()
+    {
+
     }
 }
