@@ -26,6 +26,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
     protected Animator ComponentAnimator;
     protected bool IsGrounded;
     protected BoxCollider2D Collider;
+    protected EntityHealth ComponentHealth;
     protected Ray RayCastRay;
     protected RaycastHit2D RayCastHit;
     protected Rigidbody2D RigidBody;
@@ -55,6 +56,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
     {
         ComponentAnimator = GetComponent<Animator>();
         Collider = GetComponent<BoxCollider2D>();
+        ComponentHealth = GetComponent<EntityHealth>();
         RigidBody = GetComponent<Rigidbody2D>();
         ComponentSprite = GetComponent<SpriteRenderer>();
         DetectVector = Game_Manager.GetVector2FromAngle(DetectAngle);
@@ -108,6 +110,7 @@ public abstract class EntityMovement : MonoBehaviour, IVerification
     public void SetPositionToSpawnPoint()
     {
         transform.position = SpawnPoint.position;
+        ComponentHealth.Health = ComponentHealth.MaxHealth;
     }
     protected bool HasCollidedWithPlatformAtDetectAngle()
     {
