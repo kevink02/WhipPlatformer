@@ -20,7 +20,8 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     protected void FixedUpdate()
     {
         HealthText.text = $"{Health}/{MaxHealth}";
-        HealthText.transform.position = transform.position + 5 * Vector3.up;
+        // Allow larger enemies to have their health text be higher above them compared to smaller enemies
+        HealthText.transform.position = transform.position + 7 * transform.localScale.y * Vector3.up;
     }
     public void VerifyVariables()
     {
