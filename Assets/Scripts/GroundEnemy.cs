@@ -39,8 +39,8 @@ public class GroundEnemy : EnemyMovement
     }
     protected override bool IsCloseToPatrolPointTarget()
     {
-        return Mathf.Abs(transform.position.x - PatrolPointTarget.position.x) <= 0.1f &&
-            Mathf.Abs(transform.position.x - PatrolPointCurrent.position.x) > 0.1f;
+        return Mathf.Abs(transform.position.x - PatrolPointTarget.position.x) <= PatrolPointDistance &&
+            Mathf.Abs(transform.position.x - PatrolPointCurrent.position.x) > PatrolPointDistance;
     }
     protected override void FlipMoveDirectionOnCollision()
     {

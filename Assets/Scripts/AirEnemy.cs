@@ -70,8 +70,8 @@ public class AirEnemy : EnemyMovement
     }
     protected override bool IsCloseToPatrolPointTarget()
     {
-        return Vector2.Distance(transform.position, PatrolPointTarget.position) <= 0.1f &&
-            Vector2.Distance(transform.position, PatrolPointCurrent.position) > 0.1f;
+        return Vector2.Distance(transform.position, PatrolPointTarget.position) <= PatrolPointDistance &&
+            Vector2.Distance(transform.position, PatrolPointCurrent.position) > PatrolPointDistance;
     }
     protected override void FlipMoveDirectionOnCollision()
     {
