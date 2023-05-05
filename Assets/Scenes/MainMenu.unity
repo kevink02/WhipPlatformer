@@ -1541,7 +1541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -650}
+  m_AnchoredPosition: {x: 0, y: -630}
   m_SizeDelta: {x: 1850, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1439658285
@@ -1579,9 +1579,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Controls:\n\tA, D = move left, move right\n\tW = jump\n\tLeft-click =
     attack\n\tE = interact (with flags)\n\tSpace = toggle camera zoom\n\tP = toggle
-    game pause\nObjective:\n\tDefeat all the enemies in the level and reach the end
-    flag to win!\n\tTouching enemies will knock you back and deplete your health.\nLosing
-    all health or falling off the level will send you back to your last checkpoint."
+    game pause\nObjective:\n\tReach the end of the level and defeat ALL enemies along
+    the way.\n\tAvoid touching enemies or falling off the level as that will deplete
+    your health.\n\tLosing all your health will respawn you at your last checkpoint,
+    which you may set by interacting with flags."
 --- !u!222 &1439658286
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1625,7 +1626,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 1000, y: 150}
+  m_SizeDelta: {x: 1500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1450208269
 MonoBehaviour:
@@ -1649,18 +1650,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4d37dcbc9281ebf4e8d144201474c4cc, type: 3}
-    m_FontSize: 96
+    m_FontSize: 128
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 9
-    m_MaxSize: 96
+    m_MinSize: 1
+    m_MaxSize: 128
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Unnamed Whip Game
+  m_Text: Demon Hunter Whipping till the End
 --- !u!222 &1450208270
 CanvasRenderer:
   m_ObjectHideFlags: 0
