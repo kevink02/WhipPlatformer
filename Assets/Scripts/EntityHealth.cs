@@ -43,6 +43,7 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
     // "Animation" of enemy taking damage
     protected IEnumerator PlayDamageAnimation()
     {
+        HealthText.gameObject.SetActive(true);
         float time = PlayerAttack.AttackColliderDuration / 5;
         for (int i = 0; i < 3; i++)
         {
@@ -53,5 +54,6 @@ public abstract class EntityHealth : MonoBehaviour, IVerification
             if (i != 2)
                 yield return new WaitForSeconds(time);
         }
+        HealthText.gameObject.SetActive(false);
     }
 }
