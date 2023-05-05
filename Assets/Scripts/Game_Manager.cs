@@ -83,6 +83,14 @@ public class Game_Manager : MonoBehaviour
         }
         else
         {
+            GameObject endFlag = GameObject.FindGameObjectWithTag("LevelEnd");
+            if (!endFlag)
+            {
+                throw new Exception("There is no end flag object");
+            }
+            Animator endFlagAnimator = endFlag.GetComponent<Animator>();
+            endFlagAnimator.SetBool("HasGameEnded", true);
+
             GameEnd?.Invoke();
             PauseMenu.DisablePause?.Invoke();
             SetLevelProgressText("You win!\n:)", player.transform.position);

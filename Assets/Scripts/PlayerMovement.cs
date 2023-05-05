@@ -183,13 +183,6 @@ public class PlayerMovement : EntityMovement
 
         if (_isAtExit)
         {
-            GameObject endFlag = GameObject.FindGameObjectWithTag("LevelEnd");
-            if (!endFlag)
-            {
-                throw new System.Exception("There is no end flag object");
-            }
-            Animator endFlagAnimator = endFlag.GetComponent<Animator>();
-            endFlagAnimator.SetBool("HasGameEnded", true);
             Game_Manager.GetSingleton().WinGame(this);
         }
         else if (_isAtCheckpoint)
